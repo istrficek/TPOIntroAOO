@@ -66,6 +66,10 @@ public class Operacion {
 		super();
 	}
 	
+	public void ObtenerTasaDeDescuento() {
+		
+	}
+	
 	
 	
 	
