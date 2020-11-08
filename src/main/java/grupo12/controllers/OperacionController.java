@@ -1,6 +1,5 @@
 package grupo12.controllers;
 
-import grupo12.entity.Operacion;
 import grupo12.entity.Tipo1;
 import grupo12.entity.Tipo2;
 import grupo12.entity.Tipo3;
