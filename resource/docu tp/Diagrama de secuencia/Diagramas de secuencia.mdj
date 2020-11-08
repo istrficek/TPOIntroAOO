@@ -14732,9 +14732,9 @@
 														"$ref": "AAAAAAF1Ye9wcY0Ayos="
 													},
 													"font": "Arial;13;0",
-													"left": 75.97900390625,
+													"left": 71.58642578125,
 													"top": 10,
-													"width": 521.26025390625,
+													"width": 471.77392578125,
 													"height": 13,
 													"text": "Negocio: La SGR no puede recibir más del 5% del FDR en cheques de un mismo firmante"
 												},
@@ -14747,7 +14747,7 @@
 													"font": "Arial;13;1",
 													"left": 10,
 													"top": 10,
-													"width": 60.97900390625,
+													"width": 56.58642578125,
 													"height": 13,
 													"text": "interaction"
 												}
@@ -15241,9 +15241,9 @@
 														"$ref": "AAAAAAF1Ye9wcY0d9YQ="
 													},
 													"font": "Arial;13;0",
-													"left": 549.07177734375,
+													"left": 547.61181640625,
 													"top": 325,
-													"width": 170.41259765625,
+													"width": 154.92431640625,
 													"height": 13,
 													"text": "Checkes Firmante > 5% FDR"
 												},
@@ -15256,7 +15256,7 @@
 													"font": "Arial;13;1",
 													"left": 525,
 													"top": 325,
-													"width": 19.07177734375,
+													"width": 17.61181640625,
 													"height": 13,
 													"text": "opt"
 												},
@@ -16677,9 +16677,9 @@
 														"$ref": "AAAAAAF1Ye+gZJCk52E="
 													},
 													"font": "Arial;13;0",
-													"left": 75.97900390625,
+													"left": 71.58642578125,
 													"top": 10,
-													"width": 360.861328125,
+													"width": 327.73291015625,
 													"height": 13,
 													"text": "Negocio: Ningún socio puede operar por más del 5% del FDR "
 												},
@@ -16692,7 +16692,7 @@
 													"font": "Arial;13;1",
 													"left": 10,
 													"top": 10,
-													"width": 60.97900390625,
+													"width": 56.58642578125,
 													"height": 13,
 													"text": "interaction"
 												}
@@ -17186,9 +17186,9 @@
 														"$ref": "AAAAAAF1Ye+gZZDBeSg="
 													},
 													"font": "Arial;13;0",
-													"left": 541.07177734375,
+													"left": 539.61181640625,
 													"top": 229,
-													"width": 170.41259765625,
+													"width": 154.92431640625,
 													"height": 13,
 													"text": "Checkes Firmante > 5% FDR"
 												},
@@ -17201,7 +17201,7 @@
 													"font": "Arial;13;1",
 													"left": 517,
 													"top": 229,
-													"width": 19.07177734375,
+													"width": 17.61181640625,
 													"height": 13,
 													"text": "opt"
 												},
@@ -18370,9 +18370,9 @@
 														"$ref": "AAAAAAF1YfDaZZJ5FuE="
 													},
 													"font": "Arial;13;0",
-													"left": 70.97900390625,
+													"left": 66.58642578125,
 													"top": 5,
-													"width": 581.3154296875,
+													"width": 521.5458984375,
 													"height": 13,
 													"text": "Negocio: Ningún socio puede operar si debe facturas por más del 10% del total de la línea asignada "
 												},
@@ -18385,7 +18385,7 @@
 													"font": "Arial;13;1",
 													"left": 5,
 													"top": 5,
-													"width": 60.97900390625,
+													"width": 56.58642578125,
 													"height": 13,
 													"text": "interaction"
 												}
@@ -19439,9 +19439,9 @@
 														"$ref": "AAAAAAF1YgO4QzvVLZk="
 													},
 													"font": "Arial;13;0",
-													"left": 381.07177734375,
+													"left": 379.61181640625,
 													"top": 277,
-													"width": 113.38525390625,
+													"width": 103.654296875,
 													"height": 13,
 													"text": "Saldo < 10% op.val"
 												},
@@ -19454,7 +19454,7 @@
 													"font": "Arial;13;1",
 													"left": 357,
 													"top": 277,
-													"width": 19.07177734375,
+													"width": 17.61181640625,
 													"height": 13,
 													"text": "opt"
 												},
@@ -20139,7 +20139,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF1bCg641BJIPQ="
 									},
-									"name": "idSocio"
+									"name": "idSocio",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -20214,9 +20215,9 @@
 														"$ref": "AAAAAAF1YgcpbTwvquU="
 													},
 													"font": "Arial;13;0",
-													"left": 75.97900390625,
+													"left": 71.58642578125,
 													"top": 10,
-													"width": 623.90185546875,
+													"width": 554.4013671875,
 													"height": 13,
 													"text": "Un socio no puede ser aprobado como protector si es accionista de una empresa socia partícipe de la SGR "
 												},
@@ -20229,7 +20230,7 @@
 													"font": "Arial;13;1",
 													"left": 10,
 													"top": 10,
-													"width": 60.97900390625,
+													"width": 56.58642578125,
 													"height": 13,
 													"text": "interaction"
 												}
@@ -21961,9 +21962,9 @@
 														"$ref": "AAAAAAF1YhhmVaSuiEg="
 													},
 													"font": "Arial;13;0",
-													"left": 75.97900390625,
+													"left": 71.58642578125,
 													"top": 10,
-													"width": 854.35986328125,
+													"width": 757.30419921875,
 													"height": 13,
 													"text": "Si una empresa comparte accionistas con otra empresa el total computado para el 5% del FDR es la suma de los riesgos vivos de ambas empresas"
 												},
@@ -21976,7 +21977,7 @@
 													"font": "Arial;13;1",
 													"left": 10,
 													"top": 10,
-													"width": 60.97900390625,
+													"width": 56.58642578125,
 													"height": 13,
 													"text": "interaction"
 												}
@@ -23255,9 +23256,9 @@
 														"$ref": "AAAAAAF1YhwR0arFVO4="
 													},
 													"font": "Arial;13;0",
-													"left": 325.07177734375,
+													"left": 323.61181640625,
 													"top": 357,
-													"width": 201.38916015625,
+													"width": 183.95849609375,
 													"height": 13,
 													"text": "Socio No Tiene Accionistas Socios"
 												},
@@ -23270,7 +23271,7 @@
 													"font": "Arial;13;1",
 													"left": 301,
 													"top": 357,
-													"width": 19.07177734375,
+													"width": 17.61181640625,
 													"height": 13,
 													"text": "opt"
 												},
@@ -24314,9 +24315,9 @@
 														"$ref": "AAAAAAF1YiEjd7Dntts="
 													},
 													"font": "Arial;13;0",
-													"left": 75.97900390625,
+													"left": 71.58642578125,
 													"top": 10,
-													"width": 694.5322265625,
+													"width": 617.84619140625,
 													"height": 13,
 													"text": "Total de comisiones calculadas en un día por operaciones de cheques presentadas en el Mercado Argentino de Valores "
 												},
@@ -24329,7 +24330,7 @@
 													"font": "Arial;13;1",
 													"left": 10,
 													"top": 10,
-													"width": 60.97900390625,
+													"width": 56.58642578125,
 													"height": 13,
 													"text": "interaction"
 												}
@@ -25046,9 +25047,9 @@
 														"$ref": "AAAAAAF1YiYYvd9oZq8="
 													},
 													"font": "Arial;13;0",
-													"left": 357.07177734375,
+													"left": 355.61181640625,
 													"top": 229,
-													"width": 113.74072265625,
+													"width": 100.4931640625,
 													"height": 13,
 													"text": "op.Fecha == Fecha"
 												},
@@ -25061,7 +25062,7 @@
 													"font": "Arial;13;1",
 													"left": 333,
 													"top": 229,
-													"width": 19.07177734375,
+													"width": 17.61181640625,
 													"height": 13,
 													"text": "opt"
 												},
@@ -25147,9 +25148,9 @@
 														"$ref": "AAAAAAF1YicoFuT6w78="
 													},
 													"font": "Arial;13;0",
-													"left": 371.578125,
+													"left": 370.11181640625,
 													"top": 277,
-													"width": 119.5107421875,
+													"width": 106.4091796875,
 													"height": 13,
 													"text": "Por Cada Operacion"
 												},
@@ -25162,7 +25163,7 @@
 													"font": "Arial;13;1",
 													"left": 341,
 													"top": 277,
-													"width": 25.578125,
+													"width": 24.11181640625,
 													"height": 13,
 													"text": "loop"
 												},
@@ -25830,9 +25831,9 @@
 														"$ref": "AAAAAAF1YikmauVeEJA="
 													},
 													"font": "Arial;13;0",
-													"left": 75.97900390625,
+													"left": 71.58642578125,
 													"top": 13,
-													"width": 570.49267578125,
+													"width": 503.85498046875,
 													"height": 13,
 													"text": "Las operaciones avaladas a nombre de un socio, en estado monetizadas en un período de tiempo "
 												},
@@ -25845,7 +25846,7 @@
 													"font": "Arial;13;1",
 													"left": 10,
 													"top": 13,
-													"width": 60.97900390625,
+													"width": 56.58642578125,
 													"height": 13,
 													"text": "interaction"
 												}
@@ -26898,9 +26899,9 @@
 														"$ref": "AAAAAAF1Yi9L4BkDsK8="
 													},
 													"font": "Arial;13;0",
-													"left": 301.07177734375,
+													"left": 299.61181640625,
 													"top": 309,
-													"width": 131.0888671875,
+													"width": 119.6376953125,
 													"height": 13,
 													"text": "Estado == Monetizado"
 												},
@@ -26913,7 +26914,7 @@
 													"font": "Arial;13;1",
 													"left": 277,
 													"top": 309,
-													"width": 19.07177734375,
+													"width": 17.61181640625,
 													"height": 13,
 													"text": "opt"
 												},
@@ -26999,9 +27000,9 @@
 														"$ref": "AAAAAAF1YjBHTxkgXEs="
 													},
 													"font": "Arial;13;0",
-													"left": 339.578125,
+													"left": 338.11181640625,
 													"top": 373,
-													"width": 113.74072265625,
+													"width": 100.6201171875,
 													"height": 13,
 													"text": "Por cada operacion"
 												},
@@ -27014,7 +27015,7 @@
 													"font": "Arial;13;1",
 													"left": 309,
 													"top": 373,
-													"width": 25.578125,
+													"width": 24.11181640625,
 													"height": 13,
 													"text": "loop"
 												},
@@ -27739,9 +27740,9 @@
 														"$ref": "AAAAAAF1YjMvIRp4Aik="
 													},
 													"font": "Arial;13;0",
-													"left": 75.97900390625,
+													"left": 71.58642578125,
 													"top": 10,
-													"width": 911.37451171875,
+													"width": 807.05712890625,
 													"height": 13,
 													"text": "Valor promedio de la tasa de descuento y total operado de cheques y pagarés para un tipo de empresa (pequeña, mediana, grande), en un período de tiempo"
 												},
@@ -27754,7 +27755,7 @@
 													"font": "Arial;13;1",
 													"left": 10,
 													"top": 10,
-													"width": 60.97900390625,
+													"width": 56.58642578125,
 													"height": 13,
 													"text": "interaction"
 												}
@@ -28810,9 +28811,9 @@
 														"$ref": "AAAAAAF1bC0cgXMuvrU="
 													},
 													"font": "Arial;13;0",
-													"left": 653.07177734375,
+													"left": 651.61181640625,
 													"top": 325,
-													"width": 256.82958984375,
+													"width": 230.2138671875,
 													"height": 13,
 													"text": "op.fecha between FechaInicio and FechaFin"
 												},
@@ -28825,7 +28826,7 @@
 													"font": "Arial;13;1",
 													"left": 629,
 													"top": 325,
-													"width": 19.07177734375,
+													"width": 17.61181640625,
 													"height": 13,
 													"text": "opt"
 												},
@@ -29138,9 +29139,9 @@
 														"$ref": "AAAAAAF1bC7zanOBygg="
 													},
 													"font": "Arial;13;0",
-													"left": 683.578125,
+													"left": 682.11181640625,
 													"top": 357,
-													"width": 112.287109375,
+													"width": 99.9091796875,
 													"height": 13,
 													"text": "PorCadaOperacion"
 												},
@@ -29153,7 +29154,7 @@
 													"font": "Arial;13;1",
 													"left": 653,
 													"top": 357,
-													"width": 25.578125,
+													"width": 24.11181640625,
 													"height": 13,
 													"text": "loop"
 												},
@@ -30609,9 +30610,9 @@
 														"$ref": "AAAAAAF1bDhyxeJ5/F0="
 													},
 													"font": "Arial;13;0",
-													"left": 75.97900390625,
+													"left": 71.58642578125,
 													"top": 10,
-													"width": 607.30908203125,
+													"width": 543.5595703125,
 													"height": 13,
 													"text": "Consulta porcentaje de comisión a calcularle a un socio por un tipo de operación pasada por parámetros "
 												},
@@ -30624,7 +30625,7 @@
 													"font": "Arial;13;1",
 													"left": 10,
 													"top": 10,
-													"width": 60.97900390625,
+													"width": 56.58642578125,
 													"height": 13,
 													"text": "interaction"
 												}
@@ -31680,9 +31681,9 @@
 														"$ref": "AAAAAAF1bD6GPAOVPxU="
 													},
 													"font": "Arial;13;0",
-													"left": 511.9599609375,
+													"left": 508.3291015625,
 													"top": 245,
-													"width": 116.62255859375,
+													"width": 103.50830078125,
 													"height": 13,
 													"text": "Por cada Operacion"
 												},
@@ -31695,7 +31696,7 @@
 													"font": "Arial;13;1",
 													"left": 485,
 													"top": 245,
-													"width": 21.9599609375,
+													"width": 18.3291015625,
 													"height": 13,
 													"text": "seq"
 												},
@@ -32146,9 +32147,9 @@
 														"$ref": "AAAAAAF1bD+pIQPIDOo="
 													},
 													"font": "Arial;13;0",
-													"left": 75.97900390625,
+													"left": 71.58642578125,
 													"top": 10,
-													"width": 520.5810546875,
+													"width": 475.22705078125,
 													"height": 13,
 													"text": "Consulta consolidada de un socio. Consultas riesgo vivo y total de utilizado. Total y detalle"
 												},
@@ -32161,7 +32162,7 @@
 													"font": "Arial;13;1",
 													"left": 10,
 													"top": 10,
-													"width": 60.97900390625,
+													"width": 56.58642578125,
 													"height": 13,
 													"text": "interaction"
 												}
@@ -33217,9 +33218,9 @@
 														"$ref": "AAAAAAF1bFI4um+acno="
 													},
 													"font": "Arial;13;0",
-													"left": 307.578125,
+													"left": 306.11181640625,
 													"top": 325,
-													"width": 119.5107421875,
+													"width": 106.4091796875,
 													"height": 13,
 													"text": "Por Cada Operacion"
 												},
@@ -33232,7 +33233,7 @@
 													"font": "Arial;13;1",
 													"left": 277,
 													"top": 325,
-													"width": 25.578125,
+													"width": 24.11181640625,
 													"height": 13,
 													"text": "loop"
 												},
@@ -33318,9 +33319,9 @@
 														"$ref": "AAAAAAF1bFNaz2+0+us="
 													},
 													"font": "Arial;13;0",
-													"left": 317.07177734375,
+													"left": 315.61181640625,
 													"top": 357,
-													"width": 67.70751953125,
+													"width": 64.45751953125,
 													"height": 13,
 													"text": "Switch Tipo"
 												},
@@ -33333,7 +33334,7 @@
 													"font": "Arial;13;1",
 													"left": 293,
 													"top": 357,
-													"width": 19.07177734375,
+													"width": 17.61181640625,
 													"height": 13,
 													"text": "opt"
 												},
@@ -34491,9 +34492,9 @@
 														"$ref": "AAAAAAF1bFlL+4f5j44="
 													},
 													"font": "Arial;13;0",
-													"left": 285.07177734375,
+													"left": 283.61181640625,
 													"top": 293,
-													"width": 131.0888671875,
+													"width": 119.6376953125,
 													"height": 13,
 													"text": "Estado == Monetizado"
 												},
@@ -34506,7 +34507,7 @@
 													"font": "Arial;13;1",
 													"left": 261,
 													"top": 293,
-													"width": 19.07177734375,
+													"width": 17.61181640625,
 													"height": 13,
 													"text": "opt"
 												},
@@ -34592,9 +34593,9 @@
 														"$ref": "AAAAAAF1bFqmRo3+EAA="
 													},
 													"font": "Arial;13;0",
-													"left": 335.9599609375,
+													"left": 332.3291015625,
 													"top": 381,
-													"width": 220.6923828125,
+													"width": 200.849609375,
 													"height": 13,
 													"text": "op.FechaVencimiento <= FechaActual"
 												},
@@ -34607,7 +34608,7 @@
 													"font": "Arial;13;1",
 													"left": 309,
 													"top": 381,
-													"width": 21.9599609375,
+													"width": 18.3291015625,
 													"height": 13,
 													"text": "seq"
 												},
@@ -34693,9 +34694,9 @@
 														"$ref": "AAAAAAF1bFvsqY4Y+LA="
 													},
 													"font": "Arial;13;0",
-													"left": 335.9599609375,
+													"left": 332.3291015625,
 													"top": 477,
-													"width": 220.6923828125,
+													"width": 200.849609375,
 													"height": 13,
 													"text": "op.FechaVencimiento <= FechaActual"
 												},
@@ -34708,7 +34709,7 @@
 													"font": "Arial;13;1",
 													"left": 309,
 													"top": 477,
-													"width": 21.9599609375,
+													"width": 18.3291015625,
 													"height": 13,
 													"text": "seq"
 												},
@@ -34910,9 +34911,9 @@
 														"$ref": "AAAAAAF1bF8t87DPmZU="
 													},
 													"font": "Arial;13;0",
-													"left": 291.578125,
+													"left": 290.11181640625,
 													"top": 725,
-													"width": 112.287109375,
+													"width": 99.9091796875,
 													"height": 13,
 													"text": "PorCadaOperacion"
 												},
@@ -34925,7 +34926,7 @@
 													"font": "Arial;13;1",
 													"left": 261,
 													"top": 725,
-													"width": 25.578125,
+													"width": 24.11181640625,
 													"height": 13,
 													"text": "loop"
 												},

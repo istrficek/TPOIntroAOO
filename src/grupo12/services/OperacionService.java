@@ -1,8 +1,13 @@
 package grupo12.services;
 
+import java.util.ArrayList;
+import java.util.Date;
+
+import grupo12.entity.EstadoOperacion;
 import grupo12.entity.Tipo1;
 import grupo12.entity.Tipo2;
 import grupo12.entity.Tipo3;
+import grupo12.request.OperacionRequest;
 
 public interface OperacionService {
 	
@@ -17,5 +22,13 @@ public interface OperacionService {
 	void deleteT2ById(Integer id);
 
 	void deleteT3ById(Integer id);
+
+	ArrayList<OperacionRequest> getListTipo1();
+
+	ArrayList<OperacionRequest> getListTipo2();
+
+	ArrayList<OperacionRequest> getListTipo3();
+
+	ArrayList<OperacionRequest> getAllOperacionesbyEstado(EstadoOperacion estado, Date fechaInicio, Date fechaFin);
 
 }

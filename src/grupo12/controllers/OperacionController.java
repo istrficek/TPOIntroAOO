@@ -1,6 +1,10 @@
 package grupo12.controllers;
 
-import grupo12.entity.Operacion;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import grupo12.entity.EstadoOperacion;
 import grupo12.entity.Tipo1;
 import grupo12.entity.Tipo2;
 import grupo12.entity.Tipo3;
@@ -8,12 +12,14 @@ import grupo12.request.OperacionRequest;
 import grupo12.services.OperacionService;
 
 public class OperacionController {
-	
+
 	private OperacionService operacionService;
 	
 	
 	private void crearOperacion(OperacionRequest opr) {
-		
+
+
+		//descomentar return para que devuelva el objeto
 		
 		switch (opr.getTipoOpe()) {
 		case 1 :
@@ -31,6 +37,7 @@ public class OperacionController {
 			op1.setNroCheques(opr.getNroCheques());
 			op1.setTasaDeDescuento(opr.getTasaDeDescuento());
 			op1.setTipoDeOperacion(opr.getTipoDeOperacion());
+			//return op1
 			break;
 		
 		case 2:
@@ -47,6 +54,8 @@ public class OperacionController {
 			
 			op2.setEmpresaCuentaCorriente(opr.getEmpresaCuentaCorriente());
 			op2.setFechaVencimiento(opr.getFechaVencimiento());
+
+			//return op2
 			
 			break;
 		
@@ -67,9 +76,12 @@ public class OperacionController {
 			op3.setCantidadDeCuotas(opr.getCantidadDeCuotas());
 			op3.setTasa(opr.getTasa());
 			op3.setSistema(opr.getSistema());
+
+			//return op3
 			break;
 		
 		default:
+			//falta manejar errores
 			System.out.println("error");
 			break;
 			
@@ -163,12 +175,49 @@ public class OperacionController {
 	 }
 	 
 	 private void EliminarOperacionT2(Integer id) {
-		 operacionService.deleteT2ById(id);
+
+		operacionService.deleteT2ById(id);
 	 }
 
 	 private void EliminarOperacionT3(Integer id) {
 		 operacionService.deleteT3ById(id);
 	 
+	 }
+
+	 private List<OperacionRequest> obtenerOperacion(Integer op){
+		 
+		 //devuelve una lista de operacion segun el tipo de operacion que entra por parametro
+		 ArrayList<OperacionRequest> lista=new ArrayList<OperacionRequest>();
+		 switch (op) {
+			case 1 :
+				lista= operacionService.getListTipo1();
+				break;
+			
+			case 2:
+				lista = operacionService.getListTipo2();
+				break;
+			case 3:
+				lista = operacionService.getListTipo3();
+				break;
+			
+			default:
+				break;
+			
+	 }
+		 return lista;
+	 }
+	 
+	 private List<OperacionRequest> obtenerOperacion(EstadoOperacion estado, Date fechaInicio, Date fechaFin){
+		 
+		 ArrayList<OperacionRequest> lista= operacionService.getAllOperacionesbyEstado(estado, fechaInicio, fechaFin);
+	
+		return  lista;
+		 
+	 }
+	 
+	 private OperacionRequest CalcularComision(Integer tipoOperacion, Date fecha) {
+		return null;
+		 
 	 }
 	
 	
