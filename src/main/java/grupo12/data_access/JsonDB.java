@@ -13,7 +13,7 @@ public class JsonDB<T> {
         this.typeParameterClass = typeParameterClass;
     }
 
-    public T SelectAll(){
+    public T selectAll(){
         try {
             File f = new File(dbFile);
             if(!f.exists())
@@ -37,7 +37,7 @@ public class JsonDB<T> {
         }
     }
 
-    public boolean Insert(T object){
+    public boolean insert(T object){
         try {
             File f = new File(dbFile);
             String jsonObject = JsonUtils.toJson(object);

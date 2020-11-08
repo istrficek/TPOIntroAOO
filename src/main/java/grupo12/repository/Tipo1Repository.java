@@ -17,11 +17,11 @@ public class Tipo1Repository {
 	public boolean save(Tipo1 nuevo){
 		List<Tipo1> list = getAll();
 		list.add(nuevo);
-		return db.Insert(list);
+		return db.insert(list);
 	}
 	
 	public List<Tipo1> getAll(){
-		Tipo1[] array = (Tipo1[]) db.SelectAll();
+		Tipo1[] array = (Tipo1[]) db.selectAll();
 		return new ArrayList<Tipo1>(Arrays.asList(array));
 	}
 	
