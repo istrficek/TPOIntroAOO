@@ -1,14 +1,15 @@
 package grupo12.request;
 
 import java.util.Date;
+import java.util.List;
 
+import grupo12.entity.Accionista;
 import grupo12.entity.EstadoSocio;
 import grupo12.entity.TipoEmpresa;
 
 public class SocioRequest {
 	
-	//tipo 1 == participe tipo 2 == Protector
-	private Integer tipoSocio;
+	private boolean  isParticipe;
 	
 	private Integer id;
 	
@@ -31,13 +32,15 @@ public class SocioRequest {
 	private TipoEmpresa tipoEmpresa;
 	
 	private Integer saldoAccionesTipo;
+	
+	private List<Accionista> accionistas;
 
-	public Integer getTipoSocio() {
-		return tipoSocio;
+	public boolean isParticipe() {
+		return isParticipe;
 	}
 
-	public void setTipoSocio(Integer tipoSocio) {
-		this.tipoSocio = tipoSocio;
+	public void setParticipe(boolean isParticipe) {
+		this.isParticipe = isParticipe;
 	}
 
 	public Integer getId() {
@@ -127,6 +130,16 @@ public class SocioRequest {
 	public void setSaldoAccionesTipo(Integer saldoAccionesTipo) {
 		this.saldoAccionesTipo = saldoAccionesTipo;
 	}
+
+	public List<Accionista> getAccionistas() {
+		return accionistas;
+	}
+
+	public void setAccionistas(List<Accionista> accionistas) {
+		this.accionistas = accionistas;
+	}
+	
+	
 	
 	
 	
