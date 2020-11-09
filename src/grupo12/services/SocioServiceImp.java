@@ -52,4 +52,16 @@ public class SocioServiceImp implements SocioService {
 		
 	}
 
+	@Override
+	public Participe getParticipeById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Protector getProtectorById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

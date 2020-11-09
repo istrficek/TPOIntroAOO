@@ -24,4 +24,8 @@ public interface SocioService {
 
 	void save(Protector socio);
 
+	Participe getParticipeById(Integer id);
+
+	Protector getProtectorById(Integer id);
+
 }

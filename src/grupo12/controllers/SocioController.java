@@ -31,17 +31,17 @@ public class SocioController {
 		return socioService.getSociosParticipes();
 	}
 	
-	public List<Socio>ObtenerSocios(TipoEmpresa tipoEmpresa){
+	public List<Socio>obtenerSocios(TipoEmpresa tipoEmpresa){
 		
 		return socioService.getSociosTipoEmpresa(tipoEmpresa);
 	}
 	
-	public Socio ObtenerSocio(Integer id) {
+	public Socio obtenerSocio(Integer id) {
 		
 		return socioService.getSocio(id);
 	}
 	
-	public void CrearSocio(SocioRequest socioRequest) {
+	public void crearSocio(SocioRequest socioRequest) {
 		
 		if(socioRequest.isParticipe()) {
 			Participe socio = new Participe();
@@ -77,6 +77,43 @@ public class SocioController {
 			
 		}
 		
+		
+	}
+	public void editarSocio(Integer id, SocioRequest socioRequest){
+		
+		if(socioRequest.isParticipe()) {
+			Participe socio = socioService.getParticipeById(id);
+			socio.setAccionistas(socioRequest.getAccionistas());
+			socio.setActividadPrincipal(socioRequest.getActividadPrincipal());
+			socio.setCuit(socioRequest.getCuit());
+			socio.setDireccion(socioRequest.getDireccion());
+			socio.setEmail(socioRequest.getEmail());
+			socio.setEstadoSocio(socioRequest.getEstadoSocio());
+			socio.setFechaInicio(socioRequest.getFechaInicio());
+			socio.setId(socioRequest.getId());
+			socio.setRazonSocial(socioRequest.getRazonSocial());
+			socio.setSaldoAccionestipoB(socioRequest.getSaldoAccionesTipo());
+			socio.setTelefono(socioRequest.getTelefono());
+			socio.setTipoEmpresa(socio.getTipoEmpresa());
+			socioService.save(socio);
+		}
+		else {
+			Protector socio = socioService.getProtectorById(id);
+			socio.setAccionistas(socioRequest.getAccionistas());
+			socio.setActividadPrincipal(socioRequest.getActividadPrincipal());
+			socio.setCuit(socioRequest.getCuit());
+			socio.setDireccion(socioRequest.getDireccion());
+			socio.setEmail(socioRequest.getEmail());
+			socio.setEstadoSocio(socioRequest.getEstadoSocio());
+			socio.setFechaInicio(socioRequest.getFechaInicio());
+			socio.setId(socioRequest.getId());
+			socio.setRazonSocial(socioRequest.getRazonSocial());
+			socio.setSaldoAccionesTipoA(socioRequest.getSaldoAccionesTipo());
+			socio.setTelefono(socioRequest.getTelefono());
+			socio.setTipoEmpresa(socio.getTipoEmpresa());
+			socioService.save(socio);
+			
+		}
 		
 	}
 	
