@@ -1,6 +1,7 @@
 package grupo12.repository;
 
 import grupo12.data_access.JsonDB;
+import grupo12.entity.Accionista;
 import grupo12.entity.Tipo2;
 
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class Tipo2Repository {
 
     public List<Tipo2> getAll(){
         Tipo2[] array = (Tipo2[]) db.selectAll();
+        if(array == null)
+            return new ArrayList<Tipo2>();
         return new ArrayList<Tipo2>(Arrays.asList(array));
     }
 }

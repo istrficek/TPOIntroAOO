@@ -1,27 +1,32 @@
 package grupo12.services;
 
 import grupo12.entity.Accionista;
+import grupo12.repository.AccionistaRepository;
+
+import java.util.List;
 
 public class AccionistaServiceImp implements AccionistaService{
 
+	private AccionistaRepository repository = new AccionistaRepository();
+
 	public void save(Accionista nuev) {
-		// TODO Auto-generated method stub
-		
+		repository.save(nuev);
 	}
 
 	public Accionista getById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.getById(id);
 	}
 
 	public Accionista edit(Accionista nuev) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.edit(nuev);
 	}
 
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
-		
+		repository.deleteById(id);
+	}
+
+	public List<Accionista> getAll(){
+		return repository.getAll();
 	}
 
 }

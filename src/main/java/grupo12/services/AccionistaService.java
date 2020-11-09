@@ -2,6 +2,8 @@ package grupo12.services;
 
 import grupo12.entity.Accionista;
 
+import java.util.List;
+
 public interface AccionistaService {
 
 	void save(Accionista nuev);
@@ -11,5 +13,7 @@ public interface AccionistaService {
 	Accionista edit(Accionista nuev);
 
 	void deleteById(Integer id);
+
+	List<Accionista> getAll();
 
 }

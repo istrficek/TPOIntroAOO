@@ -1,6 +1,7 @@
 package grupo12.repository;
 
 import grupo12.data_access.JsonDB;
+import grupo12.entity.Accionista;
 import grupo12.entity.CertificadoDeGarantia;
 
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class CertificadoDeGarantiaRepository {
 
     public List<CertificadoDeGarantia> getAll(){
         CertificadoDeGarantia[] array = (CertificadoDeGarantia[]) db.selectAll();
+        if(array == null)
+            return new ArrayList<CertificadoDeGarantia>();
         return new ArrayList<CertificadoDeGarantia>(Arrays.asList(array));
     }
 }

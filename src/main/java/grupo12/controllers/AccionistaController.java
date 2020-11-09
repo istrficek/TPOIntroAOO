@@ -2,10 +2,13 @@ package grupo12.controllers;
 
 import grupo12.entity.Accionista;
 import grupo12.services.AccionistaService;
+import grupo12.services.AccionistaServiceImp;
+
+import java.util.List;
 
 public class AccionistaController {
 	
-	AccionistaService accionistaService;
+	AccionistaService accionistaService = new AccionistaServiceImp();
 	
 	public void crearAccionista(Accionista a) {
 		
@@ -13,7 +16,6 @@ public class AccionistaController {
 		nuev.setPorcentajedeParticipacion(a.getPorcentajedeParticipacion());
 		nuev.setRazonSocial(a.getRazonSocial());
 		accionistaService.save(nuev);
-		
 	}
 	
 	public Accionista editarAccionista(Integer id, Accionista a) {
@@ -21,12 +23,12 @@ public class AccionistaController {
 		Accionista nuev = accionistaService.getById(id);
 		nuev.setPorcentajedeParticipacion(a.getPorcentajedeParticipacion());
 		nuev.setRazonSocial(a.getRazonSocial());
-		accionistaService.save(nuev);
-		return accionistaService.edit(nuev);
-		
+		accionistaService.edit(nuev);
+		return nuev;
 	}
 	
 	public Accionista getAccionista(Integer id) {
+
 		return accionistaService.getById(id);
 	}
 	
@@ -34,6 +36,10 @@ public class AccionistaController {
 		
 		accionistaService.deleteById(id);
 		
+	}
+
+	public List<Accionista> getAllAccionista(){
+		return accionistaService.getAll();
 	}
 
 }

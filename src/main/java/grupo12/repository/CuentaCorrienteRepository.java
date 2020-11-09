@@ -1,6 +1,7 @@
 package grupo12.repository;
 
 import grupo12.data_access.JsonDB;
+import grupo12.entity.Accionista;
 import grupo12.entity.CuentaCorriente;
 
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class CuentaCorrienteRepository {
 
     public List<CuentaCorriente> getAll(){
         CuentaCorriente[] array = (CuentaCorriente[]) db.selectAll();
+        if(array == null)
+            return new ArrayList<CuentaCorriente>();
         return new ArrayList<CuentaCorriente>(Arrays.asList(array));
     }
 }

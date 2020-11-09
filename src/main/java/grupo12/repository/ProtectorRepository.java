@@ -1,6 +1,7 @@
 package grupo12.repository;
 
 import grupo12.data_access.JsonDB;
+import grupo12.entity.Accionista;
 import grupo12.entity.Protector;
 
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class ProtectorRepository {
 
     public List<Protector> getAll(){
         Protector[] array = (Protector[]) db.selectAll();
+        if(array == null)
+            return new ArrayList<Protector>();
         return new ArrayList<Protector>(Arrays.asList(array));
     }
 }

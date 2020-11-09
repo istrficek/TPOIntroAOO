@@ -1,6 +1,7 @@
 package grupo12.repository;
 
 import grupo12.data_access.JsonDB;
+import grupo12.entity.Accionista;
 import grupo12.entity.Cheque;
 
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class ChequeRepository {
 
     public List<Cheque> getAll(){
         Cheque[] array = (Cheque[]) db.selectAll();
+        if(array == null)
+            return new ArrayList<Cheque>();
         return new ArrayList<Cheque>(Arrays.asList(array));
     }
 }

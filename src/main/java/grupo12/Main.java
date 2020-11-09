@@ -1,6 +1,9 @@
 package grupo12;
 
 
+import com.sun.deploy.util.StringUtils;
+import grupo12.controllers.AccionistaController;
+import grupo12.entity.Accionista;
 import grupo12.entity.EstadoComision;
 import grupo12.entity.Tipo1;
 import grupo12.entity.TipoDeOperacion;
@@ -16,7 +19,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		/*
 		Tipo1 testObject;
 		testObject = new Tipo1();
 		testObject.setBancoCheques("Galicia");
@@ -36,6 +39,37 @@ public class Main {
 		List<Tipo1> lista = repo.getAll();
 
 		System.out.println(lista.toString());
+		*/
+		/*****************************************************/
+
+		Accionista testAccionista = new Accionista();
+		testAccionista.setPorcentajedeParticipacion(30);
+		testAccionista.setRazonSocial("El Accionista S.A.");
+
+		AccionistaController ac = new AccionistaController();
+
+		ac.crearAccionista(testAccionista);
+		ac.crearAccionista(testAccionista);
+		ac.crearAccionista(testAccionista);
+		ac.crearAccionista(testAccionista);
+
+		ac.eliminarAccionista(0);
+
+		Accionista testAccionistaEdit = new Accionista();
+		testAccionistaEdit.setPorcentajedeParticipacion(26);
+		testAccionistaEdit.setRazonSocial("Accionista Editado S.A.");
+
+		ac.editarAccionista(1, testAccionistaEdit);
+
+		for (Accionista a: ac.getAllAccionista()) {
+			System.out.println(a.getId());
+			System.out.println(a.getRazonSocial());
+			System.out.println(a.getPorcentajedeParticipacion());
+			System.out.println("*****************************************");
+		}
+
+
+
 	}
 
 }

@@ -1,6 +1,7 @@
 package grupo12.repository;
 
 import grupo12.data_access.JsonDB;
+import grupo12.entity.Accionista;
 import grupo12.entity.Participe;
 
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class ParticipeRepository {
 
     public List<Participe> getAll(){
         Participe[] array = (Participe[]) db.selectAll();
+        if(array == null)
+            return new ArrayList<Participe>();
         return new ArrayList<Participe>(Arrays.asList(array));
     }
 }

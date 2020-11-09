@@ -1,6 +1,7 @@
 package grupo12.repository;
 
 import grupo12.data_access.JsonDB;
+import grupo12.entity.Accionista;
 import grupo12.entity.Prestamo;
 
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class PrestamoRepository {
 
     public List<Prestamo> getAll(){
         Prestamo[] array = (Prestamo[]) db.selectAll();
+        if(array == null)
+            return new ArrayList<Prestamo>();
         return new ArrayList<Prestamo>(Arrays.asList(array));
     }
 }
