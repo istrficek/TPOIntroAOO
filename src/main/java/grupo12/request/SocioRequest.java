@@ -1,9 +1,17 @@
-package main.java.grupo12.entity;
+package main.java.grupo12.request;
 
 import java.util.Date;
 import java.util.List;
 
-public class Socio {
+import main.java.grupo12.entity.Accionista;
+import main.java.grupo12.entity.EstadoSocio;
+import main.java.grupo12.entity.TipoEmpresa;
+
+
+
+public class SocioRequest {
+	
+	private boolean  isParticipe;
 	
 	private Integer id;
 	
@@ -25,7 +33,17 @@ public class Socio {
 	
 	private TipoEmpresa tipoEmpresa;
 	
+	private Integer saldoAccionesTipo;
+	
 	private List<Accionista> accionistas;
+
+	public boolean isParticipe() {
+		return isParticipe;
+	}
+
+	public void setParticipe(boolean isParticipe) {
+		this.isParticipe = isParticipe;
+	}
 
 	public Integer getId() {
 		return id;
@@ -106,7 +124,15 @@ public class Socio {
 	public void setTipoEmpresa(TipoEmpresa tipoEmpresa) {
 		this.tipoEmpresa = tipoEmpresa;
 	}
-	
+
+	public Integer getSaldoAccionesTipo() {
+		return saldoAccionesTipo;
+	}
+
+	public void setSaldoAccionesTipo(Integer saldoAccionesTipo) {
+		this.saldoAccionesTipo = saldoAccionesTipo;
+	}
+
 	public List<Accionista> getAccionistas() {
 		return accionistas;
 	}
@@ -114,9 +140,7 @@ public class Socio {
 	public void setAccionistas(List<Accionista> accionistas) {
 		this.accionistas = accionistas;
 	}
-
-	public Socio() {
-	}
+	
 	
 	
 	
