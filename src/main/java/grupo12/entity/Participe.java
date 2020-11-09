@@ -1,6 +1,6 @@
-package grupo12.entity;
+package main.java.grupo12.entity;
 
-public class Participe {
+public class Participe extends Socio{
 	
 	private Integer saldoAccionestipoB;
 

@@ -1,10 +1,10 @@
-package grupo12.controllers;
+package main.java.grupo12.controllers;
 
-import grupo12.entity.Tipo1;
-import grupo12.entity.Tipo2;
-import grupo12.entity.Tipo3;
-import grupo12.request.OperacionRequest;
-import grupo12.services.OperacionService;
+import main.java.grupo12.entity.Tipo1;
+import main.java.grupo12.entity.Tipo2;
+import main.java.grupo12.entity.Tipo3;
+import main.java.grupo12.request.OperacionRequest;
+import main.java.grupo12.services.OperacionService;
 
 public class OperacionController {
 	

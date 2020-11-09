@@ -1,6 +1,6 @@
-package grupo12.entity;
+package main.java.grupo12.entity;
 
-public class Protector {
+public class Protector extends Socio{
 	
 	private Integer saldoAccionesTipoA;
 

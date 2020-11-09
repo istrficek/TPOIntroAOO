@@ -1,6 +1,7 @@
-package grupo12.entity;
+package main.java.grupo12.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Socio {
 	
@@ -23,6 +24,8 @@ public class Socio {
 	private EstadoSocio estadoSocio;
 	
 	private TipoEmpresa tipoEmpresa;
+	
+	private List<Accionista> accionistas;
 
 	public Integer getId() {
 		return id;
@@ -102,6 +105,14 @@ public class Socio {
 
 	public void setTipoEmpresa(TipoEmpresa tipoEmpresa) {
 		this.tipoEmpresa = tipoEmpresa;
+	}
+	
+	public List<Accionista> getAccionistas() {
+		return accionistas;
+	}
+
+	public void setAccionistas(List<Accionista> accionistas) {
+		this.accionistas = accionistas;
 	}
 
 	public Socio() {
