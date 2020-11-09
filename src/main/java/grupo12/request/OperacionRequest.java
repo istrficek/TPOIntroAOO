@@ -1,11 +1,12 @@
-package grupo12.request;
+package main.java.grupo12.request;
 
 import java.util.Date;
 
-import grupo12.entity.EstadoComision;
-import grupo12.entity.EstadoOperacion;
-import grupo12.entity.Sistema;
-import grupo12.entity.TipoDeOperacion;
+import main.java.grupo12.entity.EstadoComision;
+import main.java.grupo12.entity.EstadoOperacion;
+import main.java.grupo12.entity.Sistema;
+import main.java.grupo12.entity.TipoDeOperacion;
+
 
 public class OperacionRequest {
 	

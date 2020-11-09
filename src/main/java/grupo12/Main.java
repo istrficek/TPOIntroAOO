@@ -1,13 +1,16 @@
-package grupo12;
+package main.java.grupo12;
 
 
-import grupo12.entity.EstadoComision;
-import grupo12.entity.Tipo1;
-import grupo12.entity.TipoDeOperacion;
-import grupo12.repository.Tipo1Repository;
+import main.java.grupo12.entity.EstadoComision;
+import main.java.grupo12.entity.Tipo1;
+import main.java.grupo12.entity.TipoDeOperacion;
+import main.java.grupo12.repository.Tipo1Repository;
 
 import java.util.Date;
 import java.util.List;
+
+
+
 
 public class Main {
 
