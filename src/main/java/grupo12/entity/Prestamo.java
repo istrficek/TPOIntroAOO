@@ -2,7 +2,7 @@ package grupo12.entity;
 
 import java.util.Date;
 
-public class Prestamos {
+public class Prestamo {
 	
 	private String banco;
 	
@@ -64,7 +64,7 @@ public class Prestamos {
 		this.sistema = sistema;
 	}
 
-	public Prestamos() {
+	public Prestamo() {
 		super();
 	}
 	
