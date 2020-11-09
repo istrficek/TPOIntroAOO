@@ -1,8 +1,8 @@
-package main.java.grupo12.services;
+package grupo12.services;
 
-import main.java.grupo12.entity.Tipo1;
-import main.java.grupo12.entity.Tipo2;
-import main.java.grupo12.entity.Tipo3;
+import grupo12.entity.Tipo1;
+import grupo12.entity.Tipo2;
+import grupo12.entity.Tipo3;
 
 public interface OperacionService {
 	

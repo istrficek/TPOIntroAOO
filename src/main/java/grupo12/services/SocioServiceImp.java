@@ -1,12 +1,12 @@
-package main.java.grupo12.services;
+package grupo12.services;
 
 import java.util.List;
 
-import main.java.grupo12.entity.Accionista;
-import main.java.grupo12.entity.Participe;
-import main.java.grupo12.entity.Protector;
-import main.java.grupo12.entity.Socio;
-import main.java.grupo12.entity.TipoEmpresa;
+import grupo12.entity.Accionista;
+import grupo12.entity.Participe;
+import grupo12.entity.Protector;
+import grupo12.entity.Socio;
+import grupo12.entity.TipoEmpresa;
 
 
 public class SocioServiceImp implements SocioService {

@@ -1,10 +1,7 @@
 package grupo12.repository;
 
 import grupo12.data_access.JsonDB;
-import grupo12.entity.Accionista;
 import grupo12.entity.Documentacion;
-
-import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

@@ -1,6 +1,6 @@
-package main.java.grupo12.services;
+package grupo12.services;
 
-import main.java.grupo12.entity.Accionista;
+import grupo12.entity.Accionista;
 
 public interface AccionistaService {
 

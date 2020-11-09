@@ -1,11 +1,11 @@
-package main.java.grupo12.repository;
+package grupo12.repository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import main.java.grupo12.data_access.JsonDB;
-import main.java.grupo12.entity.Tipo1;
+import grupo12.data_access.JsonDB;
+import grupo12.entity.Tipo1;
 
 
 public class Tipo1Repository {

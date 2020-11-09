@@ -1,9 +1,9 @@
-package main.java.grupo12.data_access;
+package grupo12.data_access;
 
 
 import java.io.*;
 
-import main.java.grupo12.utils.JsonUtils;
+import grupo12.utils.JsonUtils;
 
 public class JsonDB<T> {
     final String dbFile;

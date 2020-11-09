@@ -1,7 +1,7 @@
-package main.java.grupo12.controllers;
+package grupo12.controllers;
 
-import main.java.grupo12.entity.Documentacion;
-import main.java.grupo12.services.DocumentacionService;
+import grupo12.entity.Documentacion;
+import grupo12.services.DocumentacionService;
 
 public class DocumentacionController {
 	

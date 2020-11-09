@@ -1,14 +1,14 @@
-package main.java.grupo12.controllers;
+package grupo12.controllers;
 
 import java.util.List;
 
-import main.java.grupo12.entity.Accionista;
-import main.java.grupo12.entity.Participe;
-import main.java.grupo12.entity.Protector;
-import main.java.grupo12.entity.Socio;
-import main.java.grupo12.entity.TipoEmpresa;
-import main.java.grupo12.request.SocioRequest;
-import main.java.grupo12.services.SocioService;
+import grupo12.entity.Accionista;
+import grupo12.entity.Participe;
+import grupo12.entity.Protector;
+import grupo12.entity.Socio;
+import grupo12.entity.TipoEmpresa;
+import grupo12.request.SocioRequest;
+import grupo12.services.SocioService;
 
 public class SocioController {
 	

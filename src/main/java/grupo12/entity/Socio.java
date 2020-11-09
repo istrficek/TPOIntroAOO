@@ -1,4 +1,4 @@
-package main.java.grupo12.entity;
+package grupo12.entity;
 
 import java.util.Date;
 import java.util.List;

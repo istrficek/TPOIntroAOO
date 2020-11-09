@@ -1,7 +1,7 @@
-package main.java.grupo12.controllers;
+package grupo12.controllers;
 
-import main.java.grupo12.entity.Accionista;
-import main.java.grupo12.services.AccionistaService;
+import grupo12.entity.Accionista;
+import grupo12.services.AccionistaService;
 
 public class AccionistaController {
 	

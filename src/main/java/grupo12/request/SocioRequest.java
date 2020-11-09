@@ -1,11 +1,11 @@
-package main.java.grupo12.request;
+package grupo12.request;
 
 import java.util.Date;
 import java.util.List;
 
-import main.java.grupo12.entity.Accionista;
-import main.java.grupo12.entity.EstadoSocio;
-import main.java.grupo12.entity.TipoEmpresa;
+import grupo12.entity.Accionista;
+import grupo12.entity.EstadoSocio;
+import grupo12.entity.TipoEmpresa;
 
 
 

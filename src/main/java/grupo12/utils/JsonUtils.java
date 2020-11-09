@@ -1,4 +1,4 @@
-package main.java.grupo12.utils;
+package grupo12.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

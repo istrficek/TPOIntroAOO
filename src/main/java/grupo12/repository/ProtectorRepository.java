@@ -1,7 +1,6 @@
 package grupo12.repository;
 
 import grupo12.data_access.JsonDB;
-import grupo12.entity.Accionista;
 import grupo12.entity.Protector;
 
 import java.util.ArrayList;
