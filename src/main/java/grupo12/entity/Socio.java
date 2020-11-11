@@ -27,6 +27,10 @@ public class Socio {
 	
 	private List<Accionista> accionistas;
 
+	private Integer saldoAcciones;
+
+	private String tipoSocioString;
+
 	public Integer getId() {
 		return id;
 	}
@@ -115,13 +119,20 @@ public class Socio {
 		this.accionistas = accionistas;
 	}
 
-	public Socio() {
+	public Integer getSaldoAcciones() { return  saldoAcciones; }
+
+	public void setSaldoAcciones(int saldoAcciones) { this.saldoAcciones = saldoAcciones; }
+
+	public TipoSocio getTipoSocio() {return TipoSocio.valueOf(tipoSocioString);}
+
+	public void setTipoSocio(TipoSocio ts) {tipoSocioString = ts.name();}
+
+	public Socio(TipoSocio tipoSocio, Socio s) {
+		setTipoSocio(tipoSocio);
 	}
-	
-	
-	
-	
-	
-	
+
+	public Socio() {
+
+	}
 
 }

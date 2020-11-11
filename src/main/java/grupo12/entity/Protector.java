@@ -1,21 +1,21 @@
 package grupo12.entity;
 
 public class Protector extends Socio{
-	
-	private Integer saldoAccionesTipoA;
 
-	public Integer getSaldoAccionesTipoA() {
-		return saldoAccionesTipoA;
+	@Override
+	public void setSaldoAcciones(int saldoAcciones) {
+		// Set Acciones Tipo A
+		super.setSaldoAcciones(saldoAcciones);
 	}
 
-	public void setSaldoAccionesTipoA(Integer saldoAccionesTipoA) {
-		this.saldoAccionesTipoA = saldoAccionesTipoA;
+	@Override
+	public Integer getSaldoAcciones() {
+		// Get Acciones Tipo A
+		return super.getSaldoAcciones();
 	}
 
-	public Protector() {
-		super();
+	public Protector(Socio s){
+		super(TipoSocio.Protector, s);
 	}
-	
-	
 
 }

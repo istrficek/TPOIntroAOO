@@ -2,14 +2,13 @@ package grupo12.services;
 
 import java.util.List;
 
-import grupo12.entity.Accionista;
-import grupo12.entity.Participe;
-import grupo12.entity.Protector;
-import grupo12.entity.Socio;
-import grupo12.entity.TipoEmpresa;
+import grupo12.entity.*;
+import grupo12.repository.SocioRepository;
 
 
 public class SocioServiceImp implements SocioService {
+
+	SocioRepository repository = new SocioRepository();
 
 	public Float getSaldoDeudor(Integer id) {
 		// TODO Auto-generated method stub
@@ -22,8 +21,11 @@ public class SocioServiceImp implements SocioService {
 	}
 
 	public List<Participe> getSociosParticipes() {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.getAllParticipe();
+	}
+
+	public List<Protector> getSociosProtectores() {
+		return repository.getAllProtector();
 	}
 
 	public List<Socio> getSociosTipoEmpresa(TipoEmpresa tipoEmpresa) {
@@ -32,27 +34,28 @@ public class SocioServiceImp implements SocioService {
 	}
 
 	public Socio getSocio(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.getById(id);
 	}
 
-	public void save(Participe socio) {
-		// TODO Auto-generated method stub
-		
+	public void save(Participe socio){
+		repository.save(socio);
 	}
 
-	public void save(Protector socio) {
-		// TODO Auto-generated method stub
-		
+	public void save(Protector socio){
+		repository.save(socio);
 	}
 
 	public Participe getParticipeById(Integer id) {
-		// TODO Auto-generated method stub
+		Socio s = repository.getById(id);
+		if(s.getTipoSocio() == TipoSocio.Participe)
+			return new Participe(s);
 		return null;
 	}
 
 	public Protector getProtectorById(Integer id) {
-		// TODO Auto-generated method stub
+		Socio s = repository.getById(id);
+		if(s.getTipoSocio() == TipoSocio.Protector)
+			return new Protector(s);
 		return null;
 	}
 

@@ -27,57 +27,46 @@ public class SocioController {
 	}
 	
 	public List<Participe> obtenerSociosParticipes() {
-		
 		return socioService.getSociosParticipes();
+	}
+
+	public List<Protector> obtenerSociosProtectores() {
+		return socioService.getSociosProtectores();
 	}
 	
 	public List<Socio>obtenerSocios(TipoEmpresa tipoEmpresa){
-		
+
 		return socioService.getSociosTipoEmpresa(tipoEmpresa);
 	}
 	
 	public Socio obtenerSocio(Integer id) {
-		
 		return socioService.getSocio(id);
 	}
 	
 	public void crearSocio(SocioRequest socioRequest) {
-		
+
+		Socio nuevo = new Socio();
+		nuevo.setAccionistas(socioRequest.getAccionistas());
+		nuevo.setActividadPrincipal(socioRequest.getActividadPrincipal());
+		nuevo.setCuit(socioRequest.getCuit());
+		nuevo.setDireccion(socioRequest.getDireccion());
+		nuevo.setEmail(socioRequest.getEmail());
+		nuevo.setEstadoSocio(socioRequest.getEstadoSocio());
+		nuevo.setFechaInicio(socioRequest.getFechaInicio());
+		nuevo.setId(socioRequest.getId());
+		nuevo.setRazonSocial(socioRequest.getRazonSocial());
+		nuevo.setSaldoAcciones(socioRequest.getSaldoAccionesTipo());
+		nuevo.setTelefono(socioRequest.getTelefono());
+		nuevo.setTipoEmpresa(nuevo.getTipoEmpresa());
+
 		if(socioRequest.isParticipe()) {
-			Participe socio = new Participe();
-			socio.setAccionistas(socioRequest.getAccionistas());
-			socio.setActividadPrincipal(socioRequest.getActividadPrincipal());
-			socio.setCuit(socioRequest.getCuit());
-			socio.setDireccion(socioRequest.getDireccion());
-			socio.setEmail(socioRequest.getEmail());
-			socio.setEstadoSocio(socioRequest.getEstadoSocio());
-			socio.setFechaInicio(socioRequest.getFechaInicio());
-			socio.setId(socioRequest.getId());
-			socio.setRazonSocial(socioRequest.getRazonSocial());
-			socio.setSaldoAccionestipoB(socioRequest.getSaldoAccionesTipo());
-			socio.setTelefono(socioRequest.getTelefono());
-			socio.setTipoEmpresa(socio.getTipoEmpresa());
+			Participe socio = new Participe(nuevo);
 			socioService.save(socio);
 		}
 		else {
-			Protector socio = new Protector();
-			socio.setAccionistas(socioRequest.getAccionistas());
-			socio.setActividadPrincipal(socioRequest.getActividadPrincipal());
-			socio.setCuit(socioRequest.getCuit());
-			socio.setDireccion(socioRequest.getDireccion());
-			socio.setEmail(socioRequest.getEmail());
-			socio.setEstadoSocio(socioRequest.getEstadoSocio());
-			socio.setFechaInicio(socioRequest.getFechaInicio());
-			socio.setId(socioRequest.getId());
-			socio.setRazonSocial(socioRequest.getRazonSocial());
-			socio.setSaldoAccionesTipoA(socioRequest.getSaldoAccionesTipo());
-			socio.setTelefono(socioRequest.getTelefono());
-			socio.setTipoEmpresa(socio.getTipoEmpresa());
+			Protector socio = new Protector(nuevo);
 			socioService.save(socio);
-			
 		}
-		
-		
 	}
 	public void editarSocio(Integer id, SocioRequest socioRequest){
 		
@@ -92,7 +81,7 @@ public class SocioController {
 			socio.setFechaInicio(socioRequest.getFechaInicio());
 			socio.setId(socioRequest.getId());
 			socio.setRazonSocial(socioRequest.getRazonSocial());
-			socio.setSaldoAccionestipoB(socioRequest.getSaldoAccionesTipo());
+			socio.setSaldoAcciones(socioRequest.getSaldoAccionesTipo());
 			socio.setTelefono(socioRequest.getTelefono());
 			socio.setTipoEmpresa(socio.getTipoEmpresa());
 			socioService.save(socio);
@@ -108,7 +97,7 @@ public class SocioController {
 			socio.setFechaInicio(socioRequest.getFechaInicio());
 			socio.setId(socioRequest.getId());
 			socio.setRazonSocial(socioRequest.getRazonSocial());
-			socio.setSaldoAccionesTipoA(socioRequest.getSaldoAccionesTipo());
+			socio.setSaldoAcciones(socioRequest.getSaldoAccionesTipo());
 			socio.setTelefono(socioRequest.getTelefono());
 			socio.setTipoEmpresa(socio.getTipoEmpresa());
 			socioService.save(socio);

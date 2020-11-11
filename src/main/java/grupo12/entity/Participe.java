@@ -1,21 +1,21 @@
 package grupo12.entity;
 
-public class Participe extends Socio{
-	
-	private Integer saldoAccionestipoB;
+public class Participe extends Socio {
 
-	public Integer getSaldoAccionestipoB() {
-		return saldoAccionestipoB;
+	@Override
+	public void setSaldoAcciones(int saldoAcciones) {
+		// Set Acciones Tipo B
+		super.setSaldoAcciones(saldoAcciones);
 	}
 
-	public void setSaldoAccionestipoB(Integer saldoAccionestipoB) {
-		this.saldoAccionestipoB = saldoAccionestipoB;
+	@Override
+	public Integer getSaldoAcciones() {
+		// Get Acciones Tipo B
+		return super.getSaldoAcciones();
 	}
 
-	public Participe() {
-		super();
+	public Participe(Socio s){
+		super(TipoSocio.Participe, s);
 	}
-	
-	
 
 }

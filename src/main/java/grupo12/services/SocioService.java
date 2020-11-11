@@ -30,4 +30,5 @@ public interface SocioService {
 
 	Protector getProtectorById(Integer id);
 
+    List<Protector> getSociosProtectores();
 }

@@ -1,16 +1,9 @@
 package grupo12;
 
 
-import com.sun.deploy.util.StringUtils;
+
 import grupo12.controllers.AccionistaController;
 import grupo12.entity.Accionista;
-import grupo12.entity.EstadoComision;
-import grupo12.entity.Tipo1;
-import grupo12.entity.TipoDeOperacion;
-import grupo12.repository.Tipo1Repository;
-
-import java.util.Date;
-import java.util.List;
 
 
 
