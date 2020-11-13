@@ -88,39 +88,7 @@ public class Operacion {
 		super();
 	}
 	
-	
-	
-	public void ObtenerTasaDeDescuento() {
-		
-	}
-	
-	public Float ObtenerMonto(Integer id) {
-		
-		//servicio que busca la operacion con el id como parametro
-		//se hace un get monto de la operacion encontrada
-		return null;
-	}
-	
-	public Float ObtenerRiesgoVivo(Integer id) {
-		
-		//servicio que busca la operacion con el id como parametro
-		//se hace un get monto de la operacion encontrada
-		return null;
-	}
 
-	public Operacion(Integer id, EstadoOperacion estadoOperacion, Float tasaDeDescuento, Float comisionAlSocio,
-			EstadoComision estadoComision, TipoDeOperacion tipoDeOperacion, Float monto, Date fecha) {
-		super();
-		this.id = id;
-		this.estadoOperacion = estadoOperacion;
-		this.tasaDeDescuento = tasaDeDescuento;
-		this.comisionAlSocio = comisionAlSocio;
-		this.estadoComision = estadoComision;
-		this.tipoDeOperacion = tipoDeOperacion;
-		this.monto = monto;
-		this.fecha = fecha;
-	}
-	
 	
 	
 

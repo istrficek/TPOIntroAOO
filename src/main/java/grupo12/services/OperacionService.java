@@ -18,4 +18,15 @@ public interface OperacionService {
 
 	void deleteT3ById(Integer id);
 
+    void savet1(Tipo1 op1);
+
+	void savet2(Tipo2 op2);
+
+	void savet3(Tipo3 op3);
+
+	Float getMontoT1ById(Integer id);
+
+	Float getMontoT2ById(Integer id);
+
+	Float getMontoT3ById(Integer id);
 }

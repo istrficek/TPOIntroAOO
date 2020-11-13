@@ -1,5 +1,8 @@
 package grupo12.entity;
 
+import grupo12.services.CertificadoDeGarantiaService;
+import grupo12.services.CertificadoDeGarantiaServiceImp;
+
 public class CertificadoDeGarantia {
 	
 	private Integer id;
@@ -34,6 +37,14 @@ public class CertificadoDeGarantia {
 
 	public CertificadoDeGarantia() {
 		super();
+	}
+
+	public CertificadoDeGarantia ObtenerCertificadoGarantia(Integer id){
+
+		CertificadoDeGarantiaServiceImp certificadoDeGarantiaService = new CertificadoDeGarantiaServiceImp();
+
+		return certificadoDeGarantiaService.getById(id);
+
 	}
 	
 	

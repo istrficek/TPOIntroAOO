@@ -13,7 +13,6 @@ public class OperacionController {
 	
 	private void crearOperacion(OperacionRequest opr) {
 		
-		
 		switch (opr.getTipoOpe()) {
 		case 1 :
 			Tipo1 op1 = new Tipo1();
@@ -30,6 +29,9 @@ public class OperacionController {
 			op1.setNroCheques(opr.getNroCheques());
 			op1.setTasaDeDescuento(opr.getTasaDeDescuento());
 			op1.setTipoDeOperacion(opr.getTipoDeOperacion());
+
+			operacionService.savet1(op1);
+
 			break;
 		
 		case 2:
@@ -46,6 +48,8 @@ public class OperacionController {
 			
 			op2.setEmpresaCuentaCorriente(opr.getEmpresaCuentaCorriente());
 			op2.setFechaVencimiento(opr.getFechaVencimiento());
+
+			operacionService.savet2(op2);
 			
 			break;
 		
@@ -66,6 +70,7 @@ public class OperacionController {
 			op3.setCantidadDeCuotas(opr.getCantidadDeCuotas());
 			op3.setTasa(opr.getTasa());
 			op3.setSistema(opr.getSistema());
+			operacionService.savet3(op3);
 			break;
 		
 		default:
@@ -78,8 +83,8 @@ public class OperacionController {
 	
 	
 	private void editOperacion(OperacionRequest opr){
-		
-		
+
+		OperacionRequest nuevo = new OperacionRequest();
 		switch (opr.getTipoOpe()) {
 		case 1 :
 			Tipo1 op1 = operacionService.getByIdT1(opr.getId());
@@ -96,6 +101,7 @@ public class OperacionController {
 			op1.setNroCheques(opr.getNroCheques());
 			op1.setTasaDeDescuento(opr.getTasaDeDescuento());
 			op1.setTipoDeOperacion(opr.getTipoDeOperacion());
+			operacionService.savet1(op1);
 			break;
 		
 		case 2:
@@ -112,6 +118,7 @@ public class OperacionController {
 			
 			op2.setEmpresaCuentaCorriente(opr.getEmpresaCuentaCorriente());
 			op2.setFechaVencimiento(opr.getFechaVencimiento());
+			operacionService.savet2(op2);
 			break;
 		case 3:
 			Tipo3 op3 = operacionService.getByIdT3(opr.getId());
@@ -130,6 +137,7 @@ public class OperacionController {
 			op3.setCantidadDeCuotas(opr.getCantidadDeCuotas());
 			op3.setTasa(opr.getTasa());
 			op3.setSistema(opr.getSistema());
+			operacionService.savet3(op3);
 			break;
 		
 		default:
@@ -169,94 +177,38 @@ public class OperacionController {
 		 operacionService.deleteT3ById(id);
 	 
 	 }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*
-	public void NuevaOperacionT1(Tipo1 t1) {
-		
-		Tipo1 op = new Tipo1();
-		
-		op.setId(t1.getId());
-		op.setBancoCheques(t1.getBancoCheques());
-		op.setComisionAlSocio(t1.getComisionAlSocio());
-		op.setCuitFirmante(t1.getCuitFirmante());
-		op.setEstadoComision(t1.getEstadoComision());
-		op.setEstadoOperacion(t1.getEstadoOperacion());
-		op.setFecha(t1.getFecha());
-		op.setFechaVencimiento(t1.getFechaVencimiento());
-		op.setMonto(t1.getMonto());
-		op.setNroCheques(t1.getNroCheques());
-		op.setTasaDeDescuento(t1.getTasaDeDescuento());
-		op.setTipoDeOperacion(t1.getTipoDeOperacion());
-		
+
+	 private Float obtenerMontoT1(Integer id){
+
+		return operacionService.getMontoT1ById(id);
+	 }
+
+	private Float obtenerMontoT2(Integer id){
+
+		return operacionService.getMontoT2ById(id);
+	}
+
+	private Float obtenerMontoT3(Integer id){
+
+		return operacionService.getMontoT3ById(id);
 	}
 	
 	
 	
-	public void NuevaOperacionT2(Tipo2 t2) {
-		
-		Tipo2 op = new Tipo2();
-		
-		op.setId(t2.getId());
-		op.setComisionAlSocio(t2.getComisionAlSocio());
-		op.setEstadoComision(t2.getEstadoComision());
-		op.setEstadoOperacion(t2.getEstadoOperacion());
-		op.setFecha(t2.getFecha());
-		op.setFechaVencimiento(t2.getFechaVencimiento());
-		op.setMonto(t2.getMonto());
-		op.setTasaDeDescuento(t2.getTasaDeDescuento());
-		op.setTipoDeOperacion(t2.getTipoDeOperacion());
-		
-		op.setEmpresaCuentaCorriente(t2.getEmpresaCuentaCorriente());
-		op.setFechaVencimiento(op.getFechaVencimiento());
-		
-	}
 	
-	public void NuevaOperacionT3(Tipo3 t3) {
-		
-		Tipo3 op = new Tipo3();
-		
-		op.setId(t3.getId());
-		op.setComisionAlSocio(t3.getComisionAlSocio());
-		op.setEstadoComision(t3.getEstadoComision());
-		op.setEstadoOperacion(t3.getEstadoOperacion());
-		op.setFecha(t3.getFecha());
-		op.setMonto(t3.getMonto());
-		op.setTasaDeDescuento(t3.getTasaDeDescuento());
-		op.setTipoDeOperacion(t3.getTipoDeOperacion());
-		
-		op.setBanco(t3.getBanco());
-		op.setFechaActualizacion(t3.getFechaActualizacion());
-		op.setCantidadDeCuotas(t3.getCantidadDeCuotas());
-		op.setTasa(t3.getTasa());
-		op.setSistema(t3.getSistema());
-		
-	}
-	*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 
 
 }
