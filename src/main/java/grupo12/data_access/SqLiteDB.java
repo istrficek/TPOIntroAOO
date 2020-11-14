@@ -133,7 +133,7 @@ public class SqLiteDB {
 
         listsql.clear();
 
-        listsql.add()
+        //listsql.add()
 
         /*
         sql = "INSERT INTO Accionistas(ID,RazonSocial,PorcentajeDeParticipacion ) VALUES(?,?,?)";
