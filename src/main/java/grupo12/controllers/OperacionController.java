@@ -5,14 +5,16 @@ import grupo12.entity.Tipo2;
 import grupo12.entity.Tipo3;
 import grupo12.request.OperacionRequest;
 import grupo12.services.OperacionService;
+import grupo12.services.OperacionServiceImp;
+
+import java.util.List;
 
 public class OperacionController {
 	
-	private OperacionService operacionService;
-	
-	
+	private OperacionService operacionService = new OperacionServiceImp();
+
+
 	private void crearOperacion(OperacionRequest opr) {
-		
 		
 		switch (opr.getTipoOpe()) {
 		case 1 :
@@ -30,6 +32,9 @@ public class OperacionController {
 			op1.setNroCheques(opr.getNroCheques());
 			op1.setTasaDeDescuento(opr.getTasaDeDescuento());
 			op1.setTipoDeOperacion(opr.getTipoDeOperacion());
+
+			operacionService.savet1(op1);
+
 			break;
 		
 		case 2:
@@ -46,6 +51,8 @@ public class OperacionController {
 			
 			op2.setEmpresaCuentaCorriente(opr.getEmpresaCuentaCorriente());
 			op2.setFechaVencimiento(opr.getFechaVencimiento());
+
+			operacionService.savet2(op2);
 			
 			break;
 		
@@ -62,10 +69,11 @@ public class OperacionController {
 			op3.setTipoDeOperacion(opr.getTipoDeOperacion());
 			
 			op3.setBanco(opr.getBanco());
-			op3.setFechaActualizacion(opr.getFechaActualziacion());
+			op3.setFechaActualizacion(opr.getFechaActualizacion());
 			op3.setCantidadDeCuotas(opr.getCantidadDeCuotas());
 			op3.setTasa(opr.getTasa());
 			op3.setSistema(opr.getSistema());
+			operacionService.savet3(op3);
 			break;
 		
 		default:
@@ -78,8 +86,8 @@ public class OperacionController {
 	
 	
 	private void editOperacion(OperacionRequest opr){
-		
-		
+
+		OperacionRequest nuevo = new OperacionRequest();
 		switch (opr.getTipoOpe()) {
 		case 1 :
 			Tipo1 op1 = operacionService.getByIdT1(opr.getId());
@@ -96,6 +104,7 @@ public class OperacionController {
 			op1.setNroCheques(opr.getNroCheques());
 			op1.setTasaDeDescuento(opr.getTasaDeDescuento());
 			op1.setTipoDeOperacion(opr.getTipoDeOperacion());
+			operacionService.savet1(op1);
 			break;
 		
 		case 2:
@@ -112,6 +121,7 @@ public class OperacionController {
 			
 			op2.setEmpresaCuentaCorriente(opr.getEmpresaCuentaCorriente());
 			op2.setFechaVencimiento(opr.getFechaVencimiento());
+			operacionService.savet2(op2);
 			break;
 		case 3:
 			Tipo3 op3 = operacionService.getByIdT3(opr.getId());
@@ -126,10 +136,12 @@ public class OperacionController {
 			op3.setTipoDeOperacion(opr.getTipoDeOperacion());
 			
 			op3.setBanco(opr.getBanco());
-			op3.setFechaActualizacion(opr.getFechaActualziacion());
+			op3.setFechaActualizacion(opr.getFechaActualizacion());
 			op3.setCantidadDeCuotas(opr.getCantidadDeCuotas());
 			op3.setTasa(opr.getTasa());
 			op3.setSistema(opr.getSistema());
+			op3.setCantidadDeCuotas(opr.getCantidadDeCuotas());
+			operacionService.savet3(op3);
 			break;
 		
 		default:
@@ -139,124 +151,58 @@ public class OperacionController {
 	}
 	}
 	
-	private Tipo1 getOperacionT1(Integer id) {
+	private OperacionRequest getOperacionT1(Integer id, Integer tipo) {
 		
-		return operacionService.getByIdT1(id);
+		return operacionService.getById(id, tipo);
 	}
 	
-	private Tipo2 getOperacionT2(Integer id) {
-		
-		
-		return operacionService.getByIdT2(id);
-	}
-
-	private Tipo3 getOperacionT3(Integer id) {
-	
-	
-		return operacionService.getByIdT3(id);
-	}
-	
-	 private void EliminarOperacionT1(Integer id) {
-		 operacionService.deleteT1ById(id);
+	 private void EliminarOperacion(Integer id, Integer tipo) {
+		 operacionService.deleteById(id, tipo);
 		 
 	 }
-	 
-	 private void EliminarOperacionT2(Integer id) {
-		 operacionService.deleteT2ById(id);
+
+
+	 private Float obtenerMontoT1(Integer id){
+
+		return operacionService.getMontoT1ById(id);
 	 }
 
-	 private void EliminarOperacionT3(Integer id) {
-		 operacionService.deleteT3ById(id);
-	 
-	 }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*
-	public void NuevaOperacionT1(Tipo1 t1) {
-		
-		Tipo1 op = new Tipo1();
-		
-		op.setId(t1.getId());
-		op.setBancoCheques(t1.getBancoCheques());
-		op.setComisionAlSocio(t1.getComisionAlSocio());
-		op.setCuitFirmante(t1.getCuitFirmante());
-		op.setEstadoComision(t1.getEstadoComision());
-		op.setEstadoOperacion(t1.getEstadoOperacion());
-		op.setFecha(t1.getFecha());
-		op.setFechaVencimiento(t1.getFechaVencimiento());
-		op.setMonto(t1.getMonto());
-		op.setNroCheques(t1.getNroCheques());
-		op.setTasaDeDescuento(t1.getTasaDeDescuento());
-		op.setTipoDeOperacion(t1.getTipoDeOperacion());
-		
+	private Float obtenerMontoT2(Integer id){
+
+		return operacionService.getMontoT2ById(id);
 	}
-	
-	
-	
-	public void NuevaOperacionT2(Tipo2 t2) {
-		
-		Tipo2 op = new Tipo2();
-		
-		op.setId(t2.getId());
-		op.setComisionAlSocio(t2.getComisionAlSocio());
-		op.setEstadoComision(t2.getEstadoComision());
-		op.setEstadoOperacion(t2.getEstadoOperacion());
-		op.setFecha(t2.getFecha());
-		op.setFechaVencimiento(t2.getFechaVencimiento());
-		op.setMonto(t2.getMonto());
-		op.setTasaDeDescuento(t2.getTasaDeDescuento());
-		op.setTipoDeOperacion(t2.getTipoDeOperacion());
-		
-		op.setEmpresaCuentaCorriente(t2.getEmpresaCuentaCorriente());
-		op.setFechaVencimiento(op.getFechaVencimiento());
-		
+
+	private Float obtenerMontoT3(Integer id){
+
+		return operacionService.getMontoT3ById(id);
 	}
-	
-	public void NuevaOperacionT3(Tipo3 t3) {
-		
-		Tipo3 op = new Tipo3();
-		
-		op.setId(t3.getId());
-		op.setComisionAlSocio(t3.getComisionAlSocio());
-		op.setEstadoComision(t3.getEstadoComision());
-		op.setEstadoOperacion(t3.getEstadoOperacion());
-		op.setFecha(t3.getFecha());
-		op.setMonto(t3.getMonto());
-		op.setTasaDeDescuento(t3.getTasaDeDescuento());
-		op.setTipoDeOperacion(t3.getTipoDeOperacion());
-		
-		op.setBanco(t3.getBanco());
-		op.setFechaActualizacion(t3.getFechaActualizacion());
-		op.setCantidadDeCuotas(t3.getCantidadDeCuotas());
-		op.setTasa(t3.getTasa());
-		op.setSistema(t3.getSistema());
-		
+
+	private Float obtenerComision(Integer id, Integer tipoOperacion){
+		return operacionService.obtenerComision(id, tipoOperacion);
 	}
-	*/
+
+	private List<OperacionRequest> ObtenerTodasLasOperaciones(){
+		return operacionService.getAllOperaciones();
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 
 
 }

@@ -20,6 +20,12 @@ public class Operacion {
 	
 	private Date fecha;
 
+	private FondoDeRiesgo fondoDeRiesgo;
+
+	private CertificadoDeGarantia cerificadoDeGarantia;
+
+	private LineaDeCredito lineaDeCredito;
+
 	public Integer getId() {
 		return id;
 	}
@@ -84,43 +90,35 @@ public class Operacion {
 		this.fecha = fecha;
 	}
 
+	public FondoDeRiesgo getFondoDeRiesgo() {
+		return fondoDeRiesgo;
+	}
+
+	public void setFondoDeRiesgo(FondoDeRiesgo fondoDeRiesgo) {
+		this.fondoDeRiesgo = fondoDeRiesgo;
+	}
+
+	public CertificadoDeGarantia getCerificadoDeGarantia() {
+		return cerificadoDeGarantia;
+	}
+
+	public void setCerificadoDeGarantia(CertificadoDeGarantia cerificadoDeGarantia) {
+		this.cerificadoDeGarantia = cerificadoDeGarantia;
+	}
+
+	public LineaDeCredito getLineaDeCredito() {
+		return lineaDeCredito;
+	}
+
+	public void setLineaDeCredito(LineaDeCredito lineaDeCredito) {
+		this.lineaDeCredito = lineaDeCredito;
+	}
+
 	public Operacion() {
 		super();
 	}
 	
-	
-	
-	public void ObtenerTasaDeDescuento() {
-		
-	}
-	
-	public Float ObtenerMonto(Integer id) {
-		
-		//servicio que busca la operacion con el id como parametro
-		//se hace un get monto de la operacion encontrada
-		return null;
-	}
-	
-	public Float ObtenerRiesgoVivo(Integer id) {
-		
-		//servicio que busca la operacion con el id como parametro
-		//se hace un get monto de la operacion encontrada
-		return null;
-	}
 
-	public Operacion(Integer id, EstadoOperacion estadoOperacion, Float tasaDeDescuento, Float comisionAlSocio,
-			EstadoComision estadoComision, TipoDeOperacion tipoDeOperacion, Float monto, Date fecha) {
-		super();
-		this.id = id;
-		this.estadoOperacion = estadoOperacion;
-		this.tasaDeDescuento = tasaDeDescuento;
-		this.comisionAlSocio = comisionAlSocio;
-		this.estadoComision = estadoComision;
-		this.tipoDeOperacion = tipoDeOperacion;
-		this.monto = monto;
-		this.fecha = fecha;
-	}
-	
 	
 	
 

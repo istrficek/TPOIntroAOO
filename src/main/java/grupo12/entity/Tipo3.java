@@ -15,6 +15,8 @@ public class Tipo3 extends Operacion{
 	
 	private Sistema sistema;
 
+	private List<Cuotas> cuotas;
+
 	public String getBanco() {
 		return banco;
 	}
@@ -58,17 +60,6 @@ public class Tipo3 extends Operacion{
 	public List<Tipo3>ObtenerOperacion() {
 		return null;
 	}
-	
-	
-	///////////////consultar///////////////////////////////////
-	public void ObtenerCuotasImpagas() {
-		
-	}
-	
-	
-	
-	
-	
 	
 
 }

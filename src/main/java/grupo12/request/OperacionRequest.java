@@ -2,10 +2,7 @@ package grupo12.request;
 
 import java.util.Date;
 
-import grupo12.entity.EstadoComision;
-import grupo12.entity.EstadoOperacion;
-import grupo12.entity.Sistema;
-import grupo12.entity.TipoDeOperacion;
+import grupo12.entity.*;
 
 
 public class OperacionRequest {
@@ -30,6 +27,12 @@ public class OperacionRequest {
 	private Float monto;
 	
 	private Date fecha;
+
+	private FondoDeRiesgo fondoDeRiesgo;
+
+	private CertificadoDeGarantia cerificadoDeGarantia;
+
+	private LineaDeCredito lineaDeCredito;
 	
 	//Tipo 1
 	private String bancoCheques;
@@ -50,7 +53,7 @@ public class OperacionRequest {
 	
 	private String banco;
 	
-	private Date fechaActualziacion;
+	private Date fechaActualizacion;
 	
 	private Integer cantidadDeCuotas;
 	
@@ -162,12 +165,12 @@ public class OperacionRequest {
 		this.banco = banco;
 	}
 
-	public Date getFechaActualziacion() {
-		return fechaActualziacion;
+	public Date getFechaActualizacion() {
+		return fechaActualizacion;
 	}
 
-	public void setFechaActualziacion(Date fechaActualziacion) {
-		this.fechaActualziacion = fechaActualziacion;
+	public void setFechaActualizacion(Date fechaActualizacion) {
+		this.fechaActualizacion = fechaActualizacion;
 	}
 
 	public Integer getCantidadDeCuotas() {
@@ -209,7 +212,28 @@ public class OperacionRequest {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
 
+	public FondoDeRiesgo getFondoDeRiesgo() {
+		return fondoDeRiesgo;
+	}
 
+	public void setFondoDeRiesgo(FondoDeRiesgo fondoDeRiesgo) {
+		this.fondoDeRiesgo = fondoDeRiesgo;
+	}
+
+	public CertificadoDeGarantia getCerificadoDeGarantia() {
+		return cerificadoDeGarantia;
+	}
+
+	public void setCerificadoDeGarantia(CertificadoDeGarantia cerificadoDeGarantia) {
+		this.cerificadoDeGarantia = cerificadoDeGarantia;
+	}
+
+	public LineaDeCredito getLineaDeCredito() {
+		return lineaDeCredito;
+	}
+
+	public void setLineaDeCredito(LineaDeCredito lineaDeCredito) {
+		this.lineaDeCredito = lineaDeCredito;
+	}
 }
