@@ -3,14 +3,16 @@ package grupo12;
 
 
 import grupo12.controllers.AccionistaController;
+import grupo12.data_access.SqLiteDB;
 import grupo12.entity.Accionista;
 
-
+import java.io.IOException;
 
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException {
+		//Class.forName("org.sqlite.JDBC");
 		// TODO Auto-generated method stub
 		/*
 		Tipo1 testObject;
@@ -34,7 +36,7 @@ public class Main {
 		System.out.println(lista.toString());
 		*/
 		/*****************************************************/
-
+		/*
 		Accionista testAccionista = new Accionista();
 		testAccionista.setPorcentajedeParticipacion(30);
 		testAccionista.setRazonSocial("El Accionista S.A.");
@@ -60,9 +62,13 @@ public class Main {
 			System.out.println(a.getPorcentajedeParticipacion());
 			System.out.println("*****************************************");
 		}
+		*/
 
-
-
+		try {
+			SqLiteDB.GenerarDB();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

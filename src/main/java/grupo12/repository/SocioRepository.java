@@ -1,6 +1,5 @@
 package grupo12.repository;
 
-import com.sun.xml.internal.ws.wsdl.writer.document.Part;
 import grupo12.data_access.JsonDB;
 import grupo12.entity.Participe;
 import grupo12.entity.Protector;

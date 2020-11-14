@@ -12,6 +12,10 @@ public class JsonDB<T> {
     public <C> JsonDB(String dbFile, Class<T> typeParameterClass){
         this.dbFile = dbFile;
         this.typeParameterClass = typeParameterClass;
+        File dir = new File("database");
+        if(!dir.exists()){
+            dir.mkdir();
+        }
     }
 
     public T selectAll(){

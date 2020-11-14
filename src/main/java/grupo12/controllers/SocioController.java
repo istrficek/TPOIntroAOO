@@ -15,8 +15,6 @@ public class SocioController {
 	private SocioService socioService;
 	
 	public Float obtenerSaldoDeudor(Integer id) {
-	
-	
 		return socioService.getSaldoDeudor(id);
 	}
 	
