@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import grupo12.data_access.JsonDB;
-import grupo12.entity.Accionista;
 import grupo12.entity.Tipo1;
 
 
@@ -70,5 +69,19 @@ public class Tipo1Repository {
 			return list.get(0);
 		else
 			return null;
+	}
+
+	public void delete(Integer id) {
+		Tipo1[] array = (Tipo1[]) db.selectAll();
+		List<Tipo1> list = new ArrayList<>(Arrays.asList(array));
+
+		List<Tipo1> toDelete = list.stream()
+				.filter(a -> a.getId() == id)
+				.collect(Collectors.toList());
+
+		if(toDelete.size() > 0) {
+			list.remove(toDelete.get(0));
+			db.insert(list);
+		}
 	}
 }

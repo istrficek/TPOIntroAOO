@@ -1,6 +1,7 @@
 package grupo12.repository;
 
 import grupo12.data_access.JsonDB;
+import grupo12.entity.Tipo2;
 import grupo12.entity.Tipo3;
 
 import java.util.ArrayList;
@@ -67,5 +68,19 @@ public class Tipo3Repository {
             return list.get(0);
         else
             return null;
+    }
+
+    public void delete(Integer id) {
+        Tipo3[] array = (Tipo3[]) db.selectAll();
+        List<Tipo3> list = new ArrayList<>(Arrays.asList(array));
+
+        List<Tipo3> toDelete = list.stream()
+                .filter(a -> a.getId() == id)
+                .collect(Collectors.toList());
+
+        if(toDelete.size() > 0) {
+            list.remove(toDelete.get(0));
+            db.insert(list);
+        }
     }
 }

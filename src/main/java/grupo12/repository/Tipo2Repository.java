@@ -69,4 +69,18 @@ public class Tipo2Repository {
         else
             return null;
     }
+
+    public void delete(Integer id) {
+        Tipo2[] array = (Tipo2[]) db.selectAll();
+        List<Tipo2> list = new ArrayList<>(Arrays.asList(array));
+
+        List<Tipo2> toDelete = list.stream()
+                .filter(a -> a.getId() == id)
+                .collect(Collectors.toList());
+
+        if(toDelete.size() > 0) {
+            list.remove(toDelete.get(0));
+            db.insert(list);
+        }
+    }
 }

@@ -11,12 +11,6 @@ public interface OperacionService {
 
 	OperacionRequest getById(Integer id, Integer tipo);
 
-	void deleteT1ById(Integer id);
-
-	void deleteT2ById(Integer id);
-
-	void deleteT3ById(Integer id);
-
     void savet1(Tipo1 op1);
 
 	void savet2(Tipo2 op2);
@@ -38,4 +32,6 @@ public interface OperacionService {
 	Tipo2 getByIdT2(Integer id);
 
 	Tipo3 getByIdT3(Integer id);
+
+	void deleteById(Integer id, Integer tipo);
 }

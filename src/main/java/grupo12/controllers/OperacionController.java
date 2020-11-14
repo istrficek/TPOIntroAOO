@@ -5,14 +5,15 @@ import grupo12.entity.Tipo2;
 import grupo12.entity.Tipo3;
 import grupo12.request.OperacionRequest;
 import grupo12.services.OperacionService;
+import grupo12.services.OperacionServiceImp;
 
 import java.util.List;
 
 public class OperacionController {
 	
-	private OperacionService operacionService;
-	
-	
+	private OperacionService operacionService = new OperacionServiceImp();
+
+
 	private void crearOperacion(OperacionRequest opr) {
 		
 		switch (opr.getTipoOpe()) {
@@ -155,19 +156,11 @@ public class OperacionController {
 		return operacionService.getById(id, tipo);
 	}
 	
-	 private void EliminarOperacionT1(Integer id) {
-		 operacionService.deleteT1ById(id);
+	 private void EliminarOperacion(Integer id, Integer tipo) {
+		 operacionService.deleteById(id, tipo);
 		 
 	 }
-	 
-	 private void EliminarOperacionT2(Integer id) {
-		 operacionService.deleteT2ById(id);
-	 }
 
-	 private void EliminarOperacionT3(Integer id) {
-		 operacionService.deleteT3ById(id);
-	 
-	 }
 
 	 private Float obtenerMontoT1(Integer id){
 

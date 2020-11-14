@@ -38,20 +38,6 @@ public class OperacionServiceImp implements OperacionService {
 		}
 	}
 
-	public void deleteT1ById(Integer id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void deleteT2ById(Integer id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void deleteT3ById(Integer id) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void savet1(Tipo1 op1) {
@@ -147,6 +133,19 @@ public class OperacionServiceImp implements OperacionService {
 	@Override
 	public Tipo3 getByIdT3(Integer id) {
 		return repot3.getById(id);
+	}
+
+	@Override
+	public void deleteById(Integer id, Integer tipo) {
+		switch (tipo){
+			case 1:
+				repot1.delete(id);
+			case 2:
+				repot2.delete(id);
+			case 3:
+				repot3.delete(id);
+
+		}
 	}
 
 
