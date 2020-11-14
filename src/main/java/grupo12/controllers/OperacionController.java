@@ -6,6 +6,8 @@ import grupo12.entity.Tipo3;
 import grupo12.request.OperacionRequest;
 import grupo12.services.OperacionService;
 
+import java.util.List;
+
 public class OperacionController {
 	
 	private OperacionService operacionService;
@@ -66,7 +68,7 @@ public class OperacionController {
 			op3.setTipoDeOperacion(opr.getTipoDeOperacion());
 			
 			op3.setBanco(opr.getBanco());
-			op3.setFechaActualizacion(opr.getFechaActualziacion());
+			op3.setFechaActualizacion(opr.getFechaActualizacion());
 			op3.setCantidadDeCuotas(opr.getCantidadDeCuotas());
 			op3.setTasa(opr.getTasa());
 			op3.setSistema(opr.getSistema());
@@ -133,10 +135,11 @@ public class OperacionController {
 			op3.setTipoDeOperacion(opr.getTipoDeOperacion());
 			
 			op3.setBanco(opr.getBanco());
-			op3.setFechaActualizacion(opr.getFechaActualziacion());
+			op3.setFechaActualizacion(opr.getFechaActualizacion());
 			op3.setCantidadDeCuotas(opr.getCantidadDeCuotas());
 			op3.setTasa(opr.getTasa());
 			op3.setSistema(opr.getSistema());
+			op3.setCantidadDeCuotas(opr.getCantidadDeCuotas());
 			operacionService.savet3(op3);
 			break;
 		
@@ -147,21 +150,9 @@ public class OperacionController {
 	}
 	}
 	
-	private Tipo1 getOperacionT1(Integer id) {
+	private OperacionRequest getOperacionT1(Integer id, Integer tipo) {
 		
-		return operacionService.getByIdT1(id);
-	}
-	
-	private Tipo2 getOperacionT2(Integer id) {
-		
-		
-		return operacionService.getByIdT2(id);
-	}
-
-	private Tipo3 getOperacionT3(Integer id) {
-	
-	
-		return operacionService.getByIdT3(id);
+		return operacionService.getById(id, tipo);
 	}
 	
 	 private void EliminarOperacionT1(Integer id) {
@@ -192,6 +183,16 @@ public class OperacionController {
 
 		return operacionService.getMontoT3ById(id);
 	}
+
+	private Float obtenerComision(Integer id, Integer tipoOperacion){
+		return operacionService.obtenerComision(id, tipoOperacion);
+	}
+
+	private List<OperacionRequest> ObtenerTodasLasOperaciones(){
+		return operacionService.getAllOperaciones();
+	}
+
+
 	
 	
 	

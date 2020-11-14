@@ -1,8 +1,6 @@
 package grupo12.repository;
 
 import grupo12.data_access.JsonDB;
-import grupo12.entity.Accionista;
-import grupo12.entity.Tipo1;
 import grupo12.entity.Tipo3;
 
 import java.util.ArrayList;
@@ -40,6 +38,33 @@ public class Tipo3Repository {
                 .collect(Collectors.toList());
         if(list.size() > 0)
             return list.get(0).getMonto();
+        else
+            return null;
+    }
+
+    public Float obtenerComision(Integer id) {
+
+        Tipo3[] array = (Tipo3[]) db.selectAll();
+        if(array == null)
+            return null;
+        List<Tipo3> list = new ArrayList<>(Arrays.asList(array)).stream()
+                .filter(a -> a.getId() == id)
+                .collect(Collectors.toList());
+        if(list.size() > 0)
+            return list.get(0).getComisionAlSocio();
+        else
+            return null;
+    }
+
+    public Tipo3 getById(Integer id) {
+        Tipo3[] array = (Tipo3[]) db.selectAll();
+        if(array == null)
+            return null;
+        List<Tipo3> list = new ArrayList<>(Arrays.asList(array)).stream()
+                .filter(a -> a.getId() == id)
+                .collect(Collectors.toList());
+        if(list.size() > 0)
+            return list.get(0);
         else
             return null;
     }

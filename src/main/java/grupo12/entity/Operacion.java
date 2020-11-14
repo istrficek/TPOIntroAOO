@@ -20,6 +20,12 @@ public class Operacion {
 	
 	private Date fecha;
 
+	private FondoDeRiesgo fondoDeRiesgo;
+
+	private CertificadoDeGarantia cerificadoDeGarantia;
+
+	private LineaDeCredito lineaDeCredito;
+
 	public Integer getId() {
 		return id;
 	}
@@ -82,6 +88,30 @@ public class Operacion {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+
+	public FondoDeRiesgo getFondoDeRiesgo() {
+		return fondoDeRiesgo;
+	}
+
+	public void setFondoDeRiesgo(FondoDeRiesgo fondoDeRiesgo) {
+		this.fondoDeRiesgo = fondoDeRiesgo;
+	}
+
+	public CertificadoDeGarantia getCerificadoDeGarantia() {
+		return cerificadoDeGarantia;
+	}
+
+	public void setCerificadoDeGarantia(CertificadoDeGarantia cerificadoDeGarantia) {
+		this.cerificadoDeGarantia = cerificadoDeGarantia;
+	}
+
+	public LineaDeCredito getLineaDeCredito() {
+		return lineaDeCredito;
+	}
+
+	public void setLineaDeCredito(LineaDeCredito lineaDeCredito) {
+		this.lineaDeCredito = lineaDeCredito;
 	}
 
 	public Operacion() {

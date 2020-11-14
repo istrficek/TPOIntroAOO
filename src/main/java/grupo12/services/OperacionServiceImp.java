@@ -6,28 +6,36 @@ import grupo12.entity.Tipo3;
 import grupo12.repository.Tipo1Repository;
 import grupo12.repository.Tipo2Repository;
 import grupo12.repository.Tipo3Repository;
+import grupo12.request.OperacionRequest;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OperacionServiceImp implements OperacionService {
 
-	Tipo1Repository repot1;
-	Tipo2Repository repot2;
-	Tipo3Repository repot3;
+	Tipo1Repository repot1 = new Tipo1Repository();
+	Tipo2Repository repot2 = new Tipo2Repository();
+	Tipo3Repository repot3 = new Tipo3Repository();
 
-	public Tipo1 getByIdT1(Integer id) {
-		
-		//
-		
-		return null;
-	}
+	public OperacionRequest getById(Integer id, Integer tipo) {
+		OperacionRequest request = new OperacionRequest();
 
-	public Tipo2 getByIdT2(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Tipo3 getByIdT3(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		switch (tipo){
+			case 1:
+				Tipo1 t1 =repot1.getById(id);
+				EntyToModelT1(t1, request);
+				return request;
+			case 2:
+				Tipo2 t2 =repot2.getById(id);
+				EntyToModelT2(t2, request);
+				return request;
+			case 3:
+				Tipo3 t3 =repot3.getById(id);
+				EntyToModelT3(t3, request);
+				return request;
+			default:
+				return null;
+		}
 	}
 
 	public void deleteT1ById(Integer id) {
@@ -77,4 +85,136 @@ public class OperacionServiceImp implements OperacionService {
 		return repot3.getByMontoT3(id);
 	}
 
+	@Override
+	public Float obtenerComision(Integer id, Integer tipoOperacion) {
+		switch (tipoOperacion){
+			case 1:
+				return repot1.obtenerComision(id);
+			case 2:
+				return repot2.obtenerComision(id);
+			case 3:
+				return repot3.obtenerComision(id);
+
+			default:
+				return null;
+		}
+	}
+
+	@Override
+	public List<OperacionRequest> getAllOperaciones() {
+		List<OperacionRequest> operaciones = new ArrayList<OperacionRequest>();
+		List<Tipo1> t1 = repot1.getAll();
+		List<Tipo2> t2 = repot2.getAll();
+		List<Tipo3> t3 = repot3.getAll();
+
+		if (t1.isEmpty() == false) {
+			for (Tipo1 t : t1) {
+				OperacionRequest opr = new OperacionRequest();
+				EntyToModelT1(t, opr);
+				operaciones.add(opr);
+			}
+		}
+
+		if (t2.isEmpty() == false) {
+			for (Tipo2 t : t2) {
+				OperacionRequest opr = new OperacionRequest();
+				EntyToModelT2(t, opr);
+				operaciones.add(opr);
+			}
+		}
+
+		if (t3.isEmpty() == false) {
+			for (Tipo3 t : t3) {
+				OperacionRequest opr = new OperacionRequest();
+				EntyToModelT3(t, opr);
+				operaciones.add(opr);
+			}
+		}
+
+		return operaciones;
+	}
+
+	@Override
+	public Tipo1 getByIdT1(Integer id) {
+		return repot1.getById(id);
+	}
+
+	@Override
+	public Tipo2 getByIdT2(Integer id) {
+		return repot2.getById(id);
+	}
+
+	@Override
+	public Tipo3 getByIdT3(Integer id) {
+		return repot3.getById(id);
+	}
+
+
+	private void EntyToModelT1(Tipo1 tipo1, OperacionRequest request) {
+		//transforma un Tipo1 en un request
+		request.setId(tipo1.getId());
+		request.setEstadoComision(tipo1.getEstadoComision());
+		request.setTasaDeDescuento(tipo1.getTasaDeDescuento());
+		request.setComisionAlSocio(tipo1.getComisionAlSocio());
+		request.setTipoDeOperacion(tipo1.getTipoDeOperacion());
+		request.setMonto(tipo1.getMonto());
+		request.setFecha(tipo1.getFecha());
+		request.setFondoDeRiesgo(tipo1.getFondoDeRiesgo());
+		request.setCerificadoDeGarantia(tipo1.getCerificadoDeGarantia());
+		request.setLineaDeCredito(tipo1.getLineaDeCredito());
+
+		request.setBancoCheques(tipo1.getBancoCheques());
+		request.setNroCheques(tipo1.getNroCheques());
+		request.setFechaVencimiento(tipo1.getFechaVencimiento());
+		request.setCuitFirmante(tipo1.getCuitFirmante());
+
+	}
+
+	private void EntyToModelT2(Tipo2 tipo2, OperacionRequest request) {
+		//transforma un Tipo2 en un request
+		request.setId(tipo2.getId());
+		request.setEstadoComision(tipo2.getEstadoComision());
+		request.setTasaDeDescuento(tipo2.getTasaDeDescuento());
+		request.setComisionAlSocio(tipo2.getComisionAlSocio());
+		request.setTipoDeOperacion(tipo2.getTipoDeOperacion());
+		request.setMonto(tipo2.getMonto());
+		request.setFecha(tipo2.getFecha());
+		request.setFondoDeRiesgo(tipo2.getFondoDeRiesgo());
+		request.setCerificadoDeGarantia(tipo2.getCerificadoDeGarantia());
+		request.setLineaDeCredito(tipo2.getLineaDeCredito());
+
+		request.setEmpresaCuentaCorriente(tipo2.getEmpresaCuentaCorriente());
+		request.setFechaVencimiento(tipo2.getFechaVencimiento());
+
+
+
+	}
+
+	private void EntyToModelT3(Tipo3 tipo3, OperacionRequest request) {
+		//transforma un Tipo3 en un request
+		request.setId(tipo3.getId());
+		request.setEstadoComision(tipo3.getEstadoComision());
+		request.setTasaDeDescuento(tipo3.getTasaDeDescuento());
+		request.setComisionAlSocio(tipo3.getComisionAlSocio());
+		request.setTipoDeOperacion(tipo3.getTipoDeOperacion());
+		request.setMonto(tipo3.getMonto());
+		request.setFecha(tipo3.getFecha());
+		request.setFondoDeRiesgo(tipo3.getFondoDeRiesgo());
+		request.setCerificadoDeGarantia(tipo3.getCerificadoDeGarantia());
+		request.setLineaDeCredito(tipo3.getLineaDeCredito());
+
+		request.setBanco(tipo3.getBanco());
+		request.setFechaActualizacion(tipo3.getFechaActualizacion());
+		request.setCantidadDeCuotas(tipo3.getCantidadDeCuotas());
+		request.setTasa(tipo3.getTasa());
+		request.setSistema(tipo3.getSistema());
+		request.setCantidadDeCuotas(tipo3.getCantidadDeCuotas());
+
+
+
+	}
+
+
+
 }
+

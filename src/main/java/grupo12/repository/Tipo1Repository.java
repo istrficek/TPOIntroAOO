@@ -44,4 +44,31 @@ public class Tipo1Repository {
 		else
 			return null;
 	}
+
+	public Float obtenerComision(Integer id) {
+		Tipo1[] array = (Tipo1[]) db.selectAll();
+		if(array == null)
+			return null;
+		List<Tipo1> list = new ArrayList<>(Arrays.asList(array)).stream()
+				.filter(a -> a.getId() == id)
+				.collect(Collectors.toList());
+		if(list.size() > 0)
+			return list.get(0).getComisionAlSocio();
+		else
+			return null;
+	}
+
+
+	public Tipo1 getById(Integer id) {
+		Tipo1[] array = (Tipo1[]) db.selectAll();
+		if(array == null)
+			return null;
+		List<Tipo1> list = new ArrayList<>(Arrays.asList(array)).stream()
+				.filter(a -> a.getId() == id)
+				.collect(Collectors.toList());
+		if(list.size() > 0)
+			return list.get(0);
+		else
+			return null;
+	}
 }
