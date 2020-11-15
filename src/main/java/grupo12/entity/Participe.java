@@ -18,4 +18,6 @@ public class Participe extends Socio {
 		super(TipoSocio.Participe, s);
 	}
 
+	public Participe(){};
+
 }

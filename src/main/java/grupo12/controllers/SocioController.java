@@ -2,26 +2,16 @@ package grupo12.controllers;
 
 import java.util.List;
 
-import grupo12.entity.Accionista;
-import grupo12.entity.Participe;
-import grupo12.entity.Protector;
-import grupo12.entity.Socio;
-import grupo12.entity.TipoEmpresa;
+import grupo12.entity.*;
 import grupo12.request.SocioRequest;
 import grupo12.services.SocioService;
 
 public class SocioController {
 	
 	private SocioService socioService;
-	
-	public Float obtenerSaldoDeudor(Integer id) {
-		return socioService.getSaldoDeudor(id);
-	}
-	
+
 	public List<Accionista> obtenerAccionistas(Integer id) {
-		
 		return socioService.getAccionistas(id);
-		
 	}
 	
 	public List<Participe> obtenerSociosParticipes() {
@@ -33,7 +23,6 @@ public class SocioController {
 	}
 	
 	public List<Socio>obtenerSocios(TipoEmpresa tipoEmpresa){
-
 		return socioService.getSociosTipoEmpresa(tipoEmpresa);
 	}
 	
@@ -67,47 +56,29 @@ public class SocioController {
 		}
 	}
 	public void editarSocio(Integer id, SocioRequest socioRequest){
-		
-		if(socioRequest.isParticipe()) {
-			Participe socio = socioService.getParticipeById(id);
-			socio.setAccionistas(socioRequest.getAccionistas());
-			socio.setActividadPrincipal(socioRequest.getActividadPrincipal());
-			socio.setCuit(socioRequest.getCuit());
-			socio.setDireccion(socioRequest.getDireccion());
-			socio.setEmail(socioRequest.getEmail());
-			socio.setEstadoSocio(socioRequest.getEstadoSocio());
-			socio.setFechaInicio(socioRequest.getFechaInicio());
-			socio.setId(socioRequest.getId());
-			socio.setRazonSocial(socioRequest.getRazonSocial());
-			socio.setSaldoAcciones(socioRequest.getSaldoAccionesTipo());
-			socio.setTelefono(socioRequest.getTelefono());
-			socio.setTipoEmpresa(socio.getTipoEmpresa());
-			socioService.save(socio);
-		}
-		else {
-			Protector socio = socioService.getProtectorById(id);
-			socio.setAccionistas(socioRequest.getAccionistas());
-			socio.setActividadPrincipal(socioRequest.getActividadPrincipal());
-			socio.setCuit(socioRequest.getCuit());
-			socio.setDireccion(socioRequest.getDireccion());
-			socio.setEmail(socioRequest.getEmail());
-			socio.setEstadoSocio(socioRequest.getEstadoSocio());
-			socio.setFechaInicio(socioRequest.getFechaInicio());
-			socio.setId(socioRequest.getId());
-			socio.setRazonSocial(socioRequest.getRazonSocial());
-			socio.setSaldoAcciones(socioRequest.getSaldoAccionesTipo());
-			socio.setTelefono(socioRequest.getTelefono());
-			socio.setTipoEmpresa(socio.getTipoEmpresa());
-			socioService.save(socio);
-			
-		}
-		
-	}
-	
-	
-		
-		
-		
-	
 
+		Socio socio = socioService.getSocio(id);
+		socio.setAccionistas(socioRequest.getAccionistas());
+		socio.setActividadPrincipal(socioRequest.getActividadPrincipal());
+		socio.setCuit(socioRequest.getCuit());
+		socio.setDireccion(socioRequest.getDireccion());
+		socio.setEmail(socioRequest.getEmail());
+		socio.setEstadoSocio(socioRequest.getEstadoSocio());
+		socio.setFechaInicio(socioRequest.getFechaInicio());
+		socio.setId(socioRequest.getId());
+		socio.setRazonSocial(socioRequest.getRazonSocial());
+		socio.setSaldoAcciones(socioRequest.getSaldoAccionesTipo());
+		socio.setTelefono(socioRequest.getTelefono());
+		socio.setTipoEmpresa(socio.getTipoEmpresa());
+		if(socioRequest.isParticipe()){
+			socio.setTipoSocio(TipoSocio.Participe);
+		} else {
+			socio.setTipoSocio(TipoSocio.Protector);
+		}
+		socioService.update(socio);
+	}
+
+	public Float obtenerSaldoDeudor(Integer id) {
+		return socioService.getSaldoDeudor(id);
+	}
 }

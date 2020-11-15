@@ -1,6 +1,7 @@
 package grupo12.services;
 
 import java.util.List;
+import java.util.Spliterator;
 
 import grupo12.entity.Accionista;
 import grupo12.entity.Participe;
@@ -25,6 +26,8 @@ public interface SocioService {
 	void save(Participe socio);
 
 	void save(Protector socio);
+
+	boolean update(Socio s);
 
 	Participe getParticipeById(Integer id);
 

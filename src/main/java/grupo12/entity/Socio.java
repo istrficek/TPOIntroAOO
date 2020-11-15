@@ -135,4 +135,36 @@ public class Socio {
 
 	}
 
+	public Socio(Participe p){
+		this.accionistas = p.getAccionistas();
+		this.actividadPrincipal = p.getActividadPrincipal();
+		this.cuit = p.getCuit();
+		this.direccion = p.getDireccion();
+		this.email = p.getEmail();
+		this.estadoSocio = p.getEstadoSocio();
+		this.fechaInicio = p.getFechaInicio();
+		this.id = p.getId();
+		this.razonSocial = p.getRazonSocial();
+		this.saldoAcciones = p.getSaldoAcciones();
+		this.telefono = p.getTelefono();
+		this.tipoEmpresa = p.getTipoEmpresa();
+		this.setTipoSocio(TipoSocio.Participe);
+	}
+
+	public Socio(Protector p){
+		this.accionistas = p.getAccionistas();
+		this.actividadPrincipal = p.getActividadPrincipal();
+		this.cuit = p.getCuit();
+		this.direccion = p.getDireccion();
+		this.email = p.getEmail();
+		this.estadoSocio = p.getEstadoSocio();
+		this.fechaInicio = p.getFechaInicio();
+		this.id = p.getId();
+		this.razonSocial = p.getRazonSocial();
+		this.saldoAcciones = p.getSaldoAcciones();
+		this.telefono = p.getTelefono();
+		this.tipoEmpresa = p.getTipoEmpresa();
+		this.setTipoSocio(TipoSocio.Protector);
+	}
+
 }

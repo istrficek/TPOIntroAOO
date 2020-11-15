@@ -11,32 +11,19 @@ import java.io.IOException;
 
 public class Main {
 
-	public static void main(String[] args) throws ClassNotFoundException {
-		//Class.forName("org.sqlite.JDBC");
-		// TODO Auto-generated method stub
-		/*
-		Tipo1 testObject;
-		testObject = new Tipo1();
-		testObject.setBancoCheques("Galicia");
-		testObject.setCuitFirmante("CUIT Firmante");
-		testObject.setFechaVencimiento(new Date("09/11/2020"));
-		testObject.setFecha(new Date("10/11/2020"));
-		testObject.setNroCheques((long) 12);
-		testObject.setComisionAlSocio((float) 123.50);
-		testObject.setEstadoComision(EstadoComision.Calculada);
-		testObject.setId(100);
-		testObject.setMonto((float) 872.90);
-		testObject.setTipoDeOperacion(TipoDeOperacion.Tipo1);
+	public static void main(String[] args) {
 
-		Tipo1Repository repo = new Tipo1Repository();
-		repo.save(testObject);
+/*
+		try {
+			SqLiteDB.GenerarDB();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-		List<Tipo1> lista = repo.getAll();
+ */
 
-		System.out.println(lista.toString());
-		*/
-		/*****************************************************/
-		/*
+
+
 		Accionista testAccionista = new Accionista();
 		testAccionista.setPorcentajedeParticipacion(30);
 		testAccionista.setRazonSocial("El Accionista S.A.");
@@ -48,7 +35,7 @@ public class Main {
 		ac.crearAccionista(testAccionista);
 		ac.crearAccionista(testAccionista);
 
-		ac.eliminarAccionista(0);
+		ac.eliminarAccionista(2);
 
 		Accionista testAccionistaEdit = new Accionista();
 		testAccionistaEdit.setPorcentajedeParticipacion(26);
@@ -62,13 +49,8 @@ public class Main {
 			System.out.println(a.getPorcentajedeParticipacion());
 			System.out.println("*****************************************");
 		}
-		*/
 
-		try {
-			SqLiteDB.GenerarDB();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
 	}
 
 }

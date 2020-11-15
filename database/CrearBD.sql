@@ -90,6 +90,24 @@ CREATE TABLE Tipo3 (
 	Sistema text NULL
 );
 
+CREATE TABLE Operacion (
+	ID integer PRIMARY KEY,
+	EstadoOperacion text NULL,
+	TasaDeDescuento real NULL,
+	ComisionAlSocio real NULL,
+	EstadoComision text NULL,
+	TipoDeOperacion text NULL,
+	Monto real NULL,
+	Fecha integer NULL,
+	idCerificadoDeGarantia integer NULL,
+	idLineaDeCredito integer NULL,
+	idSocio integer NULL
+);
+
+CREATE TABLE FondoDeRiesgo (
+	Monto real NULL
+)
+
 --INSERTS
 
 INSERT INTO Accionista (ID,RazonSocial,PorcentajeDeParticipacion) VALUES (1,'Holi',32)

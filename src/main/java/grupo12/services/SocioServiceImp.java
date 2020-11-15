@@ -11,13 +11,11 @@ public class SocioServiceImp implements SocioService {
 	SocioRepository repository = new SocioRepository();
 
 	public Float getSaldoDeudor(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return 120.3F;
 	}
 
 	public List<Accionista> getAccionistas(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.getAccionistas(id);
 	}
 
 	public List<Participe> getSociosParticipes() {
@@ -29,8 +27,7 @@ public class SocioServiceImp implements SocioService {
 	}
 
 	public List<Socio> getSociosTipoEmpresa(TipoEmpresa tipoEmpresa) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.getSocioTipoEmpresa(tipoEmpresa);
 	}
 
 	public Socio getSocio(Integer id) {
@@ -41,22 +38,20 @@ public class SocioServiceImp implements SocioService {
 		repository.save(socio);
 	}
 
+	public boolean update(Socio socio){
+		return repository.updateSocio(socio);
+	}
+
 	public void save(Protector socio){
 		repository.save(socio);
 	}
 
 	public Participe getParticipeById(Integer id) {
-		Socio s = repository.getById(id);
-		if(s.getTipoSocio() == TipoSocio.Participe)
-			return new Participe(s);
-		return null;
+		return repository.getParticipeById(id);
 	}
 
 	public Protector getProtectorById(Integer id) {
-		Socio s = repository.getById(id);
-		if(s.getTipoSocio() == TipoSocio.Protector)
-			return new Protector(s);
-		return null;
+		return repository.getProtectorById(id);
 	}
 
 }
