@@ -1,5 +1,6 @@
 package grupo12.controllers;
 
+import grupo12.entity.EstadoOperacion;
 import grupo12.entity.Tipo1;
 import grupo12.entity.Tipo2;
 import grupo12.entity.Tipo3;
@@ -7,6 +8,7 @@ import grupo12.request.OperacionRequest;
 import grupo12.services.OperacionService;
 import grupo12.services.OperacionServiceImp;
 
+import java.util.Date;
 import java.util.List;
 
 public class OperacionController {
@@ -14,7 +16,7 @@ public class OperacionController {
 	private OperacionService operacionService = new OperacionServiceImp();
 
 
-	private void crearOperacion(OperacionRequest opr) {
+	public void crearOperacion(OperacionRequest opr) {
 		
 		switch (opr.getTipoOpe()) {
 		case 1 :
@@ -83,9 +85,9 @@ public class OperacionController {
 		}
 		
 	}
-	
-	
-	private void editOperacion(OperacionRequest opr){
+
+
+	public void editOperacion(OperacionRequest opr){
 
 		OperacionRequest nuevo = new OperacionRequest();
 		switch (opr.getTipoOpe()) {
@@ -150,40 +152,63 @@ public class OperacionController {
 		
 	}
 	}
-	
-	private OperacionRequest getOperacionT1(Integer id, Integer tipo) {
+
+	public OperacionRequest getOperacionT1(Integer id, Integer tipo) {
 		
 		return operacionService.getById(id, tipo);
 	}
-	
-	 private void EliminarOperacion(Integer id, Integer tipo) {
+
+	public void EliminarOperacion(Integer id, Integer tipo) {
 		 operacionService.deleteById(id, tipo);
 		 
 	 }
 
 
-	 private Float obtenerMontoT1(Integer id){
+	 public Float obtenerMontoT1(Integer id){
 
 		return operacionService.getMontoT1ById(id);
 	 }
 
-	private Float obtenerMontoT2(Integer id){
+	public Float obtenerMontoT2(Integer id){
 
 		return operacionService.getMontoT2ById(id);
 	}
 
-	private Float obtenerMontoT3(Integer id){
+	public Float obtenerMontoT3(Integer id){
 
 		return operacionService.getMontoT3ById(id);
 	}
 
-	private Float obtenerComision(Integer id, Integer tipoOperacion){
+	public Float obtenerComision(Integer id, Integer tipoOperacion){
 		return operacionService.obtenerComision(id, tipoOperacion);
 	}
 
-	private List<OperacionRequest> ObtenerTodasLasOperaciones(){
+	public List<OperacionRequest> obtenerTodasLasOperaciones(){
 		return operacionService.getAllOperaciones();
 	}
+
+
+	public EstadoOperacion obtenerEstado(Integer id, Integer tipo){
+
+		return operacionService.getEstado(id, tipo);
+	}
+
+	public Float getTasaDeDescuento(Integer id, Integer tipo){
+
+		return operacionService.getTasaDeDescuento(id, tipo);
+	}
+
+	public List<OperacionRequest> obtenerOperaciones(EstadoOperacion estadoOperacion, Date fechaInicio, Date fechaFin){
+		return operacionService.obtenerOperaciones(estadoOperacion, fechaInicio, fechaFin);
+	}
+
+	public Float CalcularComision(Integer id,Integer tipoOperacion, Date fecha){
+		return operacionService.calcularComision(id, tipoOperacion, fecha);
+	}
+
+	
+
+
 
 
 	

@@ -1,13 +1,17 @@
 package grupo12.services;
 
+import grupo12.entity.EstadoOperacion;
 import grupo12.entity.Tipo1;
 import grupo12.entity.Tipo2;
 import grupo12.entity.Tipo3;
 import grupo12.request.OperacionRequest;
 
+import java.util.Date;
 import java.util.List;
 
 public interface OperacionService {
+
+	Float getTasaDeDescuento(Integer id, Integer tipo);
 
 	OperacionRequest getById(Integer id, Integer tipo);
 
@@ -34,4 +38,10 @@ public interface OperacionService {
 	Tipo3 getByIdT3(Integer id);
 
 	void deleteById(Integer id, Integer tipo);
+
+	EstadoOperacion getEstado(Integer id, Integer tipo);
+
+	List<OperacionRequest> obtenerOperaciones(EstadoOperacion estadoOperacion, Date fechaInicio, Date fechaFin);
+
+	Float calcularComision(Integer id,Integer tipoOperacion, Date fecha);
 }

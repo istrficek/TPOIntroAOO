@@ -42,4 +42,19 @@ public class CertificadoDeGarantiaRepository {
             return null;
 
     }
+
+    public void delete(Integer id) {
+
+        CertificadoDeGarantia[] array = (CertificadoDeGarantia[]) db.selectAll();
+        List<CertificadoDeGarantia> list = new ArrayList<>(Arrays.asList(array));
+
+        List<CertificadoDeGarantia> toDelete = list.stream()
+                .filter(a -> a.getId() == id)
+                .collect(Collectors.toList());
+
+        if(toDelete.size() > 0) {
+            list.remove(toDelete.get(0));
+            db.insert(list);
+        }
+    }
 }

@@ -2,11 +2,13 @@ package grupo12.repository;
 
 import grupo12.data_access.JsonDB;
 import grupo12.entity.Accionista;
+import grupo12.entity.EstadoOperacion;
 import grupo12.entity.Tipo1;
 import grupo12.entity.Tipo2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -83,4 +85,47 @@ public class Tipo2Repository {
             db.insert(list);
         }
     }
+
+    public EstadoOperacion getEstado(Integer id) {
+
+        Tipo2[] array = (Tipo2[]) db.selectAll();
+        if(array == null)
+            return null;
+        List<Tipo2> list = new ArrayList<>(Arrays.asList(array)).stream()
+                .filter(a -> a.getId() == id)
+                .collect(Collectors.toList());
+        if(list.size() > 0)
+            return list.get(0).getEstadoOperacion();
+        else
+            return null;
+    }
+
+    public Float getTasaDeDescuento(Integer id) {
+        Tipo2[] array = (Tipo2[]) db.selectAll();
+        if(array == null)
+            return null;
+        List<Tipo2> list = new ArrayList<>(Arrays.asList(array)).stream()
+                .filter(a -> a.getId() == id)
+                .collect(Collectors.toList());
+        if(list.size() > 0)
+            return list.get(0).getTasaDeDescuento();
+        else
+            return null;
+    }
+
+    public List<Tipo2> getEstadoOperacionDates(EstadoOperacion estadoOperacion, Date fechaInicio, Date fechaFin) {
+        Tipo2[] array = (Tipo2[]) db.selectAll();
+        List<Tipo2> array2 = new ArrayList<Tipo2>();
+        for(Tipo2 t : array){
+            if (t.getEstadoOperacion() == estadoOperacion && t.getFecha().after(fechaInicio) && t.getFecha().before(fechaFin)){
+                array2.add(t);
+
+            }
+        }
+        if(array2 == null)
+            return new ArrayList<Tipo2>();
+        return array2;
+    }
+
+
 }

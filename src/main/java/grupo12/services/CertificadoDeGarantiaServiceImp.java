@@ -11,4 +11,14 @@ public class CertificadoDeGarantiaServiceImp implements CertificadoDeGarantiaSer
     public CertificadoDeGarantia getById(Integer id) {
         return repo.getById(id);
     }
+
+    @Override
+    public void save(CertificadoDeGarantia nuevo) {
+        repo.save(nuevo);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        repo.delete(id);
+    }
 }
