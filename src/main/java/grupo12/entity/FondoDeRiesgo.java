@@ -1,27 +1,28 @@
 package grupo12.entity;
 
-import grupo12.services.FondoDeRiesgoImp;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class FondoDeRiesgo {
 
-    private Integer id;
+    private List<AporteFondoDeRiesgo> aportes;
 
-    private Float monto;
-
-    public Integer getId() {
-        return id;
+    public void setAportes(List<AporteFondoDeRiesgo> aportes) {
+        this.aportes = aportes;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public List<AporteFondoDeRiesgo> getAportes() {
+        return aportes;
     }
 
-    public FondoDeRiesgo obtenerMonto(Integer id) {
+    public Float obtenerMonto(Integer id) {
+        Float montoTotal = 0F;
 
-
-        FondoDeRiesgoImp fdrservice = new FondoDeRiesgoImp();
-
-        return fdrservice.getById(id);
+        for (AporteFondoDeRiesgo a : aportes.stream().filter(ap -> ap.isAporteVigente()).collect(Collectors.toList())) {
+            montoTotal += a.getMonto();
+        }
+        return montoTotal;
 
     }
 }

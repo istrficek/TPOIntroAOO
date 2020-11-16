@@ -160,7 +160,7 @@ public class OperacionServiceImp implements OperacionService {
 		request.setFecha(tipo1.getFecha());
 		request.setFondoDeRiesgo(tipo1.getFondoDeRiesgo());
 		request.setCerificadoDeGarantia(tipo1.getCerificadoDeGarantia());
-		request.setLineaDeCredito(tipo1.getLineaDeCredito());
+		//request.setLineaDeCredito(tipo1.getLineaDeCredito());
 
 		request.setBancoCheques(tipo1.getBancoCheques());
 		request.setNroCheques(tipo1.getNroCheques());
@@ -180,7 +180,7 @@ public class OperacionServiceImp implements OperacionService {
 		request.setFecha(tipo2.getFecha());
 		request.setFondoDeRiesgo(tipo2.getFondoDeRiesgo());
 		request.setCerificadoDeGarantia(tipo2.getCerificadoDeGarantia());
-		request.setLineaDeCredito(tipo2.getLineaDeCredito());
+		//request.setLineaDeCredito(tipo2.getLineaDeCredito());
 
 		request.setEmpresaCuentaCorriente(tipo2.getEmpresaCuentaCorriente());
 		request.setFechaVencimiento(tipo2.getFechaVencimiento());
@@ -200,7 +200,7 @@ public class OperacionServiceImp implements OperacionService {
 		request.setFecha(tipo3.getFecha());
 		request.setFondoDeRiesgo(tipo3.getFondoDeRiesgo());
 		request.setCerificadoDeGarantia(tipo3.getCerificadoDeGarantia());
-		request.setLineaDeCredito(tipo3.getLineaDeCredito());
+		//request.setLineaDeCredito(tipo3.getLineaDeCredito());
 
 		request.setBanco(tipo3.getBanco());
 		request.setFechaActualizacion(tipo3.getFechaActualizacion());

@@ -10,6 +10,12 @@ public class Aporte {
 	
 	private Date fechaAporte;
 
+	private int idSocio;
+
+	public int getIdSocio() { return idSocio; }
+
+	public void setIdSocio(int idSocio) {this.idSocio = idSocio;}
+
 	public Integer getId() {
 		return id;
 	}

@@ -1,27 +1,25 @@
 package grupo12.services;
 
+import grupo12.data_access.SqLiteDB;
 import grupo12.entity.Documentacion;
 
 public class DocumentacionServiceImp implements DocumentacionService {
 
 	public void save(Documentacion nuev) {
-		// TODO Auto-generated method stub
-		
+		SqLiteDB.InsertDocuemntacion(nuev);
 	}
 
 	public Documentacion getById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return SqLiteDB.ObtenerDocumentacion(id);
 	}
 
 	public Documentacion edit(Documentacion viej) {
-		// TODO Auto-generated method stub
-		return null;
+		SqLiteDB.ActualizarDocumentacion(viej);
+		return viej;
 	}
 
-	public Documentacion deleteById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean deleteById(Integer id) {
+		return SqLiteDB.BorrarDocumentacion(id);
 	}
 
 }

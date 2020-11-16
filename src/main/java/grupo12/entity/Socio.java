@@ -135,7 +135,7 @@ public class Socio {
 
 	}
 
-	public Socio(Participe p){
+	public Socio(Socio p){
 		this.accionistas = p.getAccionistas();
 		this.actividadPrincipal = p.getActividadPrincipal();
 		this.cuit = p.getCuit();

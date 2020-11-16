@@ -1,6 +1,7 @@
 package grupo12.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class LineaDeCredito {
 	
@@ -12,7 +13,7 @@ public class LineaDeCredito {
 	
 	private Boolean lineaAprobada;
 	
-	private TipoDeOperacion tipoDeOperacion;
+	private List<TipoDeOperacion> tipoDeOperacionAprobada;
 
 	public Integer getId() {
 		return id;
@@ -46,12 +47,12 @@ public class LineaDeCredito {
 		this.lineaAprobada = lineaAprobada;
 	}
 
-	public TipoDeOperacion getTipoDeOperacion() {
-		return tipoDeOperacion;
+	public List<TipoDeOperacion> getTipoDeOperacionAprobada() {
+		return tipoDeOperacionAprobada;
 	}
 
-	public void setTipoDeOperacion(TipoDeOperacion tipoDeOperacion) {
-		this.tipoDeOperacion = tipoDeOperacion;
+	public void setTipoDeOperacionAprobada(List<TipoDeOperacion> tipoDeOperacionAprobada) {
+		this.tipoDeOperacionAprobada = tipoDeOperacionAprobada;
 	}
 
 	public LineaDeCredito() {

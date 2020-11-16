@@ -1,18 +1,16 @@
 package grupo12.repository;
 
-import grupo12.data_access.JsonDB;
 import grupo12.data_access.SqLiteDB;
 import grupo12.entity.*;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class SocioRepository {
 
     public SocioRepository(){
     }
 
-    public boolean save(Participe nuevo){
+    public boolean save(Socio nuevo){
         return SqLiteDB.InsertSocio(new Socio(nuevo));
     }
 
@@ -62,4 +60,11 @@ public class SocioRepository {
         return SqLiteDB.ActualizarSocio(s);
     }
 
+    public List<Operacion> getOperaciones(Integer idSocio) {
+        return SqLiteDB.ObtenerOperacionesDeSocio(idSocio);
+    }
+
+    public Tipo3 getOperacionTipo3(Integer id) {
+        return SqLiteDB.ObtenerOperacionTipo3(id);
+    }
 }

@@ -1,5 +1,6 @@
 package grupo12.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class Tipo3 extends Operacion{
 	
 	private Sistema sistema;
 
-	private List<Cuotas> cuotas;
+	private List<Cuota> cuotas;
 
 	public String getBanco() {
 		return banco;
@@ -37,10 +38,6 @@ public class Tipo3 extends Operacion{
 		return cantidadDeCuotas;
 	}
 
-	public void setCantidadDeCuotas(Integer cantidadDeCuotas) {
-		this.cantidadDeCuotas = cantidadDeCuotas;
-	}
-
 	public Integer getTasa() {
 		return tasa;
 	}
@@ -59,6 +56,33 @@ public class Tipo3 extends Operacion{
 	
 	public List<Tipo3>ObtenerOperacion() {
 		return null;
+	}
+
+	public void setCuotas(List<Cuota> cuotas) {
+		this.cuotas = cuotas;
+		this.cantidadDeCuotas = cuotas.size();
+	}
+
+	public List<Cuota> getCuotas() {return this.cuotas;}
+
+	public List<Cuota> getCuotasVencidas(){
+		List<Cuota> vencidas = new ArrayList<>();
+
+		for (Cuota c: cuotas) {
+			if(!c.isPaga()){
+				if(c.getFechaVencimiento().compareTo(new Date()) < 0)
+					vencidas.add(c);
+			}
+		}
+		return vencidas;
+	}
+
+	public Float getSaldoDeudor(){
+		Float saldoDeudor = 0F;
+		for (Cuota c: getCuotasVencidas()) {
+			saldoDeudor += c.getValor();
+		}
+		return saldoDeudor;
 	}
 	
 

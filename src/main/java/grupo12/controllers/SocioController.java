@@ -4,11 +4,13 @@ import java.util.List;
 
 import grupo12.entity.*;
 import grupo12.request.SocioRequest;
-import grupo12.services.SocioService;
+import grupo12.services.*;
 
 public class SocioController {
 	
-	private SocioService socioService;
+	private SocioService socioService = new SocioServiceImp();
+	private AporteService aporteService = new AporteServiceImp();
+	private FondoDeRiesgoService fondoDeRiesgoService = new FondoDeRiesgoServiceImp();
 
 	public List<Accionista> obtenerAccionistas(Integer id) {
 		return socioService.getAccionistas(id);
@@ -47,7 +49,7 @@ public class SocioController {
 		nuevo.setTipoEmpresa(nuevo.getTipoEmpresa());
 
 		if(socioRequest.isParticipe()) {
-			Participe socio = new Participe(nuevo);
+			Socio socio = new Socio(nuevo);
 			socioService.save(socio);
 		}
 		else {
@@ -55,6 +57,7 @@ public class SocioController {
 			socioService.save(socio);
 		}
 	}
+
 	public void editarSocio(Integer id, SocioRequest socioRequest){
 
 		Socio socio = socioService.getSocio(id);
@@ -80,5 +83,33 @@ public class SocioController {
 
 	public Float obtenerSaldoDeudor(Integer id) {
 		return socioService.getSaldoDeudor(id);
+	}
+
+	public boolean agregarAporte(Aporte a){
+		return aporteService.save(a);
+	}
+
+	public boolean editarAporte(Aporte a){
+		return aporteService.update(a);
+	}
+
+	public List<Aporte> obtenerAportes(){
+		return aporteService.getAportes();
+	}
+
+	public boolean eliminarAporte(int id){
+		return aporteService.eliminarAporte(id);
+	}
+
+	public boolean validarOperacion(Operacion operacion){
+		return socioService.validarOperacion(operacion);
+	}
+
+	public boolean verificarSocio(Socio s){
+		return socioService.verificarSocio(s);
+	}
+
+	public FondoDeRiesgo getFondoDeRiesgo(){
+		return fondoDeRiesgoService.getFondoDeRiesgo();
 	}
 }

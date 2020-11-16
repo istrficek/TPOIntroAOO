@@ -1,11 +1,8 @@
 package grupo12.data_access;
 
 import grupo12.entity.*;
-import javafx.scene.control.Tab;
-import sun.reflect.generics.scope.Scope;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
@@ -46,15 +43,17 @@ public class SqLiteDB {
                 "IdSocio integer NULL,\n" +
                 "IdAccionista integer NULL\n" +
                 ");");
-        listsql.add("CREATE TABLE IF NOT EXISTS Aporte (\n" +
+        listsql.add("CREATE TABLE Aporte (\n" +
                 "ID integer PRIMARY KEY,\n" +
                 "Valor real NULL,\n" +
-                "FechaAporte integer NULL \n" +
+                "FechaAporte integer NULL,\n" +
+                "IdSocio integer NULL\n" +
                 ");");
-        listsql.add("CREATE TABLE IF NOT EXISTS CertificadoDeGarantia (\n" +
+        listsql.add("CREATE TABLE CertificadoDeGarantia (\n" +
                 "ID integer PRIMARY KEY,\n" +
                 "numero integer NULL,\n" +
-                "Descripcion text NULL \n" +
+                "Descripcion text NULL,\n" +
+                "IdOperacion integer NULL\n" +
                 ");");
         listsql.add("CREATE TABLE IF NOT EXISTS CuentaCorriente (\n" +
                 "ID integer PRIMARY KEY,\n" +
@@ -68,12 +67,13 @@ public class SqLiteDB {
                 "EstadoDoc text NULL,\n" +
                 "IsObligatorio integer NULL \n" +
                 ");");
-        listsql.add("CREATE TABLE IF NOT EXISTS LineaDeCredito (\n" +
+        listsql.add("CREATE TABLE LineaDeCredito (\n" +
                 "ID integer PRIMARY KEY,\n" +
                 "Monto integer NULL,\n" +
                 "Vencimiento integer NULL,\n" +
                 "LineaAprobada integer NULL,\n" +
-                "TipoDeOperacion text NULL\t\n" +
+                "TipoDeOperacion text NULL,\n" +
+                "IdSocio integer NULL\n" +
                 ");");
         listsql.add("CREATE TABLE IF NOT EXISTS Prestamo (\n" +
                 "ID integer PRIMARY KEY,\n" +
@@ -133,6 +133,14 @@ public class SqLiteDB {
                 "tasa integer NULL,\n" +
                 "Sistema text NULL\n" +
                 ");");
+        listsql.add("CREATE TABLE Cuota (\n" +
+                "\tID integer PRIMARY KEY,\n" +
+                "\tNumeroDeCuota integer NULL,\n" +
+                "\tValor real NULL,\n" +
+                "\tVencimiento integer NULL,\n" +
+                "\tIdTipo3 integer NULL,\n" +
+                "\tPaga integer NULL\n" +
+                ")");
         listsql.add("CREATE TABLE IF NOT EXISTS Accionista (\n" +
                 "ID integer PRIMARY KEY,\n" +
                 "RazonSocial text NULL,\n" +
@@ -166,6 +174,20 @@ public class SqLiteDB {
             System.out.println(e.getMessage());
         }
         return index;
+    }
+
+    private static boolean EliminarPorId(int id, String sql) {
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     // METODOS DE ACCIONISTA
@@ -234,17 +256,7 @@ public class SqLiteDB {
     public static boolean BorrarAccionista(int id){
         String sql = String.format("DELETE FROM Accionista WHERE id = ?");
 
-        try (Connection conn = connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setInt(1, id);
-            pstmt.executeUpdate();
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-        return true;
+        return EliminarPorId(id, sql);
     }
 
     public static boolean ActualizarAccionista(Accionista a){
@@ -417,17 +429,7 @@ public class SqLiteDB {
     public static boolean BorrarSocio(int id){
         String sql = String.format("DELETE FROM Socio WHERE id = ?");
 
-        try (Connection conn = connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setInt(1, id);
-            pstmt.executeUpdate();
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-        return true;
+        return EliminarPorId(id, sql);
     }
 
     public static boolean ActualizarSocio(Socio s){
@@ -507,6 +509,285 @@ public class SqLiteDB {
             System.out.println(e.getMessage());
         }
         return resultado;
+    }
+
+    // METODOS DE DOCUMENTACION
+
+    public static boolean InsertDocuemntacion(Documentacion documentacion){
+        String sql = "INSERT INTO Documentacion(ID,TipoDocumento,EstadoDoc,IsObligatorio) VALUES(?,?,?,?)";
+
+        int index = ObtenerUltimoIndex("Documentacion");
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, index + 1);
+            pstmt.setString(2, documentacion.getTipoDocumento().name());
+            pstmt.setString(3, documentacion.getEstadoDoc().name());
+            pstmt.setBoolean(4, documentacion.getIsObligatorio());
+            pstmt.executeUpdate();
+            System.out.println("Query ejecutada!");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    public static Documentacion ObtenerDocumentacion(int id){
+        String sql = String.format("SELECT * FROM Documentacion WHERE ID = " + id);
+        Documentacion resultado = new Documentacion();
+
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)) {
+
+            if(rs.next()){
+                resultado.setId(rs.getInt("ID"));
+                resultado.setEstadoDoc(EstadoDocumento.valueOf(rs.getString("EstadoDoc")));
+                resultado.setIsObligatorio(rs.getBoolean("IsObligatorio"));
+                resultado.setTipoDocumento(TipoDocumento.valueOf(rs.getString("TipoDocumento")));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return resultado;
+    }
+
+    public static boolean ActualizarDocumentacion(Documentacion documentacion){
+        String sql = String.format("UPDATE Documentacion SET(TipoDocumento,EstadoDoc,IsObligatorio) VALUES(?,?,?) WHERE ID = ?");
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, documentacion.getTipoDocumento().name());
+            pstmt.setString(2, documentacion.getEstadoDoc().name());
+            pstmt.setBoolean(3, documentacion.getIsObligatorio());
+            pstmt.setInt(4, documentacion.getId());
+            pstmt.executeUpdate();
+            System.out.println("Query ejecutada!");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean BorrarDocumentacion(int id){
+        String sql = String.format("DELETE FROM Documentacion WHERE id = ?");
+
+        return EliminarPorId(id, sql);
+    }
+
+    // METODOS DE APORTE
+
+    public static boolean InsertAporte(Aporte aporte) {
+        String sql = "INSERT INTO Documentacion(ID,Valor,FechaAporte,IdSocio) VALUES(?,?,?,?)";
+
+        int index = ObtenerUltimoIndex("Aporte");
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, index + 1);
+            pstmt.setFloat(2, aporte.getValor());
+            pstmt.setLong(3, aporte.getFechaAporte().getTime());
+            pstmt.setInt(4, aporte.getIdSocio());
+            pstmt.executeUpdate();
+            System.out.println("Query ejecutada!");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    public static List<Aporte> ObtenerAportes(){
+        String sql = "SELECT * from Aporte" ;
+        List<Aporte> resultado = new ArrayList<>();
+
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)) {
+
+            // loop through the result set
+            while (rs.next()) {
+                Aporte a = new Aporte();
+                a.setId(rs.getInt("ID"));
+                a.setFechaAporte(new Date(rs.getLong("FechaAporte")));
+                a.setValor(rs.getFloat("Valor"));
+                a.setIdSocio(rs.getInt("IdSocio"));
+                resultado.add(a);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return resultado;
+    }
+
+    public static Aporte ObtenerAporte(int id){
+        String sql = "SELECT * from Aporte WHERE ID = " + id ;
+        Aporte a = new Aporte();
+
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)) {
+
+            // loop through the result set
+            if(rs.next()){
+                a.setId(rs.getInt("ID"));
+                a.setFechaAporte(new Date(rs.getLong("FechaAporte")));
+                a.setValor(rs.getFloat("Valor"));
+                a.setIdSocio(rs.getInt("IdSocio"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return a;
+    }
+
+    public static boolean ActualizarAporte(Aporte aporte){
+        String sql = "UPDATE Documentacion SET (Valor,FechaAporte,IdSocio) VALUES(?,?,?) WHERE ID = ?";
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(4, aporte.getId());
+            pstmt.setFloat(1, aporte.getValor());
+            pstmt.setLong(2, aporte.getFechaAporte().getTime());
+            pstmt.setInt(3, aporte.getIdSocio());
+            pstmt.executeUpdate();
+            System.out.println("Query ejecutada!");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean BorrarAporte(int id){
+        String sql = String.format("DELETE FROM Aporte WHERE id = ?");
+        return EliminarPorId(id, sql);
+    }
+
+    // METODOS DE OPERACIONES
+
+    public static List<Operacion> ObtenerOperacionesDeSocio(Integer id) {
+        String sql = "SELECT * from Operacion WHERE IdSocio = " + id ;
+        List<Operacion> resultado = new ArrayList<>();
+
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)) {
+
+            // loop through the result set
+            while (rs.next()) {
+                Operacion operacion = new Operacion();
+                operacion.setId(rs.getInt("ID"));
+                operacion.setEstadoOperacion(EstadoOperacion.valueOf(rs.getString("EstadoOperacion")));
+                operacion.setTasaDeDescuento(rs.getFloat("TasaDeDescuento"));
+                operacion.setComisionAlSocio(rs.getFloat("ComisionAlSocio"));
+                operacion.setEstadoComision(EstadoComision.valueOf(rs.getString("EstadoComision")));
+                operacion.setTipoDeOperacion(TipoDeOperacion.valueOf(rs.getString("TipoDeOperacion")));
+                operacion.setMonto(rs.getFloat("Monto"));
+                operacion.setFecha(new Date(rs.getLong("Fecha")));
+                operacion.setCerificadoDeGarantia(ObtenerCertificadoDeGarantiaDeOperacion(rs.getInt("idCerificadoDeGarantia")));
+                resultado.add(operacion);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return resultado;
+    }
+
+    public static CertificadoDeGarantia ObtenerCertificadoDeGarantiaDeOperacion(int idOperacion){
+        String sql = String.format("SELECT * FROM CertificadoDeGarantia WHERE IdOperacion = " + idOperacion);
+        CertificadoDeGarantia resultado = new CertificadoDeGarantia();
+
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)) {
+
+            // loop through the result set
+            while (rs.next()) {
+                resultado.setId(rs.getInt("ID"));
+                resultado.setDescripcion(rs.getString("Descripcion"));
+                resultado.setNumero(rs.getInt("Numero"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return resultado;
+    }
+
+    public static Tipo3 ObtenerOperacionTipo3(Integer idOperacion) {
+        String sql = String.format("SELECT * FROM Tipo3 WHERE IdOperacion = " + idOperacion);
+        Tipo3 resultado = new Tipo3();
+
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)) {
+
+            // loop through the result set
+            while (rs.next()) {
+                resultado.setId(rs.getInt("ID"));
+                resultado.setBanco(rs.getString("Banco"));
+                resultado.setFechaActualizacion(new Date(rs.getLong("FechaActualizacion")));
+                resultado.setCuotas(ObtenerCoutas(resultado.getId()));
+                resultado.setTasa(rs.getInt("Tasa"));
+                resultado.setSistema(Sistema.valueOf(rs.getString("Sistema")));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return resultado;
+    }
+
+    public static List<Cuota> ObtenerCoutas(int idOperacionTipo3){
+        String sql = "SELECT * from Cuota WHERE IdTipo3 = " + idOperacionTipo3;
+        List<Cuota> resultado = new ArrayList<>();
+
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)) {
+
+            // loop through the result set
+            while (rs.next()) {
+                Cuota a = new Cuota();
+                a.setId(rs.getInt("ID"));
+                a.setFechaVencimiento(new Date(rs.getLong("Vencimiento")));
+                a.setNumeroDeCuota(rs.getInt("NumeroDeCuota"));
+                a.setValor(rs.getFloat("Valor"));
+                a.setPaga(rs.getBoolean("Paga"));
+                resultado.add(a);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return resultado;
+    }
+
+    // METODOS DE FONDO DE RIESGO
+
+    public static FondoDeRiesgo ObtenerFondoDeRiesgo(){
+        String sql = "SELECT * from AporteFondoDeRiesgo" ;
+        List<AporteFondoDeRiesgo> aportes = new ArrayList<>();
+        FondoDeRiesgo fondoDeRiesgo = new FondoDeRiesgo();
+
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)) {
+
+            // loop through the result set
+            while (rs.next()) {
+                AporteFondoDeRiesgo a = new AporteFondoDeRiesgo();
+                a.setId(rs.getInt("ID"));
+                a.setFechaAporte(new Date(rs.getLong("FechaAporte")));
+                a.setAporteVigente(rs.getBoolean("AporteVigente"));
+                a.setMonto(rs.getFloat("Monto"));
+                aportes.add(a);
+            }
+            fondoDeRiesgo.setAportes(aportes);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return fondoDeRiesgo;
     }
 }
 

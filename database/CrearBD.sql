@@ -11,12 +11,14 @@ CREATE TABLE SocioAccionista (
 CREATE TABLE Aporte (
 	ID integer PRIMARY KEY,
 	Valor real NULL,
-	FechaAporte integer NULL 
+	FechaAporte integer NULL,
+	IdSocio integer NULL
 );
 CREATE TABLE CertificadoDeGarantia (
 	ID integer PRIMARY KEY,
-	numero integer NULL,
-	Descripcion text NULL 
+	Numero integer NULL,
+	Descripcion text NULL,
+	IdOperacion integer NULL
 );
 CREATE TABLE Cheque (
 	ID integer PRIMARY KEY,
@@ -46,7 +48,8 @@ CREATE TABLE LineaDeCredito (
 	Monto integer NULL,
 	Vencimiento integer NULL,
 	LineaAprobada integer NULL,
-	TipoDeOperacion text NULL	
+	TipoDeOperacion text NULL,
+	IdSocio integer NULL
 );
 CREATE TABLE Prestamo (
 	ID integer PRIMARY KEY,
@@ -68,18 +71,21 @@ CREATE TABLE Socio (
 	Email text NULL,
 	EstadoSocio text NULL,
 	TipoEmpresa text NULL,
-	SaldoAcciones integer NULL
+	SaldoAcciones integer NULL,
+	TipoSocio text NULL
 );
 CREATE TABLE Tipo1 (
 	ID integer PRIMARY KEY,
 	NroCheques integer NULL,
 	FechaVencimiento integer NULL,
-	CuitFirmante text NULL
+	CuitFirmante text NULL,
+	IdOperacion integer NULL
 );
 CREATE TABLE Tipo2 (
 	ID integer PRIMARY KEY,
 	EmpresaCuentaCorriente text NULL,
-	FechaVencimiento integer NULL
+	FechaVencimiento integer NULL,
+	IdOperacion integer NULL
 );
 CREATE TABLE Tipo3 (
 	ID integer PRIMARY KEY,
@@ -87,8 +93,18 @@ CREATE TABLE Tipo3 (
 	FechaActualizacion integer NULL,
 	CantidadDeCuotas integer NULL,
 	tasa integer NULL,
-	Sistema text NULL
+	Sistema text NULL,
+	IdOperacion integer NULL
 );
+
+CREATE TABLE Cuota (
+	ID integer PRIMARY KEY,
+	NumeroDeCuota integer NULL,
+	Valor real NULL,
+	Vencimiento integer NULL,
+	IdTipo3 integer NULL,
+	Paga integer NULL
+)
 
 CREATE TABLE Operacion (
 	ID integer PRIMARY KEY,
@@ -100,12 +116,14 @@ CREATE TABLE Operacion (
 	Monto real NULL,
 	Fecha integer NULL,
 	idCerificadoDeGarantia integer NULL,
-	idLineaDeCredito integer NULL,
 	idSocio integer NULL
 );
 
-CREATE TABLE FondoDeRiesgo (
-	Monto real NULL
+CREATE TABLE AporteFondoDeRiesgo (
+	Monto real NULL,
+	IdSocio integer NULL,
+	FechaAporte integer NULL,
+	AporteVigente integer NULL
 )
 
 --INSERTS

@@ -1,14 +1,8 @@
 package grupo12.services;
 
 import java.util.List;
-import java.util.Spliterator;
 
-import grupo12.entity.Accionista;
-import grupo12.entity.Participe;
-import grupo12.entity.Protector;
-import grupo12.entity.Socio;
-import grupo12.entity.TipoEmpresa;
-
+import grupo12.entity.*;
 
 
 public interface SocioService {
@@ -23,15 +17,21 @@ public interface SocioService {
 
 	Socio getSocio(Integer id);
 
-	void save(Participe socio);
+	void save(Socio socio);
 
 	void save(Protector socio);
 
 	boolean update(Socio s);
 
-	Participe getParticipeById(Integer id);
+	Socio getParticipeById(Integer id);
 
 	Protector getProtectorById(Integer id);
 
     List<Protector> getSociosProtectores();
+
+    boolean saveAporte(int idSocio, Aporte a);
+
+    boolean validarOperacion(Operacion operacion);
+
+	boolean verificarSocio(Socio s);
 }

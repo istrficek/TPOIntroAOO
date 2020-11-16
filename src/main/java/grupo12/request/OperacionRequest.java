@@ -1,13 +1,14 @@
 package grupo12.request;
 
 import java.util.Date;
+import java.util.List;
 
 import grupo12.entity.*;
 
 
 public class OperacionRequest {
-	
-	//var para identidicar tipo de operacion
+
+    //var para identidicar tipo de operacion
 	private Integer tipoOpe;
 	
 	
@@ -50,6 +51,8 @@ public class OperacionRequest {
 	//private Date fechaVencimiento;
 	
 	//Tipo 3
+
+	private List<Cuota> cuotas;
 	
 	private String banco;
 	
@@ -64,6 +67,8 @@ public class OperacionRequest {
 	public EstadoOperacion getEstadoOperacion() {
 		return estadoOperacion;
 	}
+
+	public List<Cuota> getCuotas() {return cuotas;}
 
 	public void setEstadoOperacion(EstadoOperacion estadoOperacion) {
 		this.estadoOperacion = estadoOperacion;

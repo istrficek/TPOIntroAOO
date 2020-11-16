@@ -70,7 +70,7 @@ public class OperacionController {
 			
 			op3.setBanco(opr.getBanco());
 			op3.setFechaActualizacion(opr.getFechaActualizacion());
-			op3.setCantidadDeCuotas(opr.getCantidadDeCuotas());
+			op3.setCuotas(opr.getCuotas());
 			op3.setTasa(opr.getTasa());
 			op3.setSistema(opr.getSistema());
 			operacionService.savet3(op3);
@@ -137,10 +137,9 @@ public class OperacionController {
 			
 			op3.setBanco(opr.getBanco());
 			op3.setFechaActualizacion(opr.getFechaActualizacion());
-			op3.setCantidadDeCuotas(opr.getCantidadDeCuotas());
+			op3.setCuotas(opr.getCuotas());
 			op3.setTasa(opr.getTasa());
 			op3.setSistema(opr.getSistema());
-			op3.setCantidadDeCuotas(opr.getCantidadDeCuotas());
 			operacionService.savet3(op3);
 			break;
 		

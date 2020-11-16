@@ -24,7 +24,15 @@ public class Operacion {
 
 	private CertificadoDeGarantia cerificadoDeGarantia;
 
-	private LineaDeCredito lineaDeCredito;
+	private Participe socio;
+
+	public Participe getSocio() {
+		return socio;
+	}
+
+	public void setSocio(Participe socio) {
+		this.socio = socio;
+	}
 
 	public Integer getId() {
 		return id;
@@ -106,20 +114,7 @@ public class Operacion {
 		this.cerificadoDeGarantia = cerificadoDeGarantia;
 	}
 
-	public LineaDeCredito getLineaDeCredito() {
-		return lineaDeCredito;
-	}
-
-	public void setLineaDeCredito(LineaDeCredito lineaDeCredito) {
-		this.lineaDeCredito = lineaDeCredito;
-	}
-
 	public Operacion() {
 		super();
 	}
-	
-
-	
-	
-
 }

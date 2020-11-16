@@ -10,6 +10,6 @@ public interface DocumentacionService {
 
 	Documentacion edit(Documentacion viej);
 
-	Documentacion deleteById(Integer id);
+	boolean deleteById(Integer id);
 
 }
