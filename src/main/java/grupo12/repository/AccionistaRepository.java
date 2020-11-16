@@ -7,8 +7,8 @@ import java.util.*;
 
 public class AccionistaRepository {
 
-    public boolean save(Accionista nuevo) {
-        return SqLiteDB.InsertAccionista(nuevo);
+    public boolean save(Accionista nuevo, Integer idSocio) {
+        return SqLiteDB.InsertAccionista(nuevo, idSocio);
     }
 
     public List<Accionista> getAll(){

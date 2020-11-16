@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AccionistaService {
 
-	void save(Accionista nuev);
+	void save(Accionista nuev, Integer idSocio);
 
 	Accionista getById(Integer id);
 

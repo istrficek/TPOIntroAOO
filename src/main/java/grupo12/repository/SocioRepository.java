@@ -64,7 +64,15 @@ public class SocioRepository {
         return SqLiteDB.ObtenerOperacionesDeSocio(idSocio);
     }
 
+    public List<Operacion> getOperacionesPorEstado(Integer idSocio, EstadoOperacion estadoOperacion){
+        return SqLiteDB.ObtenerOperacionesDeSocioPorEstado(idSocio, estadoOperacion);
+    }
+
     public Tipo3 getOperacionTipo3(Integer id) {
         return SqLiteDB.ObtenerOperacionTipo3(id);
+    }
+
+    public List<Operacion> getOperacionesDeSociosPorTipo(List<Socio> socios, TipoDeOperacion tipoDeOperacion) {
+        return SqLiteDB.getOperacionesDeSociosPorTipo(socios, tipoDeOperacion);
     }
 }

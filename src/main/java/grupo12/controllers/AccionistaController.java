@@ -10,12 +10,12 @@ public class AccionistaController {
 	
 	AccionistaService accionistaService = new AccionistaServiceImp();
 	
-	public void crearAccionista(Accionista a) {
+	public void crearAccionista(Accionista a, Integer idSocio) {
 		
 		Accionista nuev = new Accionista();
 		nuev.setPorcentajedeParticipacion(a.getPorcentajedeParticipacion());
 		nuev.setRazonSocial(a.getRazonSocial());
-		accionistaService.save(nuev);
+		accionistaService.save(nuev, idSocio);
 	}
 	
 	public Accionista editarAccionista(Integer id, Accionista a) {

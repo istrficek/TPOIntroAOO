@@ -9,8 +9,8 @@ public class AccionistaServiceImp implements AccionistaService{
 
 	private AccionistaRepository repository = new AccionistaRepository();
 
-	public void save(Accionista nuev) {
-		repository.save(nuev);
+	public void save(Accionista nuev, Integer idSocio) {
+		repository.save(nuev, idSocio);
 	}
 
 	public Accionista getById(Integer id) {

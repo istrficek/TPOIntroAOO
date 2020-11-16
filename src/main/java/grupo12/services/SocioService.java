@@ -1,7 +1,10 @@
 package grupo12.services;
 
+import java.util.Date;
 import java.util.List;
 
+import grupo12.dto.PosicionConsolidada;
+import grupo12.dto.PromedioTasaYTotal;
 import grupo12.entity.*;
 
 
@@ -34,4 +37,10 @@ public interface SocioService {
     boolean validarOperacion(Operacion operacion);
 
 	boolean verificarSocio(Socio s);
+
+    PromedioTasaYTotal obtenerValorPromedioTasaDescuentoYTotalOperado(TipoEmpresa tipoEmpresa, Date fechaInicio, Date fechaFin);
+
+    Float obtenerComisionPorTipoDeOperacion(TipoDeOperacion tipoDeOperacion, Socio socio);
+
+	PosicionConsolidada obtenerPosicionConsolidada(Integer idSocio);
 }

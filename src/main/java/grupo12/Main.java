@@ -30,10 +30,10 @@ public class Main {
 
 		AccionistaController ac = new AccionistaController();
 
-		ac.crearAccionista(testAccionista);
-		ac.crearAccionista(testAccionista);
-		ac.crearAccionista(testAccionista);
-		ac.crearAccionista(testAccionista);
+		ac.crearAccionista(testAccionista, 1);
+		ac.crearAccionista(testAccionista, 2);
+		ac.crearAccionista(testAccionista, 3);
+		ac.crearAccionista(testAccionista, 4);
 
 		ac.eliminarAccionista(2);
 

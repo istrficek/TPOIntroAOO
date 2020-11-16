@@ -1,8 +1,13 @@
 package grupo12.services;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import grupo12.dto.PosicionConsolidada;
+import grupo12.dto.PromedioTasaYTotal;
 import grupo12.entity.*;
 import grupo12.repository.SocioRepository;
 
@@ -61,6 +66,73 @@ public class SocioServiceImp implements SocioService {
 				return false;
 		}
 		return true;
+	}
+
+	public PromedioTasaYTotal obtenerValorPromedioTasaDescuentoYTotalOperado(TipoEmpresa tipoEmpresa, Date fechaInicio, Date fechaFin) {
+		PromedioTasaYTotal resultado = new PromedioTasaYTotal();
+		Float promedioTasaDescuento = 0F;
+		Float promedioTotalOperado = 0F;
+
+		List<Socio> socios = getSociosTipoEmpresa(tipoEmpresa);
+		List<Operacion> operaciones = repository.getOperacionesDeSociosPorTipo(socios, TipoDeOperacion.Tipo1);
+
+		for (Operacion o : operaciones) {
+			promedioTasaDescuento += o.getTasaDeDescuento();
+			promedioTotalOperado += o.getMonto();
+		}
+
+		if(operaciones.size() > 0){
+			resultado.setPromedioTasaDecuento(promedioTasaDescuento/operaciones.size());
+			resultado.setPromedioTotalOperado(promedioTotalOperado/operaciones.size());
+		}
+
+		return resultado;
+	}
+
+	public Float obtenerComisionPorTipoDeOperacion(TipoDeOperacion tipoDeOperacion, Socio socio) {
+		List<Socio> socioList = new ArrayList<>();
+		Float comisionPromedio = 0F;
+		socioList.add(socio);
+		List<Operacion> operaciones = repository.getOperacionesDeSociosPorTipo(socioList, tipoDeOperacion);
+
+		for (Operacion o:operaciones) {
+			comisionPromedio += o.getComisionAlSocio();
+		}
+
+		return comisionPromedio/operaciones.size();
+	}
+
+	public PosicionConsolidada obtenerPosicionConsolidada(Integer idSocio) {
+		PosicionConsolidada posicionConsolidada = new PosicionConsolidada();
+		Float riesgoVivo = 0F;
+		Float totalUtilizado = 0F;
+		List<Operacion> operacionesMonetizadas = repository.getOperacionesPorEstado(idSocio, EstadoOperacion.Monetizada);
+		List<Operacion> operacionesCertificadoEmitido = repository.getOperacionesPorEstado(idSocio, EstadoOperacion.ConCertificadoEmitido);
+		posicionConsolidada.setOperacionesMonetizadasNoVencidas(operacionesMonetizadas);
+
+		for (Operacion o: operacionesMonetizadas) {
+			switch (o.getTipoDeOperacion()){
+				case Tipo1:
+				case Tipo2:
+					riesgoVivo += o.getMonto();
+					break;
+				case Tipo3:
+					Tipo3 operacionTipo3 = repository.getOperacionTipo3(o.getId());
+					riesgoVivo += operacionTipo3.getSaldoDeudor();
+					break;
+			}
+		}
+
+		for (Operacion o: operacionesCertificadoEmitido) {
+			totalUtilizado += o.getMonto();
+		}
+
+		totalUtilizado += riesgoVivo;
+		posicionConsolidada.setOperacionesConCertificadoEmitido(operacionesCertificadoEmitido);
+		posicionConsolidada.setRiesgoVivo(riesgoVivo);
+		posicionConsolidada.setTotalUtilizado(totalUtilizado);
+
+		return posicionConsolidada;
 	}
 
 	public List<Socio> getSociosTipoEmpresa(TipoEmpresa tipoEmpresa) {

@@ -38,7 +38,7 @@ public class SqLiteDB {
         lector.close();
         List<String> listsql = new ArrayList<>();
 
-        listsql.add("CREATE TABLE IF NOT EXISTS SocioAccionista (\n" +
+        listsql.add("CREATE TABLE SocioAccionista (\n" +
                 "ID integer PRIMARY KEY,\n" +
                 "IdSocio integer NULL,\n" +
                 "IdAccionista integer NULL\n" +
@@ -51,17 +51,23 @@ public class SqLiteDB {
                 ");");
         listsql.add("CREATE TABLE CertificadoDeGarantia (\n" +
                 "ID integer PRIMARY KEY,\n" +
-                "numero integer NULL,\n" +
+                "Numero integer NULL,\n" +
                 "Descripcion text NULL,\n" +
                 "IdOperacion integer NULL\n" +
                 ");");
-        listsql.add("CREATE TABLE IF NOT EXISTS CuentaCorriente (\n" +
+        listsql.add("CREATE TABLE CuentaCorriente (\n" +
                 "ID integer PRIMARY KEY,\n" +
                 "EmpresaCuentaCorriente text NULL,\n" +
                 "ImprteTotal integer NULL, \n" +
                 "FechaVencimiento integer NULL \n" +
                 ");");
-        listsql.add("CREATE TABLE IF NOT EXISTS Documentacion (\n" +
+        listsql.add("CREATE TABLE Cheque (\n" +
+                "ID integer PRIMARY KEY,\n" +
+                "NroChque integer NULL,\n" +
+                "fechaDeVencimiento integer NULL, \n" +
+                "cuitFirmante text NULL \n" +
+                ");");
+        listsql.add("CREATE TABLE Documentacion (\n" +
                 "ID integer PRIMARY KEY,\n" +
                 "TipoDocumento text NULL,\n" +
                 "EstadoDoc text NULL,\n" +
@@ -75,7 +81,7 @@ public class SqLiteDB {
                 "TipoDeOperacion text NULL,\n" +
                 "IdSocio integer NULL\n" +
                 ");");
-        listsql.add("CREATE TABLE IF NOT EXISTS Prestamo (\n" +
+        listsql.add("CREATE TABLE Prestamo (\n" +
                 "ID integer PRIMARY KEY,\n" +
                 "Banco text NULL,\n" +
                 "Importe real NULL,\n" +
@@ -107,41 +113,49 @@ public class SqLiteDB {
                 "TipoDeOperacion text NULL,\n" +
                 "Monto real NULL,\n" +
                 "Fecha integer NULL,\n" +
-                "idCerificadoDeGarantia integer NULL,\n" +
-                "idLineaDeCredito integer NULL,\n" +
-                "idSocio integer NULL\n" +
+                "IdCerificadoDeGarantia integer NULL,\n" +
+                "IdSocio integer NULL\n" +
                 ");");
         listsql.add("CREATE TABLE FondoDeRiesgo (\n" +
                 "\tMonto real NULL\n" +
                 ")");
-        listsql.add("CREATE TABLE IF NOT EXISTS Tipo1 (\n" +
-                "ID integer PRIMARY KEY,\n" +
+        listsql.add("CREATE TABLE Tipo1 (\n" +
+                "tID integer PRIMARY KEY,\n" +
                 "NroCheques integer NULL,\n" +
                 "FechaVencimiento integer NULL,\n" +
-                "CuitFirmante text NULL\n" +
+                "CuitFirmante text NULL,\n" +
+                "IdOperacion integer NULL\n" +
                 ");");
-        listsql.add("CREATE TABLE IF NOT EXISTS Tipo2 (\n" +
+        listsql.add("CREATE TABLE Tipo2 (\n" +
                 "ID integer PRIMARY KEY,\n" +
                 "EmpresaCuentaCorriente text NULL,\n" +
-                "FechaVencimiento integer NULL\n" +
+                "FechaVencimiento integer NULL,\n" +
+                "IdOperacion integer NULL\n" +
                 ");");
-        listsql.add("CREATE TABLE IF NOT EXISTS Tipo3 (\n" +
+        listsql.add("CREATE TABLE Tipo3 (\n" +
                 "ID integer PRIMARY KEY,\n" +
                 "Banco text NULL,\n" +
                 "FechaActualizacion integer NULL,\n" +
                 "CantidadDeCuotas integer NULL,\n" +
                 "tasa integer NULL,\n" +
-                "Sistema text NULL\n" +
+                "Sistema text NULL,\n" +
+                "IdOperacion integer NULL\n" +
                 ");");
         listsql.add("CREATE TABLE Cuota (\n" +
-                "\tID integer PRIMARY KEY,\n" +
-                "\tNumeroDeCuota integer NULL,\n" +
-                "\tValor real NULL,\n" +
-                "\tVencimiento integer NULL,\n" +
-                "\tIdTipo3 integer NULL,\n" +
-                "\tPaga integer NULL\n" +
+                "ID integer PRIMARY KEY,\n" +
+                "NumeroDeCuota integer NULL,\n" +
+                "Valor real NULL,\n" +
+                "Vencimiento integer NULL,\n" +
+                "IdTipo3 integer NULL,\n" +
+                "Paga integer NULL\n" +
                 ")");
-        listsql.add("CREATE TABLE IF NOT EXISTS Accionista (\n" +
+        listsql.add("CREATE TABLE AporteFondoDeRiesgo (\n" +
+                "Monto real NULL,\n" +
+                "IdSocio integer NULL,\n" +
+                "FechaAporte integer NULL,\n" +
+                "AporteVigente integer NULL\n" +
+                ")");
+        listsql.add("CREATE TABLE Accionista (\n" +
                 "ID integer PRIMARY KEY,\n" +
                 "RazonSocial text NULL,\n" +
                 "PorcentajeDeParticipacion integer NULL\n" +
@@ -191,8 +205,9 @@ public class SqLiteDB {
     }
 
     // METODOS DE ACCIONISTA
-    public static boolean InsertAccionista(Accionista nuevo) {
+    public static boolean InsertAccionista(Accionista nuevo, Integer idSocio) {
         String sql = "INSERT INTO Accionista (ID,RazonSocial,PorcentajeDeParticipacion) VALUES (?,?,?)";
+        String sql2 = "INSERT INTO SocioAccionista (ID, IdSocio, IdAccionista) VALUES (?,?,?)";
 
         int index = ObtenerUltimoIndex("Accionista");
 
@@ -207,6 +222,19 @@ public class SqLiteDB {
             System.out.println(e.getMessage());
             return false;
         }
+        index = ObtenerUltimoIndex("SocioAccionista");
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql2)) {
+            pstmt.setInt(1, index + 1);
+            pstmt.setInt(2, idSocio);
+            pstmt.setInt(3, nuevo.getId());
+            pstmt.executeUpdate();
+            System.out.println("Query ejecutada!");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
 
         return true;
     }
@@ -756,6 +784,65 @@ public class SqLiteDB {
                 a.setValor(rs.getFloat("Valor"));
                 a.setPaga(rs.getBoolean("Paga"));
                 resultado.add(a);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return resultado;
+    }
+
+    public static List<Operacion> getOperacionesDeSociosPorTipo(List<Socio> socios, TipoDeOperacion tipoDeOperacion) {
+        List<String> ids = new ArrayList<>();
+        socios.forEach(socio -> ids.add(socio.getId().toString()));
+        String idsString = String.join(",", ids);
+
+        String sql = String.format("SELECT * FROM Operacion WHERE IdSocio IN (" + idsString + ") AND TipoDeOperacion = '" + tipoDeOperacion.name() + "'");
+        List<Operacion> resultado = new ArrayList<>();
+
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                Operacion operacion = new Operacion();
+                operacion.setId(rs.getInt("ID"));
+                operacion.setEstadoOperacion(EstadoOperacion.valueOf(rs.getString("EstadoOperacion")));
+                operacion.setTasaDeDescuento(rs.getFloat("TasaDeDescuento"));
+                operacion.setComisionAlSocio(rs.getFloat("ComisionAlSocio"));
+                operacion.setEstadoComision(EstadoComision.valueOf(rs.getString("EstadoComision")));
+                operacion.setTipoDeOperacion(TipoDeOperacion.valueOf(rs.getString("TipoDeOperacion")));
+                operacion.setMonto(rs.getFloat("Monto"));
+                operacion.setFecha(new Date(rs.getLong("Fecha")));
+                operacion.setCerificadoDeGarantia(ObtenerCertificadoDeGarantiaDeOperacion(rs.getInt("idCerificadoDeGarantia")));
+                resultado.add(operacion);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return resultado;
+    }
+
+    public static List<Operacion> ObtenerOperacionesDeSocioPorEstado(Integer idSocio, EstadoOperacion estadoOperacion) {
+
+        String sql = String.format("SELECT * FROM Operacion WHERE IdSocio =" + idSocio + " AND EstadoOperacion = '" + estadoOperacion.name() + "'");
+        List<Operacion> resultado = new ArrayList<>();
+
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                Operacion operacion = new Operacion();
+                operacion.setId(rs.getInt("ID"));
+                operacion.setEstadoOperacion(EstadoOperacion.valueOf(rs.getString("EstadoOperacion")));
+                operacion.setTasaDeDescuento(rs.getFloat("TasaDeDescuento"));
+                operacion.setComisionAlSocio(rs.getFloat("ComisionAlSocio"));
+                operacion.setEstadoComision(EstadoComision.valueOf(rs.getString("EstadoComision")));
+                operacion.setTipoDeOperacion(TipoDeOperacion.valueOf(rs.getString("TipoDeOperacion")));
+                operacion.setMonto(rs.getFloat("Monto"));
+                operacion.setFecha(new Date(rs.getLong("Fecha")));
+                operacion.setCerificadoDeGarantia(ObtenerCertificadoDeGarantiaDeOperacion(rs.getInt("idCerificadoDeGarantia")));
+                resultado.add(operacion);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

@@ -38,11 +38,6 @@ CREATE TABLE Documentacion (
 	EstadoDoc text NULL,
 	IsObligatorio integer NULL 
 );
-CREATE TABLE HistorialSocio (
-	ID integer PRIMARY KEY,
-	IdSocio integer NULL,
-	IdOperacion integer NULL
-);
 CREATE TABLE LineaDeCredito (
 	ID integer PRIMARY KEY,
 	Monto integer NULL,
@@ -115,8 +110,8 @@ CREATE TABLE Operacion (
 	TipoDeOperacion text NULL,
 	Monto real NULL,
 	Fecha integer NULL,
-	idCerificadoDeGarantia integer NULL,
-	idSocio integer NULL
+	IdCerificadoDeGarantia integer NULL,
+	IdSocio integer NULL
 );
 
 CREATE TABLE AporteFondoDeRiesgo (

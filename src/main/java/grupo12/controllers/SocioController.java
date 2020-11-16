@@ -1,7 +1,10 @@
 package grupo12.controllers;
 
+import java.util.Date;
 import java.util.List;
 
+import grupo12.dto.PosicionConsolidada;
+import grupo12.dto.PromedioTasaYTotal;
 import grupo12.entity.*;
 import grupo12.request.SocioRequest;
 import grupo12.services.*;
@@ -111,5 +114,17 @@ public class SocioController {
 
 	public FondoDeRiesgo getFondoDeRiesgo(){
 		return fondoDeRiesgoService.getFondoDeRiesgo();
+	}
+
+	public PromedioTasaYTotal obtenerValorPromedioTasaDescuentoYTotalOperado(TipoEmpresa tipoEmpresa, Date fechaInicio, Date fechaFin){
+		return socioService.obtenerValorPromedioTasaDescuentoYTotalOperado(tipoEmpresa, fechaInicio, fechaFin);
+	}
+
+	public Float obtenerComisionPorTipoDeOperacion(TipoDeOperacion tipoDeOperacion, Socio socio){
+		return socioService.obtenerComisionPorTipoDeOperacion(tipoDeOperacion, socio);
+	}
+
+	public PosicionConsolidada obtenerPosicionConsolidada(Integer idSocio){
+		return socioService.obtenerPosicionConsolidada(idSocio);
 	}
 }
