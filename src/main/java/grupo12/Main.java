@@ -20,10 +20,12 @@ public class Main {
 			e.printStackTrace();
 		}
 
+
  */
 
 
 
+/*
 		Accionista testAccionista = new Accionista();
 		testAccionista.setPorcentajedeParticipacion(30);
 		testAccionista.setRazonSocial("El Accionista S.A.");
@@ -49,7 +51,7 @@ public class Main {
 			System.out.println(a.getPorcentajedeParticipacion());
 			System.out.println("*****************************************");
 		}
-
+*/
 
 	}
 
