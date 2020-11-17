@@ -61,6 +61,9 @@ public class SqLiteDB {
                 "ID integer PRIMARY KEY,\n" +
                 "TipoDocumento text NULL,\n" +
                 "EstadoDoc text NULL,\n" +
+                "FechaRecepcion integer NULL,\n" +
+                "IdSocio integer NULL,\n" +
+                "Usuario text NULL,\n" +
                 "IsObligatorio integer NULL \n" +
                 ");");
         listsql.add("CREATE TABLE LineaDeCredito (\n" +
@@ -568,6 +571,8 @@ public class SqLiteDB {
                 resultado.setEstadoDoc(EstadoDocumento.valueOf(rs.getString("EstadoDoc")));
                 resultado.setIsObligatorio(rs.getBoolean("IsObligatorio"));
                 resultado.setTipoDocumento(TipoDocumento.valueOf(rs.getString("TipoDocumento")));
+                resultado.setFechaRecepcion(new Date(rs.getLong("FechaRecepcion")));
+                resultado.setUsuario(rs.getString("Usuario"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -589,6 +594,8 @@ public class SqLiteDB {
                 d.setEstadoDoc(EstadoDocumento.valueOf(rs.getString("EstadoDoc")));
                 d.setIsObligatorio(rs.getBoolean("IsObligatorio"));
                 d.setTipoDocumento(TipoDocumento.valueOf(rs.getString("TipoDocumento")));
+                d.setFechaRecepcion(new Date(rs.getLong("FechaRecepcion")));
+                d.setUsuario(rs.getString("Usuario"));
                 resultado.add(d);
             }
         } catch (SQLException e) {

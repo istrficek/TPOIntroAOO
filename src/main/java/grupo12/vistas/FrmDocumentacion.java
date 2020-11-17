@@ -25,7 +25,7 @@ public class FrmDocumentacion extends JDialog{
 
         tableDocumentacion.setModel(documentacionTableModel);
 
-        
+        documentacionTableModel.addLista(documentacionController.getAllDocumentacion());
 
     }
 }
