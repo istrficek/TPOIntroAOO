@@ -1,9 +1,6 @@
 package grupo12.services;
 
-import grupo12.entity.EstadoOperacion;
-import grupo12.entity.Tipo1;
-import grupo12.entity.Tipo2;
-import grupo12.entity.Tipo3;
+import grupo12.entity.*;
 import grupo12.repository.Tipo1Repository;
 import grupo12.repository.Tipo2Repository;
 import grupo12.repository.Tipo3Repository;
@@ -236,6 +233,7 @@ public class OperacionServiceImp implements OperacionService {
 	}
 
 
+
 	private void EntyToModelT1(Tipo1 tipo1, OperacionRequest request) {
 		//transforma un Tipo1 en un request
 		request.setId(tipo1.getId());
@@ -245,7 +243,6 @@ public class OperacionServiceImp implements OperacionService {
 		request.setTipoDeOperacion(tipo1.getTipoDeOperacion());
 		request.setMonto(tipo1.getMonto());
 		request.setFecha(tipo1.getFecha());
-		request.setFondoDeRiesgo(tipo1.getFondoDeRiesgo());
 		request.setCerificadoDeGarantia(tipo1.getCerificadoDeGarantia());
 		request.setLineaDeCredito(tipo1.getLineaDeCredito());
 
@@ -265,7 +262,6 @@ public class OperacionServiceImp implements OperacionService {
 		request.setTipoDeOperacion(tipo2.getTipoDeOperacion());
 		request.setMonto(tipo2.getMonto());
 		request.setFecha(tipo2.getFecha());
-		request.setFondoDeRiesgo(tipo2.getFondoDeRiesgo());
 		request.setCerificadoDeGarantia(tipo2.getCerificadoDeGarantia());
 		request.setLineaDeCredito(tipo2.getLineaDeCredito());
 
@@ -285,7 +281,6 @@ public class OperacionServiceImp implements OperacionService {
 		request.setTipoDeOperacion(tipo3.getTipoDeOperacion());
 		request.setMonto(tipo3.getMonto());
 		request.setFecha(tipo3.getFecha());
-		request.setFondoDeRiesgo(tipo3.getFondoDeRiesgo());
 		request.setCerificadoDeGarantia(tipo3.getCerificadoDeGarantia());
 		request.setLineaDeCredito(tipo3.getLineaDeCredito());
 

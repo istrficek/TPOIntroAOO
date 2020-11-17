@@ -1,9 +1,6 @@
 package grupo12.services;
 
-import grupo12.entity.EstadoOperacion;
-import grupo12.entity.Tipo1;
-import grupo12.entity.Tipo2;
-import grupo12.entity.Tipo3;
+import grupo12.entity.*;
 import grupo12.request.OperacionRequest;
 
 import java.util.Date;
@@ -44,4 +41,5 @@ public interface OperacionService {
 	List<OperacionRequest> obtenerOperaciones(EstadoOperacion estadoOperacion, Date fechaInicio, Date fechaFin);
 
 	Float calcularComision(Integer id,Integer tipoOperacion, Date fecha);
+
 }

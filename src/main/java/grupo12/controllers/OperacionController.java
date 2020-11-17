@@ -226,15 +226,7 @@ public class OperacionController {
 				operacionService.savet3(t3);
 		}
 	}
-
-	public Float obtenerPromedioTasaDescuento(TipoEmpresa tipoEmpresa, Date FechaInicio, Date FechaFin){
-
-		Socio socios= socioService.getSocioByTipoEmpresa(tipoEmpresa);
-
-
-
-		return null;
-	}
+	
 
 	
 
