@@ -25,7 +25,7 @@ public class FrmSocios  extends JDialog {
         super(owner, titulo);
         setContentPane(pnlPrincipal);
 
-        this.setSize(500,500);
+        this.setSize(1000,1000);
         this.setModal(true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
