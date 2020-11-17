@@ -67,7 +67,6 @@ public class SocioController {
 		socio.setEmail(socioRequest.getEmail());
 		socio.setEstadoSocio(socioRequest.getEstadoSocio());
 		socio.setFechaInicio(socioRequest.getFechaInicio());
-		socio.setId(socioRequest.getId());
 		socio.setRazonSocial(socioRequest.getRazonSocial());
 		socio.setSaldoAcciones(socioRequest.getSaldoAccionesTipo());
 		socio.setTelefono(socioRequest.getTelefono());

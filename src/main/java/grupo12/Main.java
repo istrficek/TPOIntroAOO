@@ -7,6 +7,8 @@ import grupo12.controllers.SocioController;
 import grupo12.data_access.GeneradorBD;
 import grupo12.entity.*;
 import grupo12.request.SocioRequest;
+import Vistas.FrmPrincipal;
+import grupo12.entity.Accionista;
 
 import java.util.Date;
 import java.util.List;
@@ -105,6 +107,8 @@ public class Main {
 
 
 		//</editor-fold>
+
+		FrmPrincipal frame = new FrmPrincipal("Gestion de Socios");
 	}
 
 }

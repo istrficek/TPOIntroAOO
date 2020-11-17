@@ -463,7 +463,7 @@ public class SqLiteDB {
     }
 
     public static boolean ActualizarSocio(Socio s){
-        String sql = "UPDATE Socio SET (Cuit, RazonSocial, FechaInicio, ActividadPrincipal, Direccion, Telefono, Email, EstadoSocio, TipoEmpresa, SaldoAcciones, TipoSocio) VALUES (?,?,?,?,?,?,?,?,?,?,?) WHERE ID = ? ";
+        String sql = "UPDATE Socio SET Cuit = ?, RazonSocial = ?, FechaInicio = ?, ActividadPrincipal = ?, Direccion = ?, Telefono = ?, Email = ?, EstadoSocio = ?, TipoEmpresa = ?, SaldoAcciones = ?, TipoSocio = ? WHERE ID = ? ";
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
