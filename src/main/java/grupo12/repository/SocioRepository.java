@@ -11,11 +11,7 @@ public class SocioRepository {
     }
 
     public boolean save(Socio nuevo){
-        return SqLiteDB.InsertSocio(new Socio(nuevo));
-    }
-
-    public boolean save(Protector nuevo){
-        return SqLiteDB.InsertSocio(new Socio(nuevo));
+        return SqLiteDB.InsertSocio(nuevo);
     }
 
     public List<Socio> getAll(){

@@ -209,11 +209,12 @@ public class SqLiteDB {
         String sql = "INSERT INTO Accionista (ID,RazonSocial,PorcentajeDeParticipacion) VALUES (?,?,?)";
         String sql2 = "INSERT INTO SocioAccionista (ID, IdSocio, IdAccionista) VALUES (?,?,?)";
 
-        int index = ObtenerUltimoIndex("Accionista");
+        int index = ObtenerUltimoIndex("Accionista") + 1;
+        nuevo.setId(index);
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, index + 1);
+            pstmt.setInt(1, index);
             pstmt.setString(2, nuevo.getRazonSocial());
             pstmt.setInt(3, nuevo.getPorcentajedeParticipacion());
             pstmt.executeUpdate();
@@ -222,10 +223,10 @@ public class SqLiteDB {
             System.out.println(e.getMessage());
             return false;
         }
-        index = ObtenerUltimoIndex("SocioAccionista");
+        index = ObtenerUltimoIndex("SocioAccionista") + 1;
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql2)) {
-            pstmt.setInt(1, index + 1);
+            pstmt.setInt(1, index);
             pstmt.setInt(2, idSocio);
             pstmt.setInt(3, nuevo.getId());
             pstmt.executeUpdate();
@@ -307,7 +308,7 @@ public class SqLiteDB {
     // METODOS DE SOCIO
 
     public static boolean InsertSocio(Socio nuevo) {
-        String sql = "INSERT INTO Accionista (ID, Cuit, RazonSocial, FechaInicio, ActividadPrincipal, Direccion, Telefono, Email, EstadoSocio, TipoEmpresa, SaldoAcciones, TipoSocio) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Socio (ID, Cuit, RazonSocial, FechaInicio, ActividadPrincipal, Direccion, Telefono, Email, EstadoSocio, TipoEmpresa, SaldoAcciones, TipoSocio) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 
         int index = ObtenerUltimoIndex("Socio");
 

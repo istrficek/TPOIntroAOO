@@ -49,16 +49,12 @@ public class SocioController {
 		nuevo.setRazonSocial(socioRequest.getRazonSocial());
 		nuevo.setSaldoAcciones(socioRequest.getSaldoAccionesTipo());
 		nuevo.setTelefono(socioRequest.getTelefono());
-		nuevo.setTipoEmpresa(nuevo.getTipoEmpresa());
-
-		if(socioRequest.isParticipe()) {
-			Socio socio = new Socio(nuevo);
-			socioService.save(socio);
-		}
-		else {
-			Protector socio = new Protector(nuevo);
-			socioService.save(socio);
-		}
+		nuevo.setTipoEmpresa(socioRequest.getTipoEmpresa());
+		if(socioRequest.isParticipe())
+			nuevo.setTipoSocio(TipoSocio.Participe);
+		else
+			nuevo.setTipoSocio(TipoSocio.Protector);
+		socioService.save(nuevo);
 	}
 
 	public void editarSocio(Integer id, SocioRequest socioRequest){

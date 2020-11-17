@@ -151,10 +151,6 @@ public class SocioServiceImp implements SocioService {
 		return repository.updateSocio(socio);
 	}
 
-	public void save(Protector socio){
-		repository.save(socio);
-	}
-
 	public Socio getParticipeById(Integer id) {
 		return repository.getParticipeById(id);
 	}

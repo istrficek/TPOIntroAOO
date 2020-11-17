@@ -22,8 +22,6 @@ public interface SocioService {
 
 	void save(Socio socio);
 
-	void save(Protector socio);
-
 	boolean update(Socio s);
 
 	Socio getParticipeById(Integer id);
