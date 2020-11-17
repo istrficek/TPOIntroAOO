@@ -47,19 +47,7 @@ public class Tipo1 extends Operacion{
 
 	public Tipo1() {
 	}
-	
-	public void RealizarOperacion() {
-		
-	}
-	
-	public List<Tipo1> ObtenerOperaciones(){
-		return null;
-	}
-	
-	public Float ObtenerImporteTotal() {
-		return null;
-		
-	}
+
 
 	public Tipo1(String bancoCheques, Long nroCheques, Date fechaVencimiento, String cuitFirmante) {
 		super();

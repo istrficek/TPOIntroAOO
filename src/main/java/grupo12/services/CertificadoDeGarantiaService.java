@@ -10,4 +10,7 @@ public interface CertificadoDeGarantiaService {
 	CertificadoDeGarantia getById(Integer id);
 
 
+    void save(CertificadoDeGarantia nuevo);
+
+    void delete(Integer id);
 }

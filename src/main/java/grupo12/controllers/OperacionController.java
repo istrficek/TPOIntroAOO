@@ -1,20 +1,24 @@
 package grupo12.controllers;
 
-import grupo12.entity.Tipo1;
-import grupo12.entity.Tipo2;
-import grupo12.entity.Tipo3;
+import grupo12.entity.*;
 import grupo12.request.OperacionRequest;
-import grupo12.services.OperacionService;
-import grupo12.services.OperacionServiceImp;
+import grupo12.services.*;
 
+import java.util.Date;
 import java.util.List;
 
 public class OperacionController {
 	
 	private OperacionService operacionService = new OperacionServiceImp();
 
+	private SocioService socioService = new SocioServiceImp();
 
-	public void crearOperacion(OperacionRequest opr) {
+	private CertificadoDeGarantiaService certificadoService = new CertificadoDeGarantiaServiceImp();
+
+
+	public void crearOperacion(OperacionRequest opr, Integer idSocio) {
+
+		Date fecha = new Date();
 		
 		switch (opr.getTipoOpe()) {
 		case 1 :
@@ -27,11 +31,12 @@ public class OperacionController {
 			op1.setEstadoComision(opr.getEstadoComision());
 			op1.setEstadoOperacion(opr.getEstadoOperacion());
 			op1.setFecha(opr.getFecha());
-			op1.setFechaVencimiento(opr.getFechaVencimiento());
+			op1.setFechaVencimiento(fecha);
 			op1.setMonto(opr.getMonto());
 			op1.setNroCheques(opr.getNroCheques());
 			op1.setTasaDeDescuento(opr.getTasaDeDescuento());
 			op1.setTipoDeOperacion(opr.getTipoDeOperacion());
+			op1.setIdSocio(idSocio);
 
 			operacionService.savet1(op1);
 
@@ -43,11 +48,12 @@ public class OperacionController {
 			op2.setComisionAlSocio(opr.getComisionAlSocio());
 			op2.setEstadoComision(opr.getEstadoComision());
 			op2.setEstadoOperacion(opr.getEstadoOperacion());
-			op2.setFecha(opr.getFecha());
+			op2.setFecha(fecha);
 			op2.setFechaVencimiento(opr.getFechaVencimiento());
 			op2.setMonto(opr.getMonto());
 			op2.setTasaDeDescuento(opr.getTasaDeDescuento());
 			op2.setTipoDeOperacion(opr.getTipoDeOperacion());
+			op2.setIdSocio(idSocio);
 			
 			op2.setEmpresaCuentaCorriente(opr.getEmpresaCuentaCorriente());
 			op2.setFechaVencimiento(opr.getFechaVencimiento());
@@ -63,10 +69,11 @@ public class OperacionController {
 			op3.setComisionAlSocio(opr.getComisionAlSocio());
 			op3.setEstadoComision(opr.getEstadoComision());
 			op3.setEstadoOperacion(opr.getEstadoOperacion());
-			op3.setFecha(opr.getFecha());
+			op3.setFecha(fecha);
 			op3.setMonto(opr.getMonto());
 			op3.setTasaDeDescuento(opr.getTasaDeDescuento());
 			op3.setTipoDeOperacion(opr.getTipoDeOperacion());
+			op3.setIdSocio(idSocio);
 			
 			op3.setBanco(opr.getBanco());
 			op3.setFechaActualizacion(opr.getFechaActualizacion());
@@ -83,9 +90,9 @@ public class OperacionController {
 		}
 		
 	}
-	
-	
-	private void editOperacion(OperacionRequest opr){
+
+
+	public void editOperacion(OperacionRequest opr){
 
 		OperacionRequest nuevo = new OperacionRequest();
 		switch (opr.getTipoOpe()) {
@@ -98,7 +105,6 @@ public class OperacionController {
 			op1.setCuitFirmante(opr.getCuitFirmante());
 			op1.setEstadoComision(opr.getEstadoComision());
 			op1.setEstadoOperacion(opr.getEstadoOperacion());
-			op1.setFecha(opr.getFecha());
 			op1.setFechaVencimiento(opr.getFechaVencimiento());
 			op1.setMonto(opr.getMonto());
 			op1.setNroCheques(opr.getNroCheques());
@@ -113,7 +119,6 @@ public class OperacionController {
 			op2.setComisionAlSocio(opr.getComisionAlSocio());
 			op2.setEstadoComision(opr.getEstadoComision());
 			op2.setEstadoOperacion(opr.getEstadoOperacion());
-			op2.setFecha(opr.getFecha());
 			op2.setFechaVencimiento(opr.getFechaVencimiento());
 			op2.setMonto(opr.getMonto());
 			op2.setTasaDeDescuento(opr.getTasaDeDescuento());
@@ -130,7 +135,6 @@ public class OperacionController {
 			op3.setComisionAlSocio(opr.getComisionAlSocio());
 			op3.setEstadoComision(opr.getEstadoComision());
 			op3.setEstadoOperacion(opr.getEstadoOperacion());
-			op3.setFecha(opr.getFecha());
 			op3.setMonto(opr.getMonto());
 			op3.setTasaDeDescuento(opr.getTasaDeDescuento());
 			op3.setTipoDeOperacion(opr.getTipoDeOperacion());
@@ -149,40 +153,83 @@ public class OperacionController {
 		
 	}
 	}
-	
-	private OperacionRequest getOperacionT1(Integer id, Integer tipo) {
+
+	public OperacionRequest getOperacionT1(Integer id, Integer tipo) {
 		
 		return operacionService.getById(id, tipo);
 	}
-	
-	 private void EliminarOperacion(Integer id, Integer tipo) {
+
+	public void EliminarOperacion(Integer id, Integer tipo) {
 		 operacionService.deleteById(id, tipo);
 		 
 	 }
 
 
-	 private Float obtenerMontoT1(Integer id){
+	 public Float obtenerMontoT1(Integer id){
 
 		return operacionService.getMontoT1ById(id);
 	 }
 
-	private Float obtenerMontoT2(Integer id){
+	public Float obtenerMontoT2(Integer id){
 
 		return operacionService.getMontoT2ById(id);
 	}
 
-	private Float obtenerMontoT3(Integer id){
+	public Float obtenerMontoT3(Integer id){
 
 		return operacionService.getMontoT3ById(id);
 	}
 
-	private Float obtenerComision(Integer id, Integer tipoOperacion){
+	public Float obtenerComision(Integer id, Integer tipoOperacion){
 		return operacionService.obtenerComision(id, tipoOperacion);
 	}
 
-	private List<OperacionRequest> ObtenerTodasLasOperaciones(){
+	public List<OperacionRequest> obtenerTodasLasOperaciones(){
 		return operacionService.getAllOperaciones();
 	}
+
+
+	public EstadoOperacion obtenerEstado(Integer id, Integer tipo){
+
+		return operacionService.getEstado(id, tipo);
+	}
+
+	public Float getTasaDeDescuento(Integer id, Integer tipo){
+
+		return operacionService.getTasaDeDescuento(id, tipo);
+	}
+
+	public List<OperacionRequest> obtenerOperaciones(EstadoOperacion estadoOperacion, Date fechaInicio, Date fechaFin){
+		return operacionService.obtenerOperaciones(estadoOperacion, fechaInicio, fechaFin);
+	}
+
+	public Float CalcularComision(Integer id,Integer tipoOperacion, Date fecha){
+		return operacionService.calcularComision(id, tipoOperacion, fecha);
+	}
+
+
+	public void generarCertificadoDeGarantia(Integer idOperacion, Integer tipo, Integer idCertificado){
+		CertificadoDeGarantia certificado =certificadoService.getById(idCertificado);
+		switch (tipo){
+			case 1:
+				Tipo1 t1=operacionService.getByIdT1(idOperacion);
+				t1.setCerificadoDeGarantia(certificado);
+				operacionService.savet1(t1);
+			case 2:
+				Tipo2 t2=operacionService.getByIdT2(idOperacion);
+				t2.setCerificadoDeGarantia(certificado);
+				operacionService.savet2(t2);
+			case 3:
+				Tipo3 t3=operacionService.getByIdT3(idOperacion);
+				t3.setCerificadoDeGarantia(certificado);
+				operacionService.savet3(t3);
+		}
+	}
+	
+
+	
+
+
 
 
 	

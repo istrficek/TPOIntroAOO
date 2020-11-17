@@ -7,6 +7,8 @@ public class Cheque {
 	private String bancoCheque;
 	
 	private Long nroChque;
+
+	private Float monto;
 	
 	private Date fechaDeVencimiento;
 	
@@ -42,6 +44,14 @@ public class Cheque {
 
 	public void setCuitFirmante(String cuitFirmante) {
 		this.cuitFirmante = cuitFirmante;
+	}
+
+	public Float getMonto() {
+		return monto;
+	}
+
+	public void setMonto(Float monto) {
+		this.monto = monto;
 	}
 
 	public Cheque() {

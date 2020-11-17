@@ -27,16 +27,8 @@ public class Tipo2 extends Operacion{
 
 	public Tipo2() {
 	}
-	
-	public List<Tipo2> ObtenerOperaciones(){
-		
-		return null;
-	}
-	
-	public Float ObtenerImporteUtilizado() {
-		return null;
-		
-	}
+
+
 	
 	
 	

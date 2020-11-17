@@ -1,14 +1,13 @@
 package grupo12.services;
 
-import grupo12.entity.Tipo1;
-import grupo12.entity.Tipo2;
-import grupo12.entity.Tipo3;
+import grupo12.entity.*;
 import grupo12.repository.Tipo1Repository;
 import grupo12.repository.Tipo2Repository;
 import grupo12.repository.Tipo3Repository;
 import grupo12.request.OperacionRequest;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class OperacionServiceImp implements OperacionService {
@@ -16,6 +15,20 @@ public class OperacionServiceImp implements OperacionService {
 	Tipo1Repository repot1 = new Tipo1Repository();
 	Tipo2Repository repot2 = new Tipo2Repository();
 	Tipo3Repository repot3 = new Tipo3Repository();
+
+	@Override
+	public Float getTasaDeDescuento(Integer id, Integer tipo) {
+		switch (tipo) {
+			case 1:
+				return repot1.getTasaDeDescuento(id);
+			case 2:
+				return repot2.getTasaDeDescuento(id);
+			case 3:
+				return repot3.getTasaDeDescuento(id);
+			default:
+				return null;
+		}
+	}
 
 	public OperacionRequest getById(Integer id, Integer tipo) {
 		OperacionRequest request = new OperacionRequest();
@@ -148,6 +161,78 @@ public class OperacionServiceImp implements OperacionService {
 		}
 	}
 
+	@Override
+	public EstadoOperacion getEstado(Integer id, Integer tipo) {
+		switch (tipo) {
+			case 1:
+				return repot1.getEstado(id);
+			case 2:
+				return repot2.getEstado(id);
+			case 3:
+				return repot3.getEstado(id);
+			default:
+				return null;
+		}
+	}
+
+	@Override
+	public List<OperacionRequest> obtenerOperaciones(EstadoOperacion estadoOperacion, Date fechaInicio, Date fechaFin) {
+		List<OperacionRequest> operaciones = new ArrayList<OperacionRequest>();
+		List<Tipo1> t1 = repot1.getEstadoOperacionDates(estadoOperacion, fechaInicio, fechaFin);
+		List<Tipo2> t2 = repot2.getEstadoOperacionDates(estadoOperacion, fechaInicio, fechaFin);
+		List<Tipo3> t3 = repot3.getEstadoOperacionDates(estadoOperacion, fechaInicio, fechaFin);
+
+		if (t1.isEmpty() == false) {
+			for (Tipo1 t : t1) {
+				OperacionRequest opr = new OperacionRequest();
+				EntyToModelT1(t, opr);
+				operaciones.add(opr);
+			}
+		}
+
+		if (t2.isEmpty() == false) {
+			for (Tipo2 t : t2) {
+				OperacionRequest opr = new OperacionRequest();
+				EntyToModelT2(t, opr);
+				operaciones.add(opr);
+			}
+		}
+
+		if (t3.isEmpty() == false) {
+			for (Tipo3 t : t3) {
+				OperacionRequest opr = new OperacionRequest();
+				EntyToModelT3(t, opr);
+				operaciones.add(opr);
+			}
+		}
+		return operaciones;
+	}
+
+	@Override
+	public Float calcularComision(Integer id,Integer tipoOperacion, Date fecha) {
+		Float monto;
+		Float res = null;
+		switch(tipoOperacion){
+			case 1:
+				monto = repot1.getByMontoT1(id);
+				if(monto != 0){
+					res = (monto*3) / 100;
+				}
+			case 2:
+				monto = repot2.getByMontoT2(id);
+				if(monto != 0){
+					res = (monto*3) / 100;
+				}
+			case 3:
+				monto = repot3.getByMontoT3(id);;
+				if(monto != 0){
+					res = (monto*4) / 100;
+				}
+		}
+		return res;
+	}
+
+
 
 	private void EntyToModelT1(Tipo1 tipo1, OperacionRequest request) {
 		//transforma un Tipo1 en un request
@@ -158,7 +243,6 @@ public class OperacionServiceImp implements OperacionService {
 		request.setTipoDeOperacion(tipo1.getTipoDeOperacion());
 		request.setMonto(tipo1.getMonto());
 		request.setFecha(tipo1.getFecha());
-		request.setFondoDeRiesgo(tipo1.getFondoDeRiesgo());
 		request.setCerificadoDeGarantia(tipo1.getCerificadoDeGarantia());
 		//request.setLineaDeCredito(tipo1.getLineaDeCredito());
 
@@ -178,7 +262,6 @@ public class OperacionServiceImp implements OperacionService {
 		request.setTipoDeOperacion(tipo2.getTipoDeOperacion());
 		request.setMonto(tipo2.getMonto());
 		request.setFecha(tipo2.getFecha());
-		request.setFondoDeRiesgo(tipo2.getFondoDeRiesgo());
 		request.setCerificadoDeGarantia(tipo2.getCerificadoDeGarantia());
 		//request.setLineaDeCredito(tipo2.getLineaDeCredito());
 
@@ -198,7 +281,6 @@ public class OperacionServiceImp implements OperacionService {
 		request.setTipoDeOperacion(tipo3.getTipoDeOperacion());
 		request.setMonto(tipo3.getMonto());
 		request.setFecha(tipo3.getFecha());
-		request.setFondoDeRiesgo(tipo3.getFondoDeRiesgo());
 		request.setCerificadoDeGarantia(tipo3.getCerificadoDeGarantia());
 		//request.setLineaDeCredito(tipo3.getLineaDeCredito());
 

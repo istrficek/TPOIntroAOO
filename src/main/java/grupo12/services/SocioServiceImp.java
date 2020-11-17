@@ -158,5 +158,4 @@ public class SocioServiceImp implements SocioService {
 	public Protector getProtectorById(Integer id) {
 		return repository.getProtectorById(id);
 	}
-
 }

@@ -2,6 +2,11 @@ package grupo12.repository;
 
 import grupo12.data_access.SqLiteDB;
 import grupo12.entity.*;
+import grupo12.data_access.JsonDB;
+import grupo12.entity.Participe;
+import grupo12.entity.Protector;
+import grupo12.entity.Socio;
+import grupo12.entity.TipoEmpresa;
 
 import java.util.*;
 
