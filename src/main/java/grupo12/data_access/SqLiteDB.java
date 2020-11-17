@@ -12,7 +12,7 @@ import java.util.List;
 
 public class SqLiteDB {
 
-    // METODOS DE LA BD
+    //<editor-fold desc="METODOS DE LA BD">
     private static Connection connect() {
         // SQLite connection string
         String url = "jdbc:sqlite:database/tpo.db";
@@ -193,8 +193,9 @@ public class SqLiteDB {
         }
         return true;
     }
+    //</editor-fold>
 
-    // METODOS DE ACCIONISTA
+    //<editor-fold desc="METODOS DE ACCIONISTA">
     public static boolean InsertAccionista(Accionista nuevo, Integer idSocio) {
         String sql = "INSERT INTO Accionista (ID,RazonSocial,PorcentajeDeParticipacion) VALUES (?,?,?)";
         String sql2 = "INSERT INTO SocioAccionista (ID, IdSocio, IdAccionista) VALUES (?,?,?)";
@@ -294,9 +295,9 @@ public class SqLiteDB {
         }
         return true;
     }
+    //</editor-fold>
 
-    // METODOS DE SOCIO
-
+    //<editor-fold desc="METODOS DE SOCIO">
     public static boolean InsertSocio(Socio nuevo) {
         String sql = "INSERT INTO Socio (ID, Cuit, RazonSocial, FechaInicio, ActividadPrincipal, Direccion, Telefono, Email, EstadoSocio, TipoEmpresa, SaldoAcciones, TipoSocio) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 
@@ -531,9 +532,9 @@ public class SqLiteDB {
         }
         return resultado;
     }
+    //</editor-fold>
 
-    // METODOS DE DOCUMENTACION
-
+    //<editor-fold desc="METODOS DE DOCUMENTACION">
     public static boolean InsertDocuemntacion(Documentacion documentacion){
         String sql = "INSERT INTO Documentacion(ID,TipoDocumento,EstadoDoc,IsObligatorio) VALUES(?,?,?,?)";
 
@@ -597,8 +598,9 @@ public class SqLiteDB {
 
         return EliminarPorId(id, sql);
     }
+    //</editor-fold>
 
-    // METODOS DE APORTE
+    //<editor-fold desc="METODOS DE APORTE">
 
     public static boolean InsertAporte(Aporte aporte) {
         String sql = "INSERT INTO Documentacion(ID,Valor,FechaAporte,IdSocio) VALUES(?,?,?,?)";
@@ -686,8 +688,203 @@ public class SqLiteDB {
         String sql = String.format("DELETE FROM Aporte WHERE id = ?");
         return EliminarPorId(id, sql);
     }
+    //</editor-fold>
 
-    // METODOS DE OPERACIONES
+    //<editor-fold desc="METODOS DE OPERACIONES">
+    public static boolean InsertOperacionTipo1(Tipo1 opreacion){
+        String sql = "INSERT INTO Operacion(ID,EstadoOperacion,TasaDeDescuento,ComisionAlSocio, EstadoComision, TipoDeOperacion, Monto, Fecha,IdCerificadoDeGarantia ,IdSocio ) VALUES(?,?,?,?,?,?,?,?,?,?)";
+
+        int index = ObtenerUltimoIndex("Operacion");
+        opreacion.setId(index);
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, index + 1);
+            pstmt.setString(2, opreacion.getEstadoOperacion().name());
+            pstmt.setFloat(3, opreacion.getTasaDeDescuento());
+            pstmt.setFloat(4, opreacion.getComisionAlSocio());
+            pstmt.setString(5, opreacion.getEstadoComision().name());
+            pstmt.setString(6, opreacion.getTipoDeOperacion().name());
+            pstmt.setFloat(7, opreacion.getMonto());
+            pstmt.setFloat(8, opreacion.getFecha().getTime());
+            pstmt.setInt(9, opreacion.getCerificadoDeGarantia().getId() == null? -1 : opreacion.getCerificadoDeGarantia().getId());
+            pstmt.setInt(10, opreacion.getIdSocio());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+        sql = "INSERT INTO Tipo1(ID,NroCheques,FechaVencimiento,CuitFirmante, IdOperacion) VALUES(?,?,?,?,?)";
+        index = ObtenerUltimoIndex("Tipo1");
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, index + 1);
+            pstmt.setLong(2, opreacion.getNroCheques());
+            pstmt.setFloat(3, opreacion.getFechaVencimiento().getTime());
+            pstmt.setString(4, opreacion.getCuitFirmante());
+            pstmt.setInt(5, opreacion.getId());
+            pstmt.executeUpdate();
+            System.out.println("Query ejecutada!");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean InsertOperacionTipo2(Tipo2 opreacion){
+        String sql = "INSERT INTO Operacion(ID,EstadoOperacion,TasaDeDescuento,ComisionAlSocio, EstadoComision, TipoDeOperacion, Monto, Fecha,IdCerificadoDeGarantia ,IdSocio ) VALUES(?,?,?,?,?,?,?,?,?,?)";
+
+        int index = ObtenerUltimoIndex("Operacion");
+        opreacion.setId(index);
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, index + 1);
+            pstmt.setString(2, opreacion.getEstadoOperacion().name());
+            pstmt.setFloat(3, opreacion.getTasaDeDescuento());
+            pstmt.setFloat(4, opreacion.getComisionAlSocio());
+            pstmt.setString(5, opreacion.getEstadoComision().name());
+            pstmt.setString(6, opreacion.getTipoDeOperacion().name());
+            pstmt.setFloat(7, opreacion.getMonto());
+            pstmt.setFloat(8, opreacion.getFecha().getTime());
+            pstmt.setInt(9, opreacion.getCerificadoDeGarantia().getId() == null? -1 : opreacion.getCerificadoDeGarantia().getId());
+            pstmt.setInt(10, opreacion.getIdSocio());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+        sql = "INSERT INTO Tipo2(ID,EmpresaCuentaCorriente,FechaVencimiento,IdOperacion) VALUES(?,?,?,?)";
+        index = ObtenerUltimoIndex("Tipo2");
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, index + 1);
+            pstmt.setString(2, opreacion.getEmpresaCuentaCorriente());
+            pstmt.setFloat(3, opreacion.getFechaVencimiento().getTime());
+            pstmt.setInt(4, opreacion.getId());
+            pstmt.executeUpdate();
+            System.out.println("Query ejecutada!");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean InsertOperacionTipo3(Tipo3 opreacion){
+        String sql = "INSERT INTO Operacion(ID,EstadoOperacion,TasaDeDescuento,ComisionAlSocio, EstadoComision, TipoDeOperacion, Monto, Fecha,IdCerificadoDeGarantia ,IdSocio ) VALUES(?,?,?,?,?,?,?,?,?,?)";
+
+        int index = ObtenerUltimoIndex("Operacion");
+        opreacion.setId(index);
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, index + 1);
+            pstmt.setString(2, opreacion.getEstadoOperacion().name());
+            pstmt.setFloat(3, opreacion.getTasaDeDescuento());
+            pstmt.setFloat(4, opreacion.getComisionAlSocio());
+            pstmt.setString(5, opreacion.getEstadoComision().name());
+            pstmt.setString(6, opreacion.getTipoDeOperacion().name());
+            pstmt.setFloat(7, opreacion.getMonto());
+            pstmt.setFloat(8, opreacion.getFecha().getTime());
+            pstmt.setInt(9, opreacion.getCerificadoDeGarantia().getId() == null? -1 : opreacion.getCerificadoDeGarantia().getId());
+            pstmt.setInt(10, opreacion.getIdSocio());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+        sql = "INSERT INTO Tipo3(ID,Banco,FechaActualizacion,CantidadDeCuotas, tasa, Sistema, IdOperacion) VALUES(?,?,?,?,?,?,?)";
+
+        index = ObtenerUltimoIndex("Tipo3");
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, index + 1);
+            pstmt.setString(2, opreacion.getBanco());
+            pstmt.setFloat(3, opreacion.getFechaActualizacion().getTime());
+            pstmt.setInt(4, opreacion.getCantidadDeCuotas());
+            pstmt.setInt(5, opreacion.getTasa());
+            pstmt.setString(6, opreacion.getSistema().name());
+            pstmt.setInt(7, opreacion.getId());
+            pstmt.executeUpdate();
+            System.out.println("Query ejecutada!");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    public static List<Tipo1> ObtenerOperacionesTipo1(){
+        String sql = "SELECT * FROM Operacion INNER JOIN Tipo1 ON Operacion.ID = Tipo1.IdOperacion" ;
+        List<Tipo1> resultado = new ArrayList<>();
+
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)) {
+
+            // loop through the result set
+            while (rs.next()) {
+                Tipo1 a = new Tipo1();
+                //Operacion
+                a.setId(rs.getInt("IdOperacion"));
+                a.setEstadoOperacion(EstadoOperacion.valueOf(rs.getString("EstadoOperacion")));
+                a.setTasaDeDescuento(rs.getFloat("TasaDeDescuento"));
+                a.setComisionAlSocio(rs.getFloat("ComisionAlSocio"));
+                a.setEstadoComision(EstadoComision.valueOf(rs.getString("EstadoComision")));
+                a.setTipoDeOperacion(TipoDeOperacion.Tipo1);
+                a.setMonto(rs.getFloat("Monto"));
+                a.setFecha(new Date(rs.getLong("Fecha")));
+                a.setIdSocio(rs.getInt("IdSocio"));
+                //Tipo1
+                a.setNroCheques(rs.getLong("NroCheques"));
+                a.setFechaVencimiento(new Date(rs.getLong("FechaVencimiento")));
+                a.setCuitFirmante(rs.getString("CuitFirmante"));
+                resultado.add(a);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return resultado;
+    }
+
+    public static Tipo1 ObtenerOperacionTipo1PorID(int id){
+        String sql = "SELECT * FROM Operacion INNER JOIN Tipo1 ON Operacion.ID = Tipo1.IdOperacion WHERE Tipo1.IdOperacion = " + id ;
+        Tipo1 resultado = new Tipo1();
+
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)) {
+
+            // loop through the result set
+            if (rs.next()) {
+                //Operacion
+                resultado.setId(rs.getInt("IdOperacion"));
+                resultado.setEstadoOperacion(EstadoOperacion.valueOf(rs.getString("EstadoOperacion")));
+                resultado.setTasaDeDescuento(rs.getFloat("TasaDeDescuento"));
+                resultado.setComisionAlSocio(rs.getFloat("ComisionAlSocio"));
+                resultado.setEstadoComision(EstadoComision.valueOf(rs.getString("EstadoComision")));
+                resultado.setTipoDeOperacion(TipoDeOperacion.Tipo1);
+                resultado.setMonto(rs.getFloat("Monto"));
+                resultado.setFecha(new Date(rs.getLong("Fecha")));
+                resultado.setIdSocio(rs.getInt("IdSocio"));
+                //Tipo1
+                resultado.setNroCheques(rs.getLong("NroCheques"));
+                resultado.setFechaVencimiento(new Date(rs.getLong("FechaVencimiento")));
+                resultado.setCuitFirmante(rs.getString("CuitFirmante"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return resultado;
+    }
 
     public static List<Operacion> ObtenerOperacionesDeSocio(Integer id) {
         String sql = "SELECT * from Operacion WHERE IdSocio = " + id ;
@@ -843,8 +1040,10 @@ public class SqLiteDB {
         return resultado;
     }
 
-    // METODOS DE FONDO DE RIESGO
 
+    //</editor-fold>
+
+    //<editor-fold desc="METODOS DE FONDO DE RIESGO">
     public static FondoDeRiesgo ObtenerFondoDeRiesgo(){
         String sql = "SELECT * from AporteFondoDeRiesgo" ;
         List<AporteFondoDeRiesgo> aportes = new ArrayList<>();
@@ -869,6 +1068,7 @@ public class SqLiteDB {
         }
         return fondoDeRiesgo;
     }
+    //</editor-fold>
 }
 
 

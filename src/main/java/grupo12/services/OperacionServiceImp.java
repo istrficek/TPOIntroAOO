@@ -71,7 +71,7 @@ public class OperacionServiceImp implements OperacionService {
 
 	@Override
 	public Float getMontoT1ById(Integer id) {
-		return repot1.getByMontoT1(id);
+		return repot1.getMontoT1(id);
 	}
 
 	@Override
@@ -214,7 +214,7 @@ public class OperacionServiceImp implements OperacionService {
 		Float res = null;
 		switch(tipoOperacion){
 			case 1:
-				monto = repot1.getByMontoT1(id);
+				monto = repot1.getMontoT1(id);
 				if(monto != 0){
 					res = (monto*3) / 100;
 				}
