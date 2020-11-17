@@ -1068,6 +1068,168 @@ public class SqLiteDB {
         }
         return fondoDeRiesgo;
     }
+
+    public static List<Tipo2> ObtenerOperacionesTipo2(){
+        String sql = "SELECT * FROM Operacion INNER JOIN Tipo2 ON Operacion.ID = Tipo2.IdOperacion" ;
+        List<Tipo2> resultado = new ArrayList<>();
+
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)) {
+
+            // loop through the result set
+            while (rs.next()) {
+                Tipo2 a = new Tipo2();
+                //Operacion
+                a.setId(rs.getInt("IdOperacion"));
+                a.setEstadoOperacion(EstadoOperacion.valueOf(rs.getString("EstadoOperacion")));
+                a.setTasaDeDescuento(rs.getFloat("TasaDeDescuento"));
+                a.setComisionAlSocio(rs.getFloat("ComisionAlSocio"));
+                a.setEstadoComision(EstadoComision.valueOf(rs.getString("EstadoComision")));
+                a.setTipoDeOperacion(TipoDeOperacion.Tipo1);
+                a.setMonto(rs.getFloat("Monto"));
+                a.setFecha(new Date(rs.getLong("Fecha")));
+                a.setIdSocio(rs.getInt("IdSocio"));
+                //Tipo2
+                a.setEmpresaCuentaCorriente(rs.getString("EmpresaCuentaCorriente"));
+                a.setFechaVencimiento(new Date(rs.getLong("FechaVencimiento")));
+                resultado.add(a);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return resultado;
+    }
+
+    public static Tipo2 ObtenerOperacionTipo2PorID(int id){
+        String sql = "SELECT * FROM Operacion INNER JOIN Tipo2 ON Operacion.ID = Tipo2.IdOperacion WHERE Tipo2.IdOperacion = " + id ;
+        Tipo2 resultado = new Tipo2();
+
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)) {
+
+            // loop through the result set
+            if (rs.next()) {
+                //Operacion
+                resultado.setId(rs.getInt("IdOperacion"));
+                resultado.setEstadoOperacion(EstadoOperacion.valueOf(rs.getString("EstadoOperacion")));
+                resultado.setTasaDeDescuento(rs.getFloat("TasaDeDescuento"));
+                resultado.setComisionAlSocio(rs.getFloat("ComisionAlSocio"));
+                resultado.setEstadoComision(EstadoComision.valueOf(rs.getString("EstadoComision")));
+                resultado.setTipoDeOperacion(TipoDeOperacion.Tipo2);
+                resultado.setMonto(rs.getFloat("Monto"));
+                resultado.setFecha(new Date(rs.getLong("Fecha")));
+                resultado.setIdSocio(rs.getInt("IdSocio"));
+                //Tipo2
+                resultado.setEmpresaCuentaCorriente(rs.getString("EmpresaCuentaCorriente"));
+                resultado.setFechaVencimiento(new Date(rs.getLong("FechaVencimiento")));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return resultado;
+    }
+
+    public static List<Tipo3> ObtenerOperacionesTipo3(){
+        String sql = "SELECT * FROM Operacion INNER JOIN Tipo3 ON Operacion.ID = Tipo2.IdOperacion" ;
+        List<Tipo3> resultado = new ArrayList<>();
+
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)) {
+
+            // loop through the result set
+            while (rs.next()) {
+                Tipo3 a = new Tipo3();
+                //Operacion
+                a.setId(rs.getInt("IdOperacion"));
+                a.setEstadoOperacion(EstadoOperacion.valueOf(rs.getString("EstadoOperacion")));
+                a.setTasaDeDescuento(rs.getFloat("TasaDeDescuento"));
+                a.setComisionAlSocio(rs.getFloat("ComisionAlSocio"));
+                a.setEstadoComision(EstadoComision.valueOf(rs.getString("EstadoComision")));
+                a.setTipoDeOperacion(TipoDeOperacion.Tipo3);
+                a.setMonto(rs.getFloat("Monto"));
+                a.setFecha(new Date(rs.getLong("Fecha")));
+                a.setIdSocio(rs.getInt("IdSocio"));
+                //Tipo3
+                a.setBanco(rs.getString("Banco"));
+                a.setFechaActualizacion(new Date(rs.getLong("FechaActualizacion")));
+                a.setCuotas(ObtenerCuotasById(a.getId()));
+                a.setTasa(rs.getInt("tasa"));
+                a.setSistema(Sistema.valueOf(rs.getString("Sistema")));
+
+                resultado.add(a);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return resultado;
+    }
+
+    public static Tipo3 ObtenerOperacionTipo3PorID(int id){
+        String sql = "SELECT * FROM Operacion INNER JOIN Tipo3 ON Operacion.ID = Tipo3.IdOperacion WHERE Tipo3.IdOperacion = " + id ;
+        Tipo3 resultado = new Tipo3();
+
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)) {
+
+            // loop through the result set
+            if (rs.next()) {
+                //Operacion
+                resultado.setId(rs.getInt("IdOperacion"));
+                resultado.setEstadoOperacion(EstadoOperacion.valueOf(rs.getString("EstadoOperacion")));
+                resultado.setTasaDeDescuento(rs.getFloat("TasaDeDescuento"));
+                resultado.setComisionAlSocio(rs.getFloat("ComisionAlSocio"));
+                resultado.setEstadoComision(EstadoComision.valueOf(rs.getString("EstadoComision")));
+                resultado.setTipoDeOperacion(TipoDeOperacion.Tipo2);
+                resultado.setMonto(rs.getFloat("Monto"));
+                resultado.setFecha(new Date(rs.getLong("Fecha")));
+                resultado.setIdSocio(rs.getInt("IdSocio"));
+                //Tipo3
+                resultado.setBanco(rs.getString("Banco"));
+                resultado.setFechaActualizacion(new Date(rs.getLong("FechaActualizacion")));
+                resultado.setCuotas(ObtenerCuotasById(id));
+                resultado.setTasa(rs.getInt("tasa"));
+                resultado.setSistema(Sistema.valueOf(rs.getString("Sistema")));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return resultado;
+    }
+
+
+    public static List<Cuota> ObtenerCuotasById(int idTipo3){
+        String sql = String.format("SELECT * FROM Cuota WHERE IdTipo3 = " + idTipo3);
+
+        List<Cuota> lista = new ArrayList<>();
+
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)) {
+
+            // loop through the result set
+            while (rs.next()) {
+                Cuota resultado = new Cuota();
+                resultado.setId(rs.getInt("ID"));
+                resultado.setFechaVencimiento((new Date(rs.getLong("FechaActualizacion"))));
+                resultado.setNumeroDeCuota(rs.getInt("CantidadDeCuotas"));
+                resultado.setPaga(rs.getBoolean("Paga"));
+                lista.add(resultado);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return lista;
+    }
+
+
+
+
+
+
     //</editor-fold>
 }
 
