@@ -14,7 +14,7 @@ public class OperacionController {
 	private OperacionService operacionService = new OperacionServiceImp();
 
 
-	private void crearOperacion(OperacionRequest opr) {
+	public void crearOperacion(OperacionRequest opr) {
 		
 		switch (opr.getTipoOpe()) {
 		case 1 :

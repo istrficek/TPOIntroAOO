@@ -448,6 +448,7 @@ public class SqLiteDB {
                 resultado.setEstadoSocio(EstadoSocio.valueOf(rs.getString("EstadoSocio")));
                 resultado.setTipoEmpresa(TipoEmpresa.valueOf(rs.getString("TipoEmpresa")));
                 resultado.setSaldoAcciones(rs.getInt("SaldoAcciones"));
+                resultado.setTipoSocio(TipoSocio.valueOf(rs.getString("TipoSocio")));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

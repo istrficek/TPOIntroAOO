@@ -1,5 +1,6 @@
 package grupo12.entity;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -167,4 +168,23 @@ public class Socio {
 		this.setTipoSocio(TipoSocio.Protector);
 	}
 
+	@Override
+	public String toString() {
+
+		return "Socio{" +
+				"id=" + id +
+				", cuit='" + cuit + '\'' +
+				", razonSocial='" + razonSocial + '\'' +
+				", fechaInicio=" + fechaInicio +
+				", actividadPrincipal='" + actividadPrincipal + '\'' +
+				", direccion='" + direccion + '\'' +
+				", telefono='" + telefono + '\'' +
+				", email='" + email + '\'' +
+				", estadoSocio=" + estadoSocio +
+				", tipoEmpresa=" + tipoEmpresa +
+				", accionistas=" + accionistas +
+				", saldoAcciones=" + saldoAcciones +
+				", tipoSocioString='" + tipoSocioString + '\'' +
+				'}';
+	}
 }

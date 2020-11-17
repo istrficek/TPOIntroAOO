@@ -15,8 +15,8 @@ public class SocioController {
 	private AporteService aporteService = new AporteServiceImp();
 	private FondoDeRiesgoService fondoDeRiesgoService = new FondoDeRiesgoServiceImp();
 
-	public List<Accionista> obtenerAccionistas(Integer id) {
-		return socioService.getAccionistas(id);
+	public List<Accionista> obtenerAccionistas(Integer idSocio) {
+		return socioService.getAccionistas(idSocio);
 	}
 	
 	public List<Participe> obtenerSociosParticipes() {

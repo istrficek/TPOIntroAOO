@@ -35,7 +35,13 @@ public class Accionista {
 	public Accionista() {
 		super();
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "Accionista{" +
+				"id=" + id +
+				", razonSocial='" + razonSocial + '\'' +
+				", porcentajedeParticipacion=" + porcentajedeParticipacion +
+				'}';
+	}
 }

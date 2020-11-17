@@ -4,14 +4,14 @@ import grupo12.controllers.AccionistaController;
 import grupo12.controllers.DocumentacionController;
 import grupo12.controllers.OperacionController;
 import grupo12.controllers.SocioController;
-import grupo12.entity.Accionista;
-import grupo12.entity.EstadoSocio;
-import grupo12.entity.TipoEmpresa;
+import grupo12.entity.*;
+import grupo12.request.OperacionRequest;
 import grupo12.request.SocioRequest;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 public class GeneradorBD {
@@ -152,6 +152,8 @@ public class GeneradorBD {
             setRazonSocial("El Accionista 7 S.A");
             setPorcentajedeParticipacion(42);
         }}, 6);
+        // Operaciones
+
     }
 
     private static String GenerarCUIT(){
