@@ -7,6 +7,8 @@ import grupo12.services.*;
 import java.util.Date;
 import java.util.List;
 
+// Falta: Eliminar Operacion, ObtenerOperacion(Tipo)
+
 public class OperacionController {
 	
 	private OperacionService operacionService = new OperacionServiceImp();
@@ -15,7 +17,7 @@ public class OperacionController {
 
 	private CertificadoDeGarantiaService certificadoService = new CertificadoDeGarantiaServiceImp();
 
-
+	// NuevaOperacion
 	public void crearOperacion(OperacionRequest opr, Integer idSocio) {
 
 		Date fecha = new Date();
@@ -91,7 +93,7 @@ public class OperacionController {
 		
 	}
 
-
+	// EditarOpeacion
 	public void editOperacion(OperacionRequest opr){
 
 		OperacionRequest nuevo = new OperacionRequest();
@@ -164,7 +166,6 @@ public class OperacionController {
 		 
 	 }
 
-
 	 public Float obtenerMontoT1(Integer id){
 
 		return operacionService.getMontoT1ById(id);
@@ -188,7 +189,6 @@ public class OperacionController {
 		return operacionService.getAllOperaciones();
 	}
 
-
 	public EstadoOperacion obtenerEstado(Integer id, Integer tipo){
 
 		return operacionService.getEstado(id, tipo);
@@ -199,6 +199,7 @@ public class OperacionController {
 		return operacionService.getTasaDeDescuento(id, tipo);
 	}
 
+	//ObtenerOperaciones(Estado, FechaInicio, FechaFin)
 	public List<OperacionRequest> obtenerOperaciones(EstadoOperacion estadoOperacion, Date fechaInicio, Date fechaFin){
 		return operacionService.obtenerOperaciones(estadoOperacion, fechaInicio, fechaFin);
 	}
@@ -206,7 +207,6 @@ public class OperacionController {
 	public Float CalcularComision(Integer id,Integer tipoOperacion, Date fecha){
 		return operacionService.calcularComision(id, tipoOperacion, fecha);
 	}
-
 
 	public void generarCertificadoDeGarantia(Integer idOperacion, Integer tipo, Integer idCertificado){
 		CertificadoDeGarantia certificado =certificadoService.getById(idCertificado);
@@ -224,6 +224,18 @@ public class OperacionController {
 				t3.setCerificadoDeGarantia(certificado);
 				operacionService.savet3(t3);
 		}
+	}
+
+	public boolean validarChequesDelMismoFirmante(Tipo1 operacion){
+		return operacionService.validarChequesDelMismoFirmante(operacion);
+	}
+
+	public boolean validarOperacion(Operacion operacion){
+		return operacionService.validarOperacion(operacion);
+	}
+
+	public List<Operacion> getOperacionesAvaladas(int idSocio, Date fechaInicio, Date fechaFin){
+		return operacionService.getOperacionesAvaladas(idSocio, fechaInicio, fechaFin);
 	}
 	
 

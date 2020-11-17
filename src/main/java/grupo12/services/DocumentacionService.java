@@ -2,6 +2,8 @@ package grupo12.services;
 
 import grupo12.entity.Documentacion;
 
+import java.util.List;
+
 public interface DocumentacionService {
 
 	void save(Documentacion nuev);
@@ -12,4 +14,5 @@ public interface DocumentacionService {
 
 	boolean deleteById(Integer id);
 
+	List<Documentacion> getAllDocumentacion();
 }

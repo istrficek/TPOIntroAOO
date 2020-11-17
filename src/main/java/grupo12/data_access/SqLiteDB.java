@@ -575,6 +575,28 @@ public class SqLiteDB {
         return resultado;
     }
 
+    public static List<Documentacion> ObtenerDocumentacion(){
+        String sql = String.format("SELECT * FROM Documentacion");
+        List<Documentacion> resultado = new ArrayList<>();
+
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)) {
+
+            while(rs.next()){
+                Documentacion d = new Documentacion();
+                d.setId(rs.getInt("ID"));
+                d.setEstadoDoc(EstadoDocumento.valueOf(rs.getString("EstadoDoc")));
+                d.setIsObligatorio(rs.getBoolean("IsObligatorio"));
+                d.setTipoDocumento(TipoDocumento.valueOf(rs.getString("TipoDocumento")));
+                resultado.add(d);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return resultado;
+    }
+
     public static boolean ActualizarDocumentacion(Documentacion documentacion){
         String sql = String.format("UPDATE Documentacion SET(TipoDocumento,EstadoDoc,IsObligatorio) VALUES(?,?,?) WHERE ID = ?");
 

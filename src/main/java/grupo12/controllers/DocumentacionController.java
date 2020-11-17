@@ -3,6 +3,8 @@ package grupo12.controllers;
 import grupo12.entity.Documentacion;
 import grupo12.services.DocumentacionService;
 
+import java.util.List;
+
 public class DocumentacionController {
 	
 	DocumentacionService documentacionService;
@@ -23,6 +25,10 @@ public class DocumentacionController {
 		viej.setIsObligatorio(docu.getIsObligatorio());
 		viej.setTipoDocumento(docu.getTipoDocumento());
 		return documentacionService.edit(viej);
+	}
+
+	public List<Documentacion> getAllDocumentacion(){
+		return documentacionService.getAllDocumentacion();
 	}
 	
 	public Documentacion getDocumentacion(Integer id){

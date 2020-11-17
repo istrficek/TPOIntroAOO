@@ -16,7 +16,7 @@ public class FondoDeRiesgo {
         return aportes;
     }
 
-    public Float obtenerMonto(Integer id) {
+    public Float obtenerMonto() {
         Float montoTotal = 0F;
 
         for (AporteFondoDeRiesgo a : aportes.stream().filter(ap -> ap.isAporteVigente()).collect(Collectors.toList())) {

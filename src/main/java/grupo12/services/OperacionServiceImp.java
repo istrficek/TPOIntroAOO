@@ -1,20 +1,21 @@
 package grupo12.services;
 
 import grupo12.entity.*;
-import grupo12.repository.Tipo1Repository;
-import grupo12.repository.Tipo2Repository;
-import grupo12.repository.Tipo3Repository;
+import grupo12.repository.*;
 import grupo12.request.OperacionRequest;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OperacionServiceImp implements OperacionService {
 
 	Tipo1Repository repot1 = new Tipo1Repository();
 	Tipo2Repository repot2 = new Tipo2Repository();
 	Tipo3Repository repot3 = new Tipo3Repository();
+	SocioRepository socioRepository = new SocioRepository();
+	FondoDeRiesgoRepository fondoDeRiesgoRepository = new FondoDeRiesgoRepository();
 
 	@Override
 	public Float getTasaDeDescuento(Integer id, Integer tipo) {
@@ -232,7 +233,39 @@ public class OperacionServiceImp implements OperacionService {
 		return res;
 	}
 
+	public boolean validarChequesDelMismoFirmante(Tipo1 operacion) {
+		FondoDeRiesgo fondoDeRiesgo = fondoDeRiesgoRepository.getFondoDeRiesgo();
+		List<Tipo1> tipo1List = repot1.getAll().stream().filter(tipo1 -> tipo1.getCuitFirmante().equals(operacion.getCuitFirmante())).collect(Collectors.toList());
+		Float montoCheques = 0F;
 
+		for (Tipo1 t1: tipo1List) {
+			montoCheques += t1.getMonto();
+		}
+
+		return (montoCheques + operacion.getMonto()) < (fondoDeRiesgo.obtenerMonto() * 0.05);
+	}
+
+	public List<Operacion> getOperacionesAvaladas(int idSocio, Date fechaInicio, Date fechaFin) {
+		return socioRepository.getOperaciones(idSocio)
+				.stream()
+				.filter(operacion ->
+						operacion.getEstadoOperacion() == EstadoOperacion.ConCertificadoEmitido
+								&& operacion.getFecha().after(fechaInicio)
+								&& operacion.getFecha().before(fechaFin))
+				.collect(Collectors.toList());
+	}
+
+	public boolean validarOperacion(Operacion operacion) {
+		FondoDeRiesgo fondoDeRiesgo = fondoDeRiesgoRepository.getFondoDeRiesgo();
+		List<Operacion> opreacionesDeSocio = socioRepository.getOperaciones(operacion.getSocio().getId());
+		Float montoDelSocio = 0F;
+
+		for (Operacion o: opreacionesDeSocio) {
+			montoDelSocio += o.getMonto();
+		}
+
+		return montoDelSocio + operacion.getMonto() < (fondoDeRiesgo.obtenerMonto() * 0.05);
+	}
 
 	private void EntyToModelT1(Tipo1 tipo1, OperacionRequest request) {
 		//transforma un Tipo1 en un request

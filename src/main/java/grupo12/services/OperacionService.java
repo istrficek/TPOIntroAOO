@@ -42,4 +42,9 @@ public interface OperacionService {
 
 	Float calcularComision(Integer id,Integer tipoOperacion, Date fecha);
 
+    boolean validarChequesDelMismoFirmante(Tipo1 operacion);
+
+	List<Operacion> getOperacionesAvaladas(int idSocio, Date fechaInicio, Date fechaFin);
+
+	boolean validarOperacion(Operacion operacion);
 }

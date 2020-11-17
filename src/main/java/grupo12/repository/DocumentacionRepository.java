@@ -1,6 +1,7 @@
 package grupo12.repository;
 
 import grupo12.data_access.JsonDB;
+import grupo12.data_access.SqLiteDB;
 import grupo12.entity.Accionista;
 import grupo12.entity.Documentacion;
 import java.util.ArrayList;
@@ -21,9 +22,6 @@ public class DocumentacionRepository {
     }
 
     public List<Documentacion> getAll(){
-        Documentacion[] array = (Documentacion[]) db.selectAll();
-        if(array == null)
-            return new ArrayList<Documentacion>();
-        return new ArrayList<Documentacion>(Arrays.asList(array));
+        return SqLiteDB.ObtenerDocumentacion();
     }
 }
