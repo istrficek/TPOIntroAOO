@@ -2,12 +2,13 @@ package grupo12.controllers;
 
 import grupo12.entity.Documentacion;
 import grupo12.services.DocumentacionService;
+import grupo12.services.DocumentacionServiceImp;
 
 import java.util.List;
 
 public class DocumentacionController {
 	
-	DocumentacionService documentacionService;
+	DocumentacionService documentacionService = new DocumentacionServiceImp();
 	
 	public void crearDocumentacion(Documentacion docu){
 		Documentacion nuev = new Documentacion();
