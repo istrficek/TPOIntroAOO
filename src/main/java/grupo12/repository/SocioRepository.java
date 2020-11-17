@@ -4,6 +4,7 @@ import grupo12.data_access.JsonDB;
 import grupo12.entity.Participe;
 import grupo12.entity.Protector;
 import grupo12.entity.Socio;
+import grupo12.entity.TipoEmpresa;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -73,6 +74,18 @@ public class SocioRepository {
         List<Socio> list = getAll();
         list.stream()
                 .filter(a -> a.getId() == id)
+                .collect(Collectors.toList());
+
+        if(list.size() > 0)
+            return list.get(0);
+        else
+            return null;
+    }
+
+    public Socio getByTipoEmpresa(TipoEmpresa tipoEmpresa) {
+        List<Socio> list = getAll();
+        list.stream()
+                .filter(a -> a.getTipoEmpresa() == tipoEmpresa)
                 .collect(Collectors.toList());
 
         if(list.size() > 0)

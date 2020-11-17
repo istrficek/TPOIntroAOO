@@ -7,5 +7,11 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:C:\Users\istrficek\Desktop\TPO\TPOIntroAOO\database\tpo.db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="tpo [2]" uuid="9a5d4521-24ab-4cf8-94b7-273e5718d94e">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Desarrollo\TPOIntroAOO\database\tpo.db</jdbc-url>
+    </data-source>
   </component>
 </project>

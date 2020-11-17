@@ -59,4 +59,9 @@ public class SocioServiceImp implements SocioService {
 		return null;
 	}
 
+	@Override
+	public Socio getSocioByTipoEmpresa(TipoEmpresa tipoEmpresa) {
+		return repository.getByTipoEmpresa(tipoEmpresa);
+	}
+
 }
