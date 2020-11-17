@@ -10,6 +10,7 @@ import grupo12.request.SocioRequest;
 import grupo12.vistas.FrmPrincipal;
 import grupo12.entity.Accionista;
 
+import javax.swing.*;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		GeneradorBD.GenerarBaseConDatos();
-
+		/*
 		//<editor-fold desc="TEST SOCIO CONTROLLER">
 		List<Accionista> accionistas = socioController.obtenerAccionistas(1);
 
@@ -107,7 +108,7 @@ public class Main {
 
 
 		//</editor-fold>
-
+		*/
 		FrmPrincipal frame = new FrmPrincipal("Gestion de Socios");
 	}
 

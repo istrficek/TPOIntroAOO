@@ -38,6 +38,6 @@ public class Participe extends Socio {
 		super(TipoSocio.Participe, s);
 	}
 
-	public Participe(){};
+	public Participe(){ this.setTipoSocio(TipoSocio.Participe); };
 
 }

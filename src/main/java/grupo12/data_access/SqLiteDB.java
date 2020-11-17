@@ -26,16 +26,6 @@ public class SqLiteDB {
     }
 
     public static void GenerarDB() throws IOException {
-        // SQL statement for creating a new table
-        BufferedReader lector = new BufferedReader(new FileReader("database/CrearBD.sql"));
-        StringBuilder sb = new StringBuilder();
-        String line = null;
-
-        while ((line = lector.readLine()) != null) {
-            sb.append(line);
-        }
-
-        lector.close();
         List<String> listsql = new ArrayList<>();
 
         listsql.add("CREATE TABLE SocioAccionista (\n" +
@@ -420,6 +410,7 @@ public class SqLiteDB {
                 a.setEstadoSocio(EstadoSocio.valueOf(rs.getString("EstadoSocio")));
                 a.setTipoEmpresa(TipoEmpresa.valueOf(rs.getString("TipoEmpresa")));
                 a.setSaldoAcciones(rs.getInt("SaldoAcciones"));
+                a.setTipoSocio(TipoSocio.Protector);
                 resultado.add(a);
             }
         } catch (SQLException e) {

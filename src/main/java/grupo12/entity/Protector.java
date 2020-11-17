@@ -18,6 +18,6 @@ public class Protector extends Socio{
 		super(TipoSocio.Protector, s);
 	}
 
-	public Protector(){};
+	public Protector(){this.setTipoSocio(TipoSocio.Protector);};
 
 }
