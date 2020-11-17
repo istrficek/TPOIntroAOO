@@ -2,10 +2,12 @@ package grupo12;
 
 
 
+import Vistas.FrmPrincipal;
 import grupo12.controllers.AccionistaController;
 import grupo12.data_access.SqLiteDB;
 import grupo12.entity.Accionista;
 
+import javax.swing.*;
 import java.io.IOException;
 
 
@@ -63,6 +65,8 @@ public class Main {
 			System.out.println("*****************************************");
 		}
 		*/
+		FrmPrincipal frame = new FrmPrincipal("Gestion de Socios");
+
 
 		try {
 			SqLiteDB.GenerarDB();
