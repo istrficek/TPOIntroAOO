@@ -36,6 +36,9 @@ CREATE TABLE Documentacion (
 	ID integer PRIMARY KEY,
 	TipoDocumento text NULL,
 	EstadoDoc text NULL,
+	FechaRecepcion integer NULL,
+	IdSocio integer NULL,
+	Usuario text NULL,
 	IsObligatorio integer NULL 
 );
 CREATE TABLE LineaDeCredito (
