@@ -35,48 +35,60 @@ public class SocioController {
 		return socioService.getSocio(id);
 	}
 	
-	public void crearSocio(SocioRequest socioRequest) {
+	public boolean crearSocio(SocioRequest socioRequest) {
 
-		Socio nuevo = new Socio();
-		nuevo.setAccionistas(socioRequest.getAccionistas());
-		nuevo.setActividadPrincipal(socioRequest.getActividadPrincipal());
-		nuevo.setCuit(socioRequest.getCuit());
-		nuevo.setDireccion(socioRequest.getDireccion());
-		nuevo.setEmail(socioRequest.getEmail());
-		nuevo.setEstadoSocio(socioRequest.getEstadoSocio());
-		nuevo.setFechaInicio(socioRequest.getFechaInicio());
-		nuevo.setId(socioRequest.getId());
-		nuevo.setRazonSocial(socioRequest.getRazonSocial());
-		nuevo.setSaldoAcciones(socioRequest.getSaldoAccionesTipo());
-		nuevo.setTelefono(socioRequest.getTelefono());
-		nuevo.setTipoEmpresa(socioRequest.getTipoEmpresa());
-		if(socioRequest.isParticipe())
-			nuevo.setTipoSocio(TipoSocio.Participe);
-		else
-			nuevo.setTipoSocio(TipoSocio.Protector);
-		socioService.save(nuevo);
+		try {
+			Socio nuevo = new Socio();
+			nuevo.setAccionistas(socioRequest.getAccionistas());
+			nuevo.setActividadPrincipal(socioRequest.getActividadPrincipal());
+			nuevo.setCuit(socioRequest.getCuit());
+			nuevo.setDireccion(socioRequest.getDireccion());
+			nuevo.setEmail(socioRequest.getEmail());
+			nuevo.setEstadoSocio(socioRequest.getEstadoSocio());
+			nuevo.setFechaInicio(socioRequest.getFechaInicio());
+			nuevo.setId(socioRequest.getId());
+			nuevo.setRazonSocial(socioRequest.getRazonSocial());
+			nuevo.setSaldoAcciones(socioRequest.getSaldoAccionesTipo());
+			nuevo.setTelefono(socioRequest.getTelefono());
+			nuevo.setTipoEmpresa(socioRequest.getTipoEmpresa());
+			if(socioRequest.isParticipe())
+				nuevo.setTipoSocio(TipoSocio.Participe);
+			else
+				nuevo.setTipoSocio(TipoSocio.Protector);
+			socioService.save(nuevo);
+			return  true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
-	public void editarSocio(Integer id, SocioRequest socioRequest){
+	public boolean editarSocio(Integer id, SocioRequest socioRequest){
 
-		Socio socio = socioService.getSocio(id);
-		socio.setAccionistas(socioRequest.getAccionistas());
-		socio.setActividadPrincipal(socioRequest.getActividadPrincipal());
-		socio.setCuit(socioRequest.getCuit());
-		socio.setDireccion(socioRequest.getDireccion());
-		socio.setEmail(socioRequest.getEmail());
-		socio.setEstadoSocio(socioRequest.getEstadoSocio());
-		socio.setFechaInicio(socioRequest.getFechaInicio());
-		socio.setRazonSocial(socioRequest.getRazonSocial());
-		socio.setSaldoAcciones(socioRequest.getSaldoAccionesTipo());
-		socio.setTelefono(socioRequest.getTelefono());
-		socio.setTipoEmpresa(socio.getTipoEmpresa());
-		if(socioRequest.isParticipe()){
-			socio.setTipoSocio(TipoSocio.Participe);
-		} else {
-			socio.setTipoSocio(TipoSocio.Protector);
+		try {
+			Socio socio = socioService.getSocio(id);
+			socio.setAccionistas(socioRequest.getAccionistas());
+			socio.setActividadPrincipal(socioRequest.getActividadPrincipal());
+			socio.setCuit(socioRequest.getCuit());
+			socio.setDireccion(socioRequest.getDireccion());
+			socio.setEmail(socioRequest.getEmail());
+			socio.setEstadoSocio(socioRequest.getEstadoSocio());
+			socio.setFechaInicio(socioRequest.getFechaInicio());
+			socio.setRazonSocial(socioRequest.getRazonSocial());
+			socio.setSaldoAcciones(socioRequest.getSaldoAccionesTipo());
+			socio.setTelefono(socioRequest.getTelefono());
+			socio.setTipoEmpresa(socio.getTipoEmpresa());
+			if(socioRequest.isParticipe()){
+				socio.setTipoSocio(TipoSocio.Participe);
+			} else {
+				socio.setTipoSocio(TipoSocio.Protector);
+			}
+			socioService.update(socio);
+			return  true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
-		socioService.update(socio);
 	}
 
 	public Float obtenerSaldoDeudor(Integer id) {

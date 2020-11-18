@@ -122,34 +122,42 @@ public class GeneradorBD {
         // Accionistas
         accionistaController.crearAccionista(new Accionista(){{
             setRazonSocial("El Socio Participe 1 S.A");
+            setCuit(GenerarCUIT());
             setPorcentajedeParticipacion(23);
         }}, 5);
         accionistaController.crearAccionista(new Accionista(){{
             setRazonSocial("El Accionista 1 S.A");
+            setCuit(GenerarCUIT());
             setPorcentajedeParticipacion(11);
         }}, 1);
         accionistaController.crearAccionista(new Accionista(){{
             setRazonSocial("El Accionista 2 S.A");
+            setCuit(GenerarCUIT());
             setPorcentajedeParticipacion(2);
         }}, 1);
         accionistaController.crearAccionista(new Accionista(){{
             setRazonSocial("El Accionista 3 S.A");
+            setCuit(GenerarCUIT());
             setPorcentajedeParticipacion(34);
         }}, 2);
         accionistaController.crearAccionista(new Accionista(){{
             setRazonSocial("El Accionista 4 S.A");
+            setCuit(GenerarCUIT());
             setPorcentajedeParticipacion(6);
         }}, 3);
         accionistaController.crearAccionista(new Accionista(){{
             setRazonSocial("El Accionista 5 S.A");
+            setCuit(GenerarCUIT());
             setPorcentajedeParticipacion(66);
         }}, 4);
         accionistaController.crearAccionista(new Accionista(){{
             setRazonSocial("El Accionista 6 S.A");
+            setCuit(GenerarCUIT());
             setPorcentajedeParticipacion(1);
         }}, 6);
         accionistaController.crearAccionista(new Accionista(){{
             setRazonSocial("El Accionista 7 S.A");
+            setCuit(GenerarCUIT());
             setPorcentajedeParticipacion(42);
         }}, 6);
         // Operaciones

@@ -15,6 +15,7 @@ public class AccionistaController {
 		Accionista nuev = new Accionista();
 		nuev.setPorcentajedeParticipacion(a.getPorcentajedeParticipacion());
 		nuev.setRazonSocial(a.getRazonSocial());
+		nuev.setCuit(a.getCuit());
 		accionistaService.save(nuev, idSocio);
 	}
 	
@@ -23,6 +24,7 @@ public class AccionistaController {
 		Accionista nuev = accionistaService.getById(id);
 		nuev.setPorcentajedeParticipacion(a.getPorcentajedeParticipacion());
 		nuev.setRazonSocial(a.getRazonSocial());
+		nuev.setCuit(a.getCuit());
 		accionistaService.edit(nuev);
 		return nuev;
 	}

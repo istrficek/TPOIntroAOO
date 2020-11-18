@@ -5,6 +5,8 @@ public class Accionista {
 	private Integer id;
 	
 	private String razonSocial;
+
+	private String Cuit;
 	
 	private Integer porcentajedeParticipacion;
 
@@ -14,6 +16,14 @@ public class Accionista {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getCuit() {
+		return Cuit;
+	}
+
+	public void setCuit(String cuit) {
+		Cuit = cuit;
 	}
 
 	public String getRazonSocial() {
@@ -41,6 +51,7 @@ public class Accionista {
 		return "Accionista{" +
 				"id=" + id +
 				", razonSocial='" + razonSocial + '\'' +
+				", Cuit='" + Cuit + '\'' +
 				", porcentajedeParticipacion=" + porcentajedeParticipacion +
 				'}';
 	}

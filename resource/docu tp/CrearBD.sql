@@ -1,12 +1,13 @@
 CREATE TABLE Accionista (
 	ID integer PRIMARY KEY,
-	RazonSocial text NULL,
-	PorcentajeDeParticipacion integer NULL
+	Cuit text,
+	RazonSocial text NULL
 );
 CREATE TABLE SocioAccionista (
 	ID integer PRIMARY KEY,
 	IdSocio integer NULL,
-	IdAccionista integer NULL
+	IdAccionista integer NULL,
+	PorcentajeDeParticipacion integer NULL	
 );
 CREATE TABLE Aporte (
 	ID integer PRIMARY KEY,

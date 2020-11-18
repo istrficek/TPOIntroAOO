@@ -22,7 +22,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		GeneradorBD.GenerarBaseConDatos();
-		/*
+
 		//<editor-fold desc="TEST SOCIO CONTROLLER">
 		List<Accionista> accionistas = socioController.obtenerAccionistas(1);
 
@@ -108,8 +108,8 @@ public class Main {
 
 
 		//</editor-fold>
-		*/
-		FrmPrincipal frame = new FrmPrincipal("Gestion de Socios");
+
+		FrmPrincipal frame = new FrmPrincipal("Sociedad de Garantías Recíprocas");
 	}
 
 }

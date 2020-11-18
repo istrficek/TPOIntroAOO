@@ -31,7 +31,8 @@ public class SqLiteDB {
         listsql.add("CREATE TABLE SocioAccionista (\n" +
                 "ID integer PRIMARY KEY,\n" +
                 "IdSocio integer NULL,\n" +
-                "IdAccionista integer NULL\n" +
+                "IdAccionista integer NULL,\n" +
+                "PorcentajeDeParticipacion integer NULL\t\n" +
                 ");");
         listsql.add("CREATE TABLE Aporte (\n" +
                 "ID integer PRIMARY KEY,\n" +
@@ -150,8 +151,8 @@ public class SqLiteDB {
                 ")");
         listsql.add("CREATE TABLE Accionista (\n" +
                 "ID integer PRIMARY KEY,\n" +
-                "RazonSocial text NULL,\n" +
-                "PorcentajeDeParticipacion integer NULL\n" +
+                "Cuit text,\n" +
+                "RazonSocial text NULL\n" +
                 ");");
 
         try (Connection conn = connect();
@@ -200,8 +201,8 @@ public class SqLiteDB {
 
     //<editor-fold desc="METODOS DE ACCIONISTA">
     public static boolean InsertAccionista(Accionista nuevo, Integer idSocio) {
-        String sql = "INSERT INTO Accionista (ID,RazonSocial,PorcentajeDeParticipacion) VALUES (?,?,?)";
-        String sql2 = "INSERT INTO SocioAccionista (ID, IdSocio, IdAccionista) VALUES (?,?,?)";
+        String sql = "INSERT INTO Accionista (ID,RazonSocial,Cuit) VALUES (?,?,?)";
+        String sql2 = "INSERT INTO SocioAccionista (ID, IdSocio, IdAccionista, PorcentajeDeParticipacion) VALUES (?,?,?,?)";
 
         int index = ObtenerUltimoIndex("Accionista") + 1;
         nuevo.setId(index);
@@ -210,7 +211,7 @@ public class SqLiteDB {
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, index);
             pstmt.setString(2, nuevo.getRazonSocial());
-            pstmt.setInt(3, nuevo.getPorcentajedeParticipacion());
+            pstmt.setString(3, nuevo.getCuit());
             pstmt.executeUpdate();
             System.out.println("Query ejecutada!");
         } catch (SQLException e) {
@@ -223,6 +224,7 @@ public class SqLiteDB {
             pstmt.setInt(1, index);
             pstmt.setInt(2, idSocio);
             pstmt.setInt(3, nuevo.getId());
+            pstmt.setInt(4, nuevo.getPorcentajedeParticipacion());
             pstmt.executeUpdate();
             System.out.println("Query ejecutada!");
         } catch (SQLException e) {
@@ -484,7 +486,7 @@ public class SqLiteDB {
     }
 
     public static List<Accionista> ObtenerAccionistas(int idSocio){
-        String sql = "SELECT * from Accionista WHERE ID IN(SELECT IdAccionista FROM SocioAccionista WHERE IdSocio = " + idSocio + ")";
+        String sql = "SELECT Accionista.*, SocioAccionista.PorcentajeDeParticipacion from Accionista INNER JOIN SocioAccionista ON Accionista.ID = SocioAccionista.IdAccionista WHERE Accionista.ID IN(SELECT IdAccionista FROM SocioAccionista WHERE IdSocio = " + idSocio + ")";
         List<Accionista> resultado = new ArrayList<>();
 
         try (Connection conn = connect();
@@ -495,6 +497,7 @@ public class SqLiteDB {
             while (rs.next()) {
                 Accionista a = new Accionista();
                 a.setId(rs.getInt("ID"));
+                a.setCuit(rs.getString("Cuit"));
                 a.setPorcentajedeParticipacion(rs.getInt("PorcentajeDeParticipacion"));
                 a.setRazonSocial(rs.getString("RazonSocial"));
                 resultado.add(a);
