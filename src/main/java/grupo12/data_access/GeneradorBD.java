@@ -164,28 +164,28 @@ public class GeneradorBD {
 
 
         //Documentacion
-        documentacionController.crearDocumentacion(new Documentacion(){{
+        documentacionController.crearDocumentacion(1, new Documentacion(){{
             setEstadoDoc(EstadoDocumento.Controlado);
             setFechaRecepcion(new Date());
             setIsObligatorio(true);
             setTipoDocumento(TipoDocumento.tipo1);
             setUsuario("Coby");
         }});
-        documentacionController.crearDocumentacion(new Documentacion(){{
+        documentacionController.crearDocumentacion(2, new Documentacion(){{
             setEstadoDoc(EstadoDocumento.Rechazado);
             setFechaRecepcion(new Date());
             setIsObligatorio(true);
             setTipoDocumento(TipoDocumento.tipo1);
             setUsuario("marcos");
         }});
-        documentacionController.crearDocumentacion(new Documentacion(){{
+        documentacionController.crearDocumentacion(3, new Documentacion(){{
             setEstadoDoc(EstadoDocumento.Ingresado);
             setFechaRecepcion(new Date());
             setIsObligatorio(true);
             setTipoDocumento(TipoDocumento.tipo2);
             setUsuario("Coby");
         }});
-        documentacionController.crearDocumentacion(new Documentacion(){{
+        documentacionController.crearDocumentacion(4, new Documentacion(){{
             setEstadoDoc(EstadoDocumento.Controlado);
             setFechaRecepcion(new Date());
             setIsObligatorio(true);

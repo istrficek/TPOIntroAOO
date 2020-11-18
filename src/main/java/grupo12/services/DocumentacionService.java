@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DocumentacionService {
 
-	void save(Documentacion nuev);
+	void save(int idSocio, Documentacion nuev);
 
 	Documentacion getById(Integer id);
 

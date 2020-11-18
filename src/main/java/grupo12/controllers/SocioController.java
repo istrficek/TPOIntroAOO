@@ -30,6 +30,10 @@ public class SocioController {
 	public List<Socio>obtenerSocios(TipoEmpresa tipoEmpresa){
 		return socioService.getSociosTipoEmpresa(tipoEmpresa);
 	}
+
+	public List<Socio>obtenerSocios(){
+		return socioService.getSocios();
+	}
 	
 	public Socio obtenerSocio(Integer id) {
 		return socioService.getSocio(id);

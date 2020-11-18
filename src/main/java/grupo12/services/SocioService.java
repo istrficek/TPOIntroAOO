@@ -18,6 +18,8 @@ public interface SocioService {
 
 	List<Socio> getSociosTipoEmpresa(TipoEmpresa tipoEmpresa);
 
+	List<Socio> getSocios();
+
 	Socio getSocio(Integer id);
 
 	void save(Socio socio);

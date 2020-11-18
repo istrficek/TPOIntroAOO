@@ -9,8 +9,8 @@ import java.util.List;
 public class DocumentacionServiceImp implements DocumentacionService {
 	DocumentacionRepository documentacionRepository = new DocumentacionRepository();
 
-	public void save(Documentacion nuev) {
-		SqLiteDB.InsertDocuemntacion(nuev);
+	public void save(int idSocio, Documentacion nuev) {
+		SqLiteDB.InsertDocuemntacion(idSocio, nuev);
 	}
 
 	public Documentacion getById(Integer id) {

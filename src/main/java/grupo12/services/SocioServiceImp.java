@@ -139,6 +139,10 @@ public class SocioServiceImp implements SocioService {
 		return repository.getSocioTipoEmpresa(tipoEmpresa);
 	}
 
+	public List<Socio> getSocios() {
+		return repository.getAll();
+	}
+
 	public Socio getSocio(Integer id) {
 		return repository.getById(id);
 	}

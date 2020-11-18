@@ -21,6 +21,7 @@ public class Main {
 	private static final OperacionController operacionController = new OperacionController();
 
 	public static void main(String[] args) {
+		/*
 		GeneradorBD.GenerarBaseConDatos();
 
 		//<editor-fold desc="TEST SOCIO CONTROLLER">
@@ -108,6 +109,8 @@ public class Main {
 
 
 		//</editor-fold>
+
+		 */
 
 		FrmPrincipal frame = new FrmPrincipal("Sociedad de Garantías Recíprocas");
 	}

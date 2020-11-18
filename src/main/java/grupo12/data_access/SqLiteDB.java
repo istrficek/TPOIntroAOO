@@ -541,8 +541,8 @@ public class SqLiteDB {
     //</editor-fold>
 
     //<editor-fold desc="METODOS DE DOCUMENTACION">
-    public static boolean InsertDocuemntacion(Documentacion documentacion){
-        String sql = "INSERT INTO Documentacion(ID,TipoDocumento,EstadoDoc,IsObligatorio) VALUES(?,?,?,?)";
+    public static boolean InsertDocuemntacion(int idSocio,  Documentacion documentacion){
+        String sql = "INSERT INTO Documentacion(ID,TipoDocumento,EstadoDoc,IsObligatorio, FechaRecepcion, IdSocio, Usuario) VALUES(?,?,?,?,?,?,?)";
 
         int index = ObtenerUltimoIndex("Documentacion");
 
@@ -552,6 +552,9 @@ public class SqLiteDB {
             pstmt.setString(2, documentacion.getTipoDocumento().name());
             pstmt.setString(3, documentacion.getEstadoDoc().name());
             pstmt.setBoolean(4, documentacion.getIsObligatorio());
+            pstmt.setLong(5, documentacion.getFechaRecepcion().getTime());
+            pstmt.setInt(6, idSocio);
+            pstmt.setString(7, documentacion.getUsuario());
             pstmt.executeUpdate();
             System.out.println("Query ejecutada!");
         } catch (SQLException e) {

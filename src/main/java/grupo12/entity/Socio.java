@@ -170,21 +170,9 @@ public class Socio {
 
 	@Override
 	public String toString() {
-
 		return "Socio{" +
-				"id=" + id +
-				", cuit='" + cuit + '\'' +
+				"cuit='" + cuit + '\'' +
 				", razonSocial='" + razonSocial + '\'' +
-				", fechaInicio=" + fechaInicio +
-				", actividadPrincipal='" + actividadPrincipal + '\'' +
-				", direccion='" + direccion + '\'' +
-				", telefono='" + telefono + '\'' +
-				", email='" + email + '\'' +
-				", estadoSocio=" + estadoSocio +
-				", tipoEmpresa=" + tipoEmpresa +
-				", accionistas=" + accionistas +
-				", saldoAcciones=" + saldoAcciones +
-				", tipoSocioString='" + tipoSocioString + '\'' +
 				'}';
 	}
 }
