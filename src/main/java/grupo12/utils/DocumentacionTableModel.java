@@ -13,8 +13,8 @@ public class DocumentacionTableModel extends AbstractTableModel {
 
     List<Documentacion> listaDocumentacion = new ArrayList<>();
 
-    protected String[] nombreColumnas = new String[] {"ID", "Estado Documento",  "Es Obligatorio", "Tipo de Documento"};
-    protected Class[] claseColumna = new Class[] { Integer.class, String.class, boolean.class, String.class};
+    protected String[] nombreColumnas = new String[] {"ID", "Estado Documento",  "Es Obligatorio", "Tipo de Documento", "Fecha Recepcion"};
+    protected Class[] claseColumna = new Class[] { Integer.class, String.class, boolean.class, String.class, Date.class};
 
     public String getColumnName(int col){return nombreColumnas[col];}
 
@@ -43,6 +43,8 @@ public class DocumentacionTableModel extends AbstractTableModel {
                 return listaDocumentacion.get(rowIndex).getIsObligatorio();
             case 3:
                 return listaDocumentacion.get(rowIndex).getTipoDocumento().name();
+            case 4:
+                return listaDocumentacion.get(rowIndex).getFechaRecepcion();
             default:
                 return null;
         }

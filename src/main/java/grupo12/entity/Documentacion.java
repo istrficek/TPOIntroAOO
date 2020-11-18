@@ -16,9 +16,7 @@ public class Documentacion {
 		return isObligatorio;
 	}
 
-	public void setObligatorio(Boolean obligatorio) {
-		isObligatorio = obligatorio;
-	}
+
 
 	public Date getFechaRecepcion() {
 		return fechaRecepcion;
