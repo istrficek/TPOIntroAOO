@@ -44,9 +44,8 @@ public class FrmPrincipal  extends JFrame {
         operacionesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FrmOperaciones frame = new FrmOperaciones(self, "Operaciones");
+                FrmOperacionesPrincipal frame = new FrmOperacionesPrincipal(self, "Operaciones");
                 frame.setVisible(true);
-
             }
         });
         documentacionButton.addActionListener(new ActionListener() {
