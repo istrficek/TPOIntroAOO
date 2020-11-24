@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class FrmOperacionesPrincipal extends JDialog{
     private JButton listadoDeOperacionesButton;
-    private JButton agregarOperacionButton;
+    private JButton consultasButton;
     private JButton nuevaOperacionButton;
     private JButton eliminarOperacionButton;
     private JPanel pnlPrincipal;
@@ -25,6 +25,7 @@ public class FrmOperacionesPrincipal extends JDialog{
 
         asociarEventos();
 
+
     }
 
     private void asociarEventos() {
@@ -35,6 +36,11 @@ public class FrmOperacionesPrincipal extends JDialog{
         nuevaOperacionButton.addActionListener(e -> {
             FrmNuevaOperacion frmNuevaOperacion = new FrmNuevaOperacion(self, "Nueva Operacion");
             frmNuevaOperacion.setVisible(true);
+        });
+        consultasButton.addActionListener(e -> {
+            FrmConsultasOperacion frmConsultas = new FrmConsultasOperacion(self, "Consultas");
+            frmConsultas.setVisible(true);
+
         });
     }
 }
