@@ -46,7 +46,7 @@ public interface OperacionService {
 
 	List<Operacion> getOperacionesAvaladas(int idSocio, Date fechaInicio, Date fechaFin);
 
-	boolean validarOperacion(Operacion operacion);
+	boolean validarOperacion(OperacionRequest operacion);
 
     Float getByfechaT1(Date fecha);
 }

@@ -31,6 +31,10 @@ public class SocioController {
 		return socioService.getSociosTipoEmpresa(tipoEmpresa);
 	}
 
+	public List<Socio>obtenerSociosPostulantes(){
+		return socioService.getSociosPostulantes();
+	}
+
 	public List<Socio>obtenerSocios(){
 		return socioService.getSocios();
 	}
@@ -137,5 +141,9 @@ public class SocioController {
 
 	public PosicionConsolidada obtenerPosicionConsolidada(Integer idSocio){
 		return socioService.obtenerPosicionConsolidada(idSocio);
+	}
+
+	public boolean hacerSocioPleno(Socio socioSeleccionado) {
+		return socioService.hacerSocioPleno(socioSeleccionado);
 	}
 }

@@ -21,10 +21,10 @@ public class Main {
 	private static final OperacionController operacionController = new OperacionController();
 
 	public static void main(String[] args) {
-/*
+
 		GeneradorBD.GenerarBaseConDatos();
 
-
+/*
 		//<editor-fold desc="TEST SOCIO CONTROLLER">
 		List<Accionista> accionistas = socioController.obtenerAccionistas(1);
 

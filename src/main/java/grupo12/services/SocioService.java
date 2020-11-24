@@ -43,4 +43,8 @@ public interface SocioService {
     Float obtenerComisionPorTipoDeOperacion(TipoDeOperacion tipoDeOperacion, Socio socio);
 
 	PosicionConsolidada obtenerPosicionConsolidada(Integer idSocio);
+
+    List<Socio> getSociosPostulantes();
+
+	boolean hacerSocioPleno(Socio socioSeleccionado);
 }

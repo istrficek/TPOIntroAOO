@@ -255,9 +255,10 @@ public class OperacionServiceImp implements OperacionService {
 				.collect(Collectors.toList());
 	}
 
-	public boolean validarOperacion(Operacion operacion) {
+	public boolean validarOperacion(OperacionRequest operacion) {
+		boolean debeFacturas = false;
 		FondoDeRiesgo fondoDeRiesgo = fondoDeRiesgoRepository.getFondoDeRiesgo();
-		List<Operacion> opreacionesDeSocio = socioRepository.getOperaciones(operacion.getSocio().getId());
+		List<Operacion> opreacionesDeSocio = socioRepository.getOperaciones(operacion.getIdSocio());
 		Float montoDelSocio = 0F;
 
 		for (Operacion o: opreacionesDeSocio) {

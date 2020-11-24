@@ -1262,6 +1262,36 @@ public class SqLiteDB {
         return lista;
     }
 
+    public static List<Socio> ObtenerSociosPostulantes() {
+        String sql = "SELECT * from Socio WHERE EstadoSocio = 'postulante'" ;
+        List<Socio> resultado = new ArrayList<>();
+
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)) {
+
+            // loop through the result set
+            while (rs.next()) {
+                Socio a = new Socio();
+                a.setId(rs.getInt("ID"));
+                a.setCuit(rs.getString("Cuit"));
+                a.setRazonSocial(rs.getString("RazonSocial"));
+                a.setFechaInicio(new Date(rs.getLong("FechaInicio")));
+                a.setActividadPrincipal(rs.getString("ActividadPrincipal"));
+                a.setDireccion(rs.getString("Direccion"));
+                a.setTelefono(rs.getString("Telefono"));
+                a.setEmail(rs.getString("Email"));
+                a.setEstadoSocio(EstadoSocio.valueOf(rs.getString("EstadoSocio")));
+                a.setTipoEmpresa(TipoEmpresa.valueOf(rs.getString("TipoEmpresa")));
+                a.setSaldoAcciones(rs.getInt("SaldoAcciones"));
+                a.setTipoSocio(TipoSocio.valueOf(rs.getString("TipoSocio")));
+                resultado.add(a);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return resultado;
+    }
 
 
     //</editor-fold>

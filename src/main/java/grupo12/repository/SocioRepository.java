@@ -1,5 +1,6 @@
 package grupo12.repository;
 
+import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
 import grupo12.data_access.SqLiteDB;
 import grupo12.entity.*;
 import grupo12.data_access.JsonDB;
@@ -75,5 +76,28 @@ public class SocioRepository {
 
     public List<Operacion> getOperacionesDeSociosPorTipo(List<Socio> socios, TipoDeOperacion tipoDeOperacion) {
         return SqLiteDB.getOperacionesDeSociosPorTipo(socios, tipoDeOperacion);
+    }
+
+    public List<Socio> getSociosPostulantes() {
+        return SqLiteDB.ObtenerSociosPostulantes();
+    }
+
+    public boolean hacerSocioPleno(Socio socioSeleccionado) {
+        Socio socioUpdate = new Socio(){{
+            setId(socioSeleccionado.getId());
+            setAccionistas(socioSeleccionado.getAccionistas());
+            setActividadPrincipal(socioSeleccionado.getActividadPrincipal());
+            setCuit(socioSeleccionado.getCuit());
+            setDireccion(socioSeleccionado.getDireccion());
+            setEmail(socioSeleccionado.getEmail());
+            setEstadoSocio(EstadoSocio.pleno);
+            setFechaInicio(socioSeleccionado.getFechaInicio());
+            setRazonSocial(socioSeleccionado.getRazonSocial());
+            setSaldoAcciones(socioSeleccionado.getSaldoAcciones());
+            setTelefono(socioSeleccionado.getTelefono());
+            setTipoEmpresa(socioSeleccionado.getTipoEmpresa());
+            setTipoSocio(socioSeleccionado.getTipoSocio());
+        }};
+        return SqLiteDB.ActualizarSocio(socioUpdate);
     }
 }

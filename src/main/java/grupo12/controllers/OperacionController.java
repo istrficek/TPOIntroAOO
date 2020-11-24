@@ -20,7 +20,11 @@ public class OperacionController {
 
 	// NuevaOperacion
 	public boolean crearOperacion(OperacionRequest opr, Integer idSocio) {
-
+		if(!operacionService.validarOperacion(opr))
+		{
+			System.out.println("Fallo la validacion de la operacion");
+			return false;
+		}
 		try {
 			Date fecha = new Date();
 
@@ -41,6 +45,11 @@ public class OperacionController {
 				op1.setTasaDeDescuento(opr.getTasaDeDescuento());
 				op1.setTipoDeOperacion(opr.getTipoDeOperacion());
 				op1.setIdSocio(idSocio);
+
+				if(!operacionService.validarChequesDelMismoFirmante(op1)) {
+					System.out.println("Fallo la validacion de cheques de un mismo firmante");
+					return false;
+				}
 
 				operacionService.savet1(op1);
 
@@ -261,18 +270,9 @@ public class OperacionController {
 		}
 	}
 
-	public boolean validarChequesDelMismoFirmante(Tipo1 operacion){
-		return operacionService.validarChequesDelMismoFirmante(operacion);
-	}
-
-	public boolean validarOperacion(Operacion operacion){
-		return operacionService.validarOperacion(operacion);
-	}
-
 	public List<Operacion> getOperacionesAvaladas(int idSocio, Date fechaInicio, Date fechaFin){
 		return operacionService.getOperacionesAvaladas(idSocio, fechaInicio, fechaFin);
 	}
-
 
 	public Float comisionesChequesCalculadas(Date fecha){
 		return operacionService.getByfechaT1(fecha);

@@ -12,6 +12,7 @@ public class FrmSociosPrincipal extends JDialog {
     private JButton agregarDocumentacionButton;
     private JButton nuevoSocioButton;
     private JButton eliminarSocioButton;
+    private JButton aprobarSocioButton;
     private FrmSociosPrincipal self;
 
     public FrmSociosPrincipal(Window owner, String titulo){
@@ -24,7 +25,6 @@ public class FrmSociosPrincipal extends JDialog {
         setLocationRelativeTo(null);
         this.self = this;
         this.asociarEventos();
-
     }
 
     public void asociarEventos(){
@@ -41,6 +41,11 @@ public class FrmSociosPrincipal extends JDialog {
         agregarDocumentacionButton.addActionListener(e -> {
             FrmAgregarDocumentacion frame = new FrmAgregarDocumentacion(self, "Agregar Documentación");
             frame.setVisible(true);
+        });
+        aprobarSocioButton.addActionListener(e -> {
+            FrmAprobarSocio frmAprobarSocio = new FrmAprobarSocio(self, "Aprobar Socio");
+            frmAprobarSocio.setVisible(true);
+
         });
     }
 

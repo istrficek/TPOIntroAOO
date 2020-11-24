@@ -57,6 +57,8 @@ public class SocioServiceImp implements SocioService {
 	}
 
 	public boolean verificarSocio(Socio s) {
+		if(s.getTipoSocio() == TipoSocio.Participe)
+			return true;
 		List<Accionista> accionistas = getAccionistas(s.getId());
 		List<Participe> participes = getSociosParticipes();
 
@@ -133,6 +135,19 @@ public class SocioServiceImp implements SocioService {
 		posicionConsolidada.setTotalUtilizado(totalUtilizado);
 
 		return posicionConsolidada;
+	}
+
+	public List<Socio> getSociosPostulantes() {
+		return repository.getSociosPostulantes();
+	}
+
+	public boolean hacerSocioPleno(Socio socioSeleccionado) {
+		if(verificarSocio(socioSeleccionado)){
+			return repository.hacerSocioPleno(socioSeleccionado);
+		}else{
+			System.out.println("Validacion de socio pleno fallida!");
+			return false;
+		}
 	}
 
 	public List<Socio> getSociosTipoEmpresa(TipoEmpresa tipoEmpresa) {
