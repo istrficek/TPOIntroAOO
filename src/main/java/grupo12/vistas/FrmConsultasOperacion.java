@@ -2,6 +2,8 @@ package grupo12.vistas;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class FrmConsultasOperacion extends JDialog {
     private FrmConsultasOperacion self;
@@ -10,6 +12,7 @@ public class FrmConsultasOperacion extends JDialog {
     private JButton calcularComisionButton;
     private JButton validarOperacionButton;
     private JPanel Principal;
+    private JButton calcularValorPromedioButton;
 
     public FrmConsultasOperacion(Window owner, String titulo){
         super(owner, titulo);
@@ -20,5 +23,16 @@ public class FrmConsultasOperacion extends JDialog {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         this.self = this;
+
+        asociarEventos();
     }
+
+    private void asociarEventos(){
+        calcularValorPromedioButton.addActionListener(e -> {
+            FrmValorPromedio frmValorPromedio = new FrmValorPromedio(self, "Calcular Valor Promedio");
+            frmValorPromedio.setVisible(true);
+
+        });
+    }
+
 }

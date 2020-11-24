@@ -166,7 +166,6 @@ public class FrmNuevaOperacion extends JDialog {
                             setMonto(new Float(txtMonto.getText()));
                             setFecha(new Date());
                             setTipoOpe(3);
-                            //TODO Terminar los set de TIPO 3
                             setBanco(txtBancoT3.getText());
                             try {
                                 setFechaActualizacion(new SimpleDateFormat("dd/MM/yyyy").parse(txtFechaActualizacion.getText()));
