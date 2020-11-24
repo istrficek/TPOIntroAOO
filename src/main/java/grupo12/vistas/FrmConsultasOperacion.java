@@ -14,6 +14,7 @@ public class FrmConsultasOperacion extends JDialog {
     private JPanel Principal;
     private JButton calcularValorPromedioButton;
     private JButton comisionPorTipoDeButton;
+    private JButton posicionConsolidadaButton;
 
     public FrmConsultasOperacion(Window owner, String titulo){
         super(owner, titulo);
@@ -26,7 +27,6 @@ public class FrmConsultasOperacion extends JDialog {
         this.self = this;
 
         asociarEventos();
-
     }
 
     private void asociarEventos() {
@@ -57,6 +57,10 @@ public class FrmConsultasOperacion extends JDialog {
             FrmComisionPorTipoOperacion frmComisionPorTipoOperacion = new FrmComisionPorTipoOperacion(self, "Comision por Tipo de Operacion");
             frmComisionPorTipoOperacion.setVisible(true);
 
+        });
+        posicionConsolidadaButton.addActionListener(e -> {
+            FrmPosicionConsolidada frmPosicionConsolidada = new FrmPosicionConsolidada(self, "Posicion Consolidada");
+            frmPosicionConsolidada.setVisible(true);
         });
     }
 
