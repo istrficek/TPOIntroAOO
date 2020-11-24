@@ -29,18 +29,7 @@ public class FrmConsultasOperacion extends JDialog {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         this.self = this;
-        operacionesAvaladasMonetizadasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                FrmOperacionesAvaladas frame = null;
-                try {
-                    frame = new FrmOperacionesAvaladas(self, "Operaciones Avaladas");
-                } catch (ParseException parseException) {
-                    parseException.printStackTrace();
-                }
-                frame.setVisible(true);
-            }
-        });
+
 
         asociarEventos();
     }
@@ -54,11 +43,11 @@ public class FrmConsultasOperacion extends JDialog {
             FrmNuevaOperacion frmNuevaOperacion = new FrmNuevaOperacion(self, "Operaciones Avaladas");
             frmNuevaOperacion.setVisible(true);
         });
-        validarChequesDelMismoButton.addActionListener(e -> {
-            FrmConsultasOperacion frmConsultas = new FrmConsultasOperacion(self, "Validar Cheques Del Mismo Firmante");
-            frmConsultas.setVisible(true);
+        //validarChequesDelMismoButton.addActionListener(e -> {
+          //  FrmConsultasOperacion frmConsultas = new FrmConsultasOperacion(self, "Validar Cheques Del Mismo Firmante");
+            //frmConsultas.setVisible(true);
 
-        });
+        //});
         validarOperacionButton.addActionListener(e -> {
             FrmConsultasOperacion frmConsultas = new FrmConsultasOperacion(self, "Validar Operacion");
             frmConsultas.setVisible(true);
@@ -68,6 +57,18 @@ public class FrmConsultasOperacion extends JDialog {
             FrmValorPromedio frmValorPromedio = new FrmValorPromedio(self, "Calcular Valor Promedio");
             frmValorPromedio.setVisible(true);
 
+        });
+        operacionesAvaladasMonetizadasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrmOperacionesAvaladas frame = null;
+                try {
+                    frame = new FrmOperacionesAvaladas(self, "Operaciones Avaladas");
+                } catch (ParseException parseException) {
+                    parseException.printStackTrace();
+                }
+                frame.setVisible(true);
+            }
         });
         comisionPorTipoDeButton.addActionListener(e -> {
             FrmComisionPorTipoOperacion frmComisionPorTipoOperacion = new FrmComisionPorTipoOperacion(self, "Comision por Tipo de Operacion");

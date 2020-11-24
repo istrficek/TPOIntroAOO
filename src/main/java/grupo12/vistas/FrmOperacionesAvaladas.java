@@ -23,7 +23,7 @@ public class FrmOperacionesAvaladas extends JDialog {
         super(owner, titulo);
         setContentPane(pnlPrincipal);
 
-        this.setSize(600, 130);
+        this.setSize(600, 150);
         this.setModal(true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
