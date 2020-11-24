@@ -86,7 +86,7 @@ public class GeneradorBD {
             setEstadoSocio(EstadoSocio.pleno);
             setFechaInicio(new Date());
             setParticipe(false);
-            setRazonSocial("El Socio Protector S.A");
+            setRazonSocial("El Socio Protector 4 S.A");
             setSaldoAccionesTipo(1223);
             setTelefono("1548756525");
             setTipoEmpresa(TipoEmpresa.Mediana);
@@ -100,7 +100,7 @@ public class GeneradorBD {
             setEstadoSocio(EstadoSocio.postulante);
             setFechaInicio(new Date());
             setParticipe(false);
-            setRazonSocial("El Socio Protector S.A");
+            setRazonSocial("El Socio Protector 5 S.A");
             setSaldoAccionesTipo(1223);
             setTelefono("1548756525");
             setTipoEmpresa(TipoEmpresa.Grande);
@@ -114,7 +114,7 @@ public class GeneradorBD {
             setEstadoSocio(EstadoSocio.pleno);
             setFechaInicio(new Date());
             setParticipe(false);
-            setRazonSocial("El Socio Protector S.A");
+            setRazonSocial("El Socio Protector 6 S.A");
             setSaldoAccionesTipo(1223);
             setTelefono("1548756525");
             setTipoEmpresa(TipoEmpresa.Pequenia);
@@ -210,12 +210,101 @@ public class GeneradorBD {
             setTipoDeOperacion(TipoDeOperacion.Tipo1);
             setMonto((float) 3);
             setFecha(new Date());
-            setCuitFirmante("adadasd");
+            setCuitFirmante(GenerarCUIT());
             setIdSocio(2);
             setTipoOpe(1);
             setNroCheques((long) 2);
             
         }},2);
+
+        // Opeaciones Posicion Consolidada
+        operacionController.crearOperacion(new OperacionRequest(){{
+            setEstadoOperacion(EstadoOperacion.Monetizada);
+            setTasaDeDescuento((float) 3);
+            setComisionAlSocio((float) 4);
+            setEstadoComision(EstadoComision.Calculada);
+            setTipoDeOperacion(TipoDeOperacion.Tipo1);
+            setMonto((float) 3);
+            setFecha(new Date());
+            setCuitFirmante(GenerarCUIT());
+            setIdSocio(2);
+            setTipoOpe(1);
+            setNroCheques((long) 2);
+
+        }},5);
+        operacionController.crearOperacion(new OperacionRequest(){{
+            setEstadoOperacion(EstadoOperacion.Monetizada);
+            setTasaDeDescuento((float) 3);
+            setComisionAlSocio((float) 4);
+            setEstadoComision(EstadoComision.Calculada);
+            setTipoDeOperacion(TipoDeOperacion.Tipo1);
+            setMonto((float) 3);
+            setFecha(new Date());
+            setCuitFirmante(GenerarCUIT());
+            setIdSocio(2);
+            setTipoOpe(1);
+            setNroCheques((long) 2);
+
+        }},5);
+        operacionController.crearOperacion(new OperacionRequest(){{
+            setEstadoOperacion(EstadoOperacion.Monetizada);
+            setTasaDeDescuento((float) 3);
+            setComisionAlSocio((float) 4);
+            setEstadoComision(EstadoComision.Calculada);
+            setTipoDeOperacion(TipoDeOperacion.Tipo1);
+            setMonto((float) 3);
+            setFecha(new Date());
+            setCuitFirmante(GenerarCUIT());
+            setIdSocio(2);
+            setTipoOpe(1);
+            setNroCheques((long) 2);
+
+        }},5);
+
+        operacionController.crearOperacion(new OperacionRequest(){{
+            setEstadoOperacion(EstadoOperacion.ConCertificadoEmitido);
+            setTasaDeDescuento((float) 3);
+            setComisionAlSocio((float) 4);
+            setEstadoComision(EstadoComision.Calculada);
+            setTipoDeOperacion(TipoDeOperacion.Tipo1);
+            setMonto((float) 3);
+            setFecha(new Date());
+            setCuitFirmante(GenerarCUIT());
+            setIdSocio(2);
+            setTipoOpe(1);
+            setNroCheques((long) 2);
+
+        }},5);
+
+        operacionController.crearOperacion(new OperacionRequest(){{
+            setEstadoOperacion(EstadoOperacion.ConCertificadoEmitido);
+            setTasaDeDescuento((float) 3);
+            setComisionAlSocio((float) 4);
+            setEstadoComision(EstadoComision.Calculada);
+            setTipoDeOperacion(TipoDeOperacion.Tipo1);
+            setMonto((float) 3);
+            setFecha(new Date());
+            setCuitFirmante(GenerarCUIT());
+            setIdSocio(2);
+            setTipoOpe(1);
+            setNroCheques((long) 2);
+
+        }},5);
+
+        operacionController.crearOperacion(new OperacionRequest(){{
+            setEstadoOperacion(EstadoOperacion.ConCertificadoEmitido);
+            setTasaDeDescuento((float) 3);
+            setComisionAlSocio((float) 4);
+            setEstadoComision(EstadoComision.Calculada);
+            setTipoDeOperacion(TipoDeOperacion.Tipo1);
+            setMonto((float) 3);
+            setFecha(new Date());
+            setCuitFirmante(GenerarCUIT());
+            setIdSocio(2);
+            setTipoOpe(1);
+            setNroCheques((long) 2);
+
+        }},5);
 
     }
 

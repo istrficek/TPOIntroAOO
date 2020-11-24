@@ -131,6 +131,7 @@ public class SocioServiceImp implements SocioService {
 
 		totalUtilizado += riesgoVivo;
 		posicionConsolidada.setOperacionesConCertificadoEmitido(operacionesCertificadoEmitido);
+		posicionConsolidada.setOperacionesMonetizadasNoVencidas(operacionesMonetizadas);
 		posicionConsolidada.setRiesgoVivo(riesgoVivo);
 		posicionConsolidada.setTotalUtilizado(totalUtilizado);
 

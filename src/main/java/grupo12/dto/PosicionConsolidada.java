@@ -25,6 +25,7 @@ public class PosicionConsolidada {
                 setMonto(o.getMonto());
                 setFecha(o.getFecha());
             }};
+            operacionRequestList.add(or);
         }
         return operacionRequestList;
     }
@@ -62,6 +63,7 @@ public class PosicionConsolidada {
                 setMonto(o.getMonto());
                 setFecha(o.getFecha());
             }};
+            operacionRequestList.add(or);
         }
         return operacionRequestList;
     }
