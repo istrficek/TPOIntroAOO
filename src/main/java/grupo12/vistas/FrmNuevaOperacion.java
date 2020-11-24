@@ -63,6 +63,7 @@ public class FrmNuevaOperacion extends JDialog {
             txtFechaActualizacion = new JFormattedTextField(maskFormatter);
         } catch (ParseException e) {
             e.printStackTrace();
+            e.printStackTrace();
         }
 
         DefaultComboBoxModel model = new DefaultComboBoxModel();
