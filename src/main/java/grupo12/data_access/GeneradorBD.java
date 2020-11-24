@@ -210,6 +210,7 @@ public class GeneradorBD {
             setTipoDeOperacion(TipoDeOperacion.Tipo1);
             setMonto((float) 3);
             setFecha(new Date());
+            setCuitFirmante("adadasd");
             setIdSocio(2);
             setTipoOpe(1);
             setNroCheques((long) 2);
