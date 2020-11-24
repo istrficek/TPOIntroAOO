@@ -251,4 +251,13 @@ public class OperacionRequest {
 	public void setLineaDeCredito(LineaDeCredito lineaDeCredito) {
 		this.lineaDeCredito = lineaDeCredito;
 	}
+
+	@Override
+	public String toString() {
+		return "OperacionRequest{" +
+				", id=" + id +
+				", tipoDeOperacion=" + tipoDeOperacion +
+				", monto=" + monto +
+				'}';
+	}
 }
