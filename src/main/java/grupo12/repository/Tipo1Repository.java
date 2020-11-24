@@ -1,5 +1,7 @@
 package grupo12.repository;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -54,4 +56,19 @@ public class Tipo1Repository {
 		List<Tipo1> tipo1List = SqLiteDB.ObtenerOperacionesTipo1();
 		return tipo1List.stream().filter(tipo1 -> tipo1.getEstadoOperacion() == estadoOperacion && tipo1.getFecha().after(fechaInicio) && tipo1.getFecha().before(fechaFin)).collect(Collectors.toList());
 	}
+
+    public List<Tipo1> getByFecha(Date fecha) {
+		List<Tipo1> t1= SqLiteDB.ObtenerOperacionesTipo1();
+		List<Tipo1> resultado = new ArrayList<Tipo1>();
+		for (Tipo1 t: t1) {
+			DateFormat readFormat = new SimpleDateFormat("dd/MM/yyyy");
+			String date = readFormat.format(t.getFecha());
+			String date2= readFormat.format(fecha);
+			if(date.equals(date2)){
+				resultado.add(t);
+			}
+
+		}
+		return resultado;
+    }
 }

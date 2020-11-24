@@ -272,6 +272,11 @@ public class OperacionController {
 	public List<Operacion> getOperacionesAvaladas(int idSocio, Date fechaInicio, Date fechaFin){
 		return operacionService.getOperacionesAvaladas(idSocio, fechaInicio, fechaFin);
 	}
+
+
+	public Float comisionesChequesCalculadas(Date fecha){
+		return operacionService.getByfechaT1(fecha);
+	}
 	
 
 	
