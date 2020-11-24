@@ -13,8 +13,8 @@ public class AccionistasTableModel extends AbstractTableModel {
 
     List<Accionista> listaAccionistas = new ArrayList<>();
 
-    protected String[] nombreColumnas = new String[] {"ID", "RazonSocial",  "Porcentaje de Participacion"};
-    protected Class[] claseColumna = new Class[] { Integer.class, String.class, Float.class};
+    protected String[] nombreColumnas = new String[] {"ID", "RazonSocial",  "CUIT"};
+    protected Class[] claseColumna = new Class[] { Integer.class, String.class, String.class};
 
     public String getColumnName(int col){return nombreColumnas[col];}
 
@@ -40,7 +40,7 @@ public class AccionistasTableModel extends AbstractTableModel {
             case 1:
                 return listaAccionistas.get(rowIndex).getRazonSocial();
             case 2:
-                return listaAccionistas.get(rowIndex).getPorcentajedeParticipacion();
+                return listaAccionistas.get(rowIndex).getCuit();
             default:
                 return null;
         }

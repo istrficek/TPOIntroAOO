@@ -119,6 +119,7 @@ CREATE TABLE Operacion (
 );
 
 CREATE TABLE AporteFondoDeRiesgo (
+	ID integer PRIMARY KEY,
 	Monto real NULL,
 	IdSocio integer NULL,
 	FechaAporte integer NULL,

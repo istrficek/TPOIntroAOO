@@ -251,7 +251,7 @@ public class SqLiteDB {
             while (rs.next()) {
                 Accionista a = new Accionista();
                 a.setId(rs.getInt("ID"));
-                a.setPorcentajedeParticipacion(rs.getInt("PorcentajeDeParticipacion"));
+                a.setCuit(rs.getString("Cuit"));
                 a.setRazonSocial(rs.getString("RazonSocial"));
                 resultado.add(a);
             }
