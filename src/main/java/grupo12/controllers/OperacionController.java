@@ -14,6 +14,8 @@ public class OperacionController {
 	
 	private OperacionService operacionService = new OperacionServiceImp();
 
+	private FondoDeRiesgoService fondoDeRiesgoService = new FondoDeRiesgoServiceImp();
+
 	private SocioService socioService = new SocioServiceImp();
 
 	private CertificadoDeGarantiaService certificadoService = new CertificadoDeGarantiaServiceImp();
@@ -303,30 +305,9 @@ public class OperacionController {
 		return listaOperacionesRequest;
 
 	}
-	
 
-	
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
+	public boolean insertAporteFDR(AporteFondoDeRiesgo aporteFondoDeRiesgo){
+		return fondoDeRiesgoService.insertAporteFondoDeRiesgo(aporteFondoDeRiesgo);
+	}
 
 }

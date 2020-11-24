@@ -7,6 +7,15 @@ public class AporteFondoDeRiesgo {
     private Float monto;
     private Date fechaAporte;
     private boolean aporteVigente;
+    private int IdSocio;
+
+    public int getIdSocio() {
+        return IdSocio;
+    }
+
+    public void setIdSocio(int idSocio) {
+        IdSocio = idSocio;
+    }
 
     public int getId() {
         return id;

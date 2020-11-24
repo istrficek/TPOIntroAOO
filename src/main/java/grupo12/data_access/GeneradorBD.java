@@ -5,6 +5,7 @@ import grupo12.controllers.DocumentacionController;
 import grupo12.controllers.OperacionController;
 import grupo12.controllers.SocioController;
 import grupo12.entity.*;
+import grupo12.repository.FondoDeRiesgoRepository;
 import grupo12.request.OperacionRequest;
 import grupo12.request.SocioRequest;
 
@@ -118,6 +119,13 @@ public class GeneradorBD {
             setTelefono("1548756525");
             setTipoEmpresa(TipoEmpresa.Pequenia);
 
+        }});
+        // Aportes Fondo de riesgo
+        socioController.insertarAporteFDR(new AporteFondoDeRiesgo(){{
+            setMonto(12345F);
+            setAporteVigente(true);
+            setFechaAporte(new Date());
+            setIdSocio(5);
         }});
         // Accionistas
         accionistaController.crearAccionista(new Accionista(){{

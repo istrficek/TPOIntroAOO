@@ -146,6 +146,7 @@ public class SqLiteDB {
                 "Paga integer NULL\n" +
                 ")");
         listsql.add("CREATE TABLE AporteFondoDeRiesgo (\n" +
+                "ID integer PRIMARY KEY,\n" +
                 "Monto real NULL,\n" +
                 "IdSocio integer NULL,\n" +
                 "FechaAporte integer NULL,\n" +
@@ -1291,6 +1292,27 @@ public class SqLiteDB {
             System.out.println(e.getMessage());
         }
         return resultado;
+    }
+
+    public static boolean InsertarAporteFondoDeRiesgo(AporteFondoDeRiesgo aporteFondoDeRiesgo) {
+        String sql = "INSERT INTO AporteFondoDeRiesgo(ID,Monto,IdSocio,FechaAporte, AporteVigente) VALUES(?,?,?,?,?)";
+
+        int index = ObtenerUltimoIndex("AporteFondoDeRiesgo") + 1;
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, index);
+            pstmt.setFloat(2, aporteFondoDeRiesgo.getMonto());
+            pstmt.setInt(3, aporteFondoDeRiesgo.getIdSocio());
+            pstmt.setLong(4, aporteFondoDeRiesgo.getFechaAporte().getTime());
+            pstmt.setBoolean(5, aporteFondoDeRiesgo.isAporteVigente());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+        return true;
     }
 
 

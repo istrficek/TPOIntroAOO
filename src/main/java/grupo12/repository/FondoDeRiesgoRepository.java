@@ -2,6 +2,7 @@ package grupo12.repository;
 
 import grupo12.data_access.JsonDB;
 import grupo12.data_access.SqLiteDB;
+import grupo12.entity.AporteFondoDeRiesgo;
 import grupo12.entity.CertificadoDeGarantia;
 import grupo12.entity.FondoDeRiesgo;
 
@@ -30,5 +31,9 @@ public class FondoDeRiesgoRepository {
 
     public FondoDeRiesgo getFondoDeRiesgo() {
         return SqLiteDB.ObtenerFondoDeRiesgo();
+    }
+
+    public boolean insertAporteFondoDeRiesgo(AporteFondoDeRiesgo aporteFondoDeRiesgo) {
+        return SqLiteDB.InsertarAporteFondoDeRiesgo(aporteFondoDeRiesgo);
     }
 }

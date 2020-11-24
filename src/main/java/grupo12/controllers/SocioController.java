@@ -146,4 +146,8 @@ public class SocioController {
 	public boolean hacerSocioPleno(Socio socioSeleccionado) {
 		return socioService.hacerSocioPleno(socioSeleccionado);
 	}
+
+	public boolean insertarAporteFDR(AporteFondoDeRiesgo aporteFondoDeRiesgo){
+		return fondoDeRiesgoService.insertAporteFondoDeRiesgo(aporteFondoDeRiesgo);
+	}
 }
