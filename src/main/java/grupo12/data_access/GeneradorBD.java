@@ -217,6 +217,130 @@ public class GeneradorBD {
             
         }},2);
 
+        operacionController.crearOperacion(new OperacionRequest(){{
+            setEstadoOperacion(EstadoOperacion.Ingresado);
+            setTasaDeDescuento((float) 3);
+            setComisionAlSocio((float) 4);
+            setEstadoComision(EstadoComision.Calculada);
+            setTipoDeOperacion(TipoDeOperacion.Tipo1);
+            setMonto((float) 4);
+            setFecha(new Date());
+            setIdSocio(3);
+            setTipoOpe(1);
+            setNroCheques((long) 3);
+
+            setBancoCheques("Santander");
+            setComisionAlSocio((float) 500);
+            setCuitFirmante("20356981477");
+            setFechaVencimiento(new Date("August 19, 2021 23:15:30"));
+            setTasaDeDescuento((float) 30);
+
+
+        }},3);
+
+        operacionController.crearOperacion(new OperacionRequest(){{
+            setEstadoOperacion(EstadoOperacion.ConCertificadoEmitido);
+            setTasaDeDescuento((float) 3);
+            setComisionAlSocio((float) 4);
+            setEstadoComision(EstadoComision.Facturada);
+            setTipoDeOperacion(TipoDeOperacion.Tipo1);
+            setMonto((float) 4);
+            setFecha(new Date());
+            setIdSocio(3);
+            setTipoOpe(1);
+            setNroCheques((long) 3);
+
+            setBancoCheques("BBVA");
+            setComisionAlSocio((float) 500);
+            setCuitFirmante("20353230247");
+            setFechaVencimiento(new Date("August 5, 2021 23:15:30"));
+            setTasaDeDescuento((float) 30);
+
+
+        }},3);
+
+        operacionController.crearOperacion(new OperacionRequest(){{
+            setEstadoOperacion(EstadoOperacion.Ingresado);
+            setTasaDeDescuento((float) 3);
+            setComisionAlSocio((float) 4);
+            setEstadoComision(EstadoComision.Facturada);
+            setTipoDeOperacion(TipoDeOperacion.Tipo1);
+            setMonto((float) 7);
+            setFecha(new Date());
+            setIdSocio(3);
+            setTipoOpe(1);
+            setNroCheques((long) 3);
+
+            setBancoCheques("Patagonia");
+            setComisionAlSocio((float) 500);
+            setCuitFirmante("20336981477");
+            setFechaVencimiento(new Date("August 7, 2021 23:15:30"));
+            setTasaDeDescuento((float) 30);
+
+
+        }},4);
+
+
+        operacionController.crearOperacion(new OperacionRequest(){{
+            setEstadoOperacion(EstadoOperacion.Ingresado);
+            setTasaDeDescuento((float) 3);
+            setComisionAlSocio((float) 4);
+            setEstadoComision(EstadoComision.Facturada);
+            setTipoDeOperacion(TipoDeOperacion.Tipo2);
+            setMonto((float) 7);
+            setFecha(new Date());
+            setIdSocio(3);
+            setTipoOpe(2);
+            setNroCheques((long) 3);
+
+            setEmpresaCuentaCorriente("Mercado Pago");
+            setFechaVencimiento(new Date("August 3, 2021 23:15:30"));
+
+
+        }},3);
+
+
+        operacionController.crearOperacion(new OperacionRequest(){{
+            setEstadoOperacion(EstadoOperacion.Monetizada);
+            setTasaDeDescuento((float) 3);
+            setComisionAlSocio((float) 4);
+            setEstadoComision(EstadoComision.Calculada);
+            setTipoDeOperacion(TipoDeOperacion.Tipo2);
+            setMonto((float) 7);
+            setFecha(new Date());
+            setIdSocio(3);
+            setTipoOpe(2);
+            setNroCheques((long) 3);
+
+            setEmpresaCuentaCorriente("Uala");
+            setFechaVencimiento(new Date("August 1, 2022 23:15:30"));
+
+
+        }},3);
+
+        operacionController.crearOperacion(new OperacionRequest(){{
+            setEstadoOperacion(EstadoOperacion.Monetizada);
+            setTasaDeDescuento((float) 3);
+            setComisionAlSocio((float) 4);
+            setEstadoComision(EstadoComision.Calculada);
+            setTipoDeOperacion(TipoDeOperacion.Tipo3);
+            setMonto((float) 7);
+            setFecha(new Date());
+            setIdSocio(3);
+            setTipoOpe(3);
+            setNroCheques((long) 3);
+
+            setBanco("Patogonia");
+            setFechaActualizacion(new Date("August 22, 2021 23:15:30"));
+            setCantidadDeCuotas(1);
+            setTasa(5);
+            setSistema(Sistema.Frances);
+
+
+
+        }},3);
+
+
         // Opeaciones Posicion Consolidada
         operacionController.crearOperacion(new OperacionRequest(){{
             setEstadoOperacion(EstadoOperacion.Monetizada);

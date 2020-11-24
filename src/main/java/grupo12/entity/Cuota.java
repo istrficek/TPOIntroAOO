@@ -44,4 +44,12 @@ public class Cuota {
 
     public Cuota() {
     }
+
+    public Cuota(Integer id, int numeroDeCuota, float valor, boolean paga, Date fechaVencimiento) {
+        this.id = id;
+        this.numeroDeCuota = numeroDeCuota;
+        this.valor = valor;
+        this.paga = paga;
+        this.fechaVencimiento = fechaVencimiento;
+    }
 }
