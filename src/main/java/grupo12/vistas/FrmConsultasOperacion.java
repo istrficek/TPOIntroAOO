@@ -13,18 +13,20 @@ public class FrmConsultasOperacion extends JDialog {
     private JButton validarOperacionButton;
     private JPanel Principal;
     private JButton calcularValorPromedioButton;
+    private JButton comisionPorTipoDeButton;
 
     public FrmConsultasOperacion(Window owner, String titulo){
         super(owner, titulo);
         setContentPane(Principal);
 
-        this.setSize(500, 500);
+        this.setSize(700, 500);
         this.setModal(true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         this.self = this;
 
         asociarEventos();
+
     }
 
     private void asociarEventos() {
@@ -49,6 +51,11 @@ public class FrmConsultasOperacion extends JDialog {
         calcularValorPromedioButton.addActionListener(e -> {
             FrmValorPromedio frmValorPromedio = new FrmValorPromedio(self, "Calcular Valor Promedio");
             frmValorPromedio.setVisible(true);
+
+        });
+        comisionPorTipoDeButton.addActionListener(e -> {
+            FrmComisionPorTipoOperacion frmComisionPorTipoOperacion = new FrmComisionPorTipoOperacion(self, "Comision por Tipo de Operacion");
+            frmComisionPorTipoOperacion.setVisible(true);
 
         });
     }
