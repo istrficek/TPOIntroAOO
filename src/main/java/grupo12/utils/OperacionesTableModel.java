@@ -51,7 +51,7 @@ public class OperacionesTableModel  extends AbstractTableModel {
             case 6:
                 return listaOperaciones.get(rowIndex).getFecha();
             case 7:
-                return listaOperaciones.get(rowIndex).getCerificadoDeGarantia().getDescripcion();
+                return listaOperaciones.get(rowIndex).getCerificadoDeGarantia() == null ? "" : listaOperaciones.get(rowIndex).getCerificadoDeGarantia().getDescripcion();
             default:
                 return null;
         }

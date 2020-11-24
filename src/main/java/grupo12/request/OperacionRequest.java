@@ -31,9 +31,19 @@ public class OperacionRequest {
 
 	private FondoDeRiesgo fondoDeRiesgo;
 
+	public Integer getIdSocio() {
+		return IdSocio;
+	}
+
+	public void setIdSocio(Integer idSocio) {
+		IdSocio = idSocio;
+	}
+
 	private CertificadoDeGarantia cerificadoDeGarantia;
 
 	private LineaDeCredito lineaDeCredito;
+
+	private Integer IdSocio;
 	
 	//Tipo 1
 	private String bancoCheques;

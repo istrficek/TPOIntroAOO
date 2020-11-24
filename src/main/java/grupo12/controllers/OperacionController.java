@@ -4,6 +4,7 @@ import grupo12.entity.*;
 import grupo12.request.OperacionRequest;
 import grupo12.services.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,79 +19,113 @@ public class OperacionController {
 	private CertificadoDeGarantiaService certificadoService = new CertificadoDeGarantiaServiceImp();
 
 	// NuevaOperacion
-	public void crearOperacion(OperacionRequest opr, Integer idSocio) {
+	public boolean crearOperacion(OperacionRequest opr, Integer idSocio) {
 
-		Date fecha = new Date();
-		
-		switch (opr.getTipoOpe()) {
-		case 1 :
-			Tipo1 op1 = new Tipo1();
-			
-			op1.setId(opr.getId());
-			op1.setBancoCheques(opr.getBancoCheques());
-			op1.setComisionAlSocio(opr.getComisionAlSocio());
-			op1.setCuitFirmante(opr.getCuitFirmante());
-			op1.setEstadoComision(opr.getEstadoComision());
-			op1.setEstadoOperacion(opr.getEstadoOperacion());
-			op1.setFecha(opr.getFecha());
-			op1.setFechaVencimiento(fecha);
-			op1.setMonto(opr.getMonto());
-			op1.setNroCheques(opr.getNroCheques());
-			op1.setTasaDeDescuento(opr.getTasaDeDescuento());
-			op1.setTipoDeOperacion(opr.getTipoDeOperacion());
-			op1.setIdSocio(idSocio);
+		try {
+			Date fecha = new Date();
 
-			operacionService.savet1(op1);
+			switch (opr.getTipoOpe()) {
+			case 1 :
+				Tipo1 op1 = new Tipo1();
 
-			break;
-		
-		case 2:
-			Tipo2 op2 = new Tipo2();
-			op2.setId(opr.getId());
-			op2.setComisionAlSocio(opr.getComisionAlSocio());
-			op2.setEstadoComision(opr.getEstadoComision());
-			op2.setEstadoOperacion(opr.getEstadoOperacion());
-			op2.setFecha(fecha);
-			op2.setFechaVencimiento(opr.getFechaVencimiento());
-			op2.setMonto(opr.getMonto());
-			op2.setTasaDeDescuento(opr.getTasaDeDescuento());
-			op2.setTipoDeOperacion(opr.getTipoDeOperacion());
-			op2.setIdSocio(idSocio);
-			
-			op2.setEmpresaCuentaCorriente(opr.getEmpresaCuentaCorriente());
-			op2.setFechaVencimiento(opr.getFechaVencimiento());
+				op1.setId(opr.getId());
+				op1.setBancoCheques(opr.getBancoCheques());
+				op1.setComisionAlSocio(opr.getComisionAlSocio());
+				op1.setCuitFirmante(opr.getCuitFirmante());
+				op1.setEstadoComision(opr.getEstadoComision());
+				op1.setEstadoOperacion(opr.getEstadoOperacion());
+				op1.setFecha(opr.getFecha());
+				op1.setFechaVencimiento(fecha);
+				op1.setMonto(opr.getMonto());
+				op1.setNroCheques(opr.getNroCheques());
+				op1.setTasaDeDescuento(opr.getTasaDeDescuento());
+				op1.setTipoDeOperacion(opr.getTipoDeOperacion());
+				op1.setIdSocio(idSocio);
 
-			operacionService.savet2(op2);
-			
-			break;
-		
-		case 3:
-			Tipo3 op3 = new Tipo3();
-			
-			op3.setId(opr.getId());
-			op3.setComisionAlSocio(opr.getComisionAlSocio());
-			op3.setEstadoComision(opr.getEstadoComision());
-			op3.setEstadoOperacion(opr.getEstadoOperacion());
-			op3.setFecha(fecha);
-			op3.setMonto(opr.getMonto());
-			op3.setTasaDeDescuento(opr.getTasaDeDescuento());
-			op3.setTipoDeOperacion(opr.getTipoDeOperacion());
-			op3.setIdSocio(idSocio);
-			
-			op3.setBanco(opr.getBanco());
-			op3.setFechaActualizacion(opr.getFechaActualizacion());
-			op3.setCuotas(opr.getCuotas());
-			op3.setTasa(opr.getTasa());
-			op3.setSistema(opr.getSistema());
-			operacionService.savet3(op3);
-			break;
-		
-		default:
-			System.out.println("error");
-			break;
-			
+				operacionService.savet1(op1);
+
+				break;
+
+			case 2:
+				Tipo2 op2 = new Tipo2();
+				op2.setId(opr.getId());
+				op2.setComisionAlSocio(opr.getComisionAlSocio());
+				op2.setEstadoComision(opr.getEstadoComision());
+				op2.setEstadoOperacion(opr.getEstadoOperacion());
+				op2.setFecha(fecha);
+				op2.setFechaVencimiento(opr.getFechaVencimiento());
+				op2.setMonto(opr.getMonto());
+				op2.setTasaDeDescuento(opr.getTasaDeDescuento());
+				op2.setTipoDeOperacion(opr.getTipoDeOperacion());
+				op2.setIdSocio(idSocio);
+
+				op2.setEmpresaCuentaCorriente(opr.getEmpresaCuentaCorriente());
+				op2.setFechaVencimiento(opr.getFechaVencimiento());
+
+				operacionService.savet2(op2);
+
+				break;
+
+			case 3:
+				Tipo3 op3 = new Tipo3();
+
+				op3.setId(opr.getId());
+				op3.setComisionAlSocio(opr.getComisionAlSocio());
+				op3.setEstadoComision(opr.getEstadoComision());
+				op3.setEstadoOperacion(opr.getEstadoOperacion());
+				op3.setFecha(fecha);
+				op3.setMonto(opr.getMonto());
+				op3.setTasaDeDescuento(opr.getTasaDeDescuento());
+				op3.setTipoDeOperacion(opr.getTipoDeOperacion());
+				op3.setIdSocio(idSocio);
+
+				op3.setBanco(opr.getBanco());
+				op3.setFechaActualizacion(opr.getFechaActualizacion());
+				List<Cuota> cuotas = new ArrayList<>();
+				cuotas.add(new Cuota(){{
+					setId(0);
+					setValor(100);
+					setPaga(false);
+					setNumeroDeCuota(1);
+					setFechaVencimiento(new Date());
+				}});
+				cuotas.add(new Cuota(){{
+					setId(1);
+					setValor(100);
+					setPaga(false);
+					setNumeroDeCuota(2);
+					setFechaVencimiento(new Date());
+				}});
+				cuotas.add(new Cuota(){{
+					setId(2);
+					setValor(100);
+					setPaga(false);
+					setNumeroDeCuota(3);
+					setFechaVencimiento(new Date());
+				}});
+				cuotas.add(new Cuota(){{
+					setId(3);
+					setValor(100);
+					setPaga(false);
+					setNumeroDeCuota(4);
+					setFechaVencimiento(new Date());
+				}});
+				op3.setCuotas(cuotas);
+				op3.setTasa(opr.getTasa());
+				op3.setSistema(opr.getSistema());
+				operacionService.savet3(op3);
+				break;
+
+			default:
+				System.out.println("error");
+				break;
+
+			}
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
-		
 	}
 
 	// EditarOpeacion

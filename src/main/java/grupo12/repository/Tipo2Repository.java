@@ -1,130 +1,50 @@
 package grupo12.repository;
 
-import grupo12.data_access.JsonDB;
-import grupo12.entity.Accionista;
+import grupo12.data_access.SqLiteDB;
 import grupo12.entity.EstadoOperacion;
-import grupo12.entity.Tipo1;
 import grupo12.entity.Tipo2;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Tipo2Repository {
-    private JsonDB db;
-
-    public Tipo2Repository(){
-        db = new JsonDB("database\\Tipo2Table.db", Tipo2[].class);
-    }
 
     public boolean save(Tipo2 nuevo){
-        List<Tipo2> list = getAll();
-        list.add(nuevo);
-        return db.insert(list);
+        return SqLiteDB.InsertOperacionTipo2(nuevo);
     }
 
     public List<Tipo2> getAll(){
-        Tipo2[] array = (Tipo2[]) db.selectAll();
-        if(array == null)
-            return new ArrayList<Tipo2>();
-        return new ArrayList<Tipo2>(Arrays.asList(array));
+        return SqLiteDB.ObtenerOperacionesTipo2();
     }
 
     public Float getByMontoT2(Integer id) {
-
-        Tipo2[] array = (Tipo2[]) db.selectAll();
-        if(array == null)
-            return null;
-        List<Tipo2> list = new ArrayList<>(Arrays.asList(array)).stream()
-                .filter(a -> a.getId() == id)
-                .collect(Collectors.toList());
-        if(list.size() > 0)
-            return list.get(0).getMonto();
-        else
-            return null;
+        return SqLiteDB.ObtenerOperacionTipo2PorID(id).getMonto();
     }
 
     public Float obtenerComision(Integer id) {
-        Tipo2[] array = (Tipo2[]) db.selectAll();
-        if(array == null)
-            return null;
-        List<Tipo2> list = new ArrayList<>(Arrays.asList(array)).stream()
-                .filter(a -> a.getId() == id)
-                .collect(Collectors.toList());
-        if(list.size() > 0)
-            return list.get(0).getComisionAlSocio();
-        else
-            return null;
+        return SqLiteDB.ObtenerOperacionTipo2PorID(id).getComisionAlSocio();
     }
 
     public Tipo2 getById(Integer id) {
-        Tipo2[] array = (Tipo2[]) db.selectAll();
-        if(array == null)
-            return null;
-        List<Tipo2> list = new ArrayList<>(Arrays.asList(array)).stream()
-                .filter(a -> a.getId() == id)
-                .collect(Collectors.toList());
-        if(list.size() > 0)
-            return list.get(0);
-        else
-            return null;
+        return SqLiteDB.ObtenerOperacionTipo2PorID(id);
     }
 
     public void delete(Integer id) {
-        Tipo2[] array = (Tipo2[]) db.selectAll();
-        List<Tipo2> list = new ArrayList<>(Arrays.asList(array));
-
-        List<Tipo2> toDelete = list.stream()
-                .filter(a -> a.getId() == id)
-                .collect(Collectors.toList());
-
-        if(toDelete.size() > 0) {
-            list.remove(toDelete.get(0));
-            db.insert(list);
-        }
+        System.out.println("El delete no esta implementado!");
     }
 
     public EstadoOperacion getEstado(Integer id) {
-
-        Tipo2[] array = (Tipo2[]) db.selectAll();
-        if(array == null)
-            return null;
-        List<Tipo2> list = new ArrayList<>(Arrays.asList(array)).stream()
-                .filter(a -> a.getId() == id)
-                .collect(Collectors.toList());
-        if(list.size() > 0)
-            return list.get(0).getEstadoOperacion();
-        else
-            return null;
+        return SqLiteDB.ObtenerOperacionTipo2PorID(id).getEstadoOperacion();
     }
 
     public Float getTasaDeDescuento(Integer id) {
-        Tipo2[] array = (Tipo2[]) db.selectAll();
-        if(array == null)
-            return null;
-        List<Tipo2> list = new ArrayList<>(Arrays.asList(array)).stream()
-                .filter(a -> a.getId() == id)
-                .collect(Collectors.toList());
-        if(list.size() > 0)
-            return list.get(0).getTasaDeDescuento();
-        else
-            return null;
+        return SqLiteDB.ObtenerOperacionTipo1PorID(id).getTasaDeDescuento();
     }
 
     public List<Tipo2> getEstadoOperacionDates(EstadoOperacion estadoOperacion, Date fechaInicio, Date fechaFin) {
-        Tipo2[] array = (Tipo2[]) db.selectAll();
-        List<Tipo2> array2 = new ArrayList<Tipo2>();
-        for(Tipo2 t : array){
-            if (t.getEstadoOperacion() == estadoOperacion && t.getFecha().after(fechaInicio) && t.getFecha().before(fechaFin)){
-                array2.add(t);
-
-            }
-        }
-        if(array2 == null)
-            return new ArrayList<Tipo2>();
-        return array2;
+        List<Tipo2> tipo2List = SqLiteDB.ObtenerOperacionesTipo2();
+        return tipo2List.stream().filter(tipo2 -> tipo2.getEstadoOperacion() == estadoOperacion && tipo2.getFecha().after(fechaInicio) && tipo2.getFecha().before(fechaFin)).collect(Collectors.toList());
     }
 
 

@@ -114,7 +114,7 @@ public class SqLiteDB {
                 "\tMonto real NULL\n" +
                 ")");
         listsql.add("CREATE TABLE Tipo1 (\n" +
-                "tID integer PRIMARY KEY,\n" +
+                "ID integer PRIMARY KEY,\n" +
                 "NroCheques integer NULL,\n" +
                 "FechaVencimiento integer NULL,\n" +
                 "CuitFirmante text NULL,\n" +
@@ -729,12 +729,12 @@ public class SqLiteDB {
     public static boolean InsertOperacionTipo1(Tipo1 opreacion){
         String sql = "INSERT INTO Operacion(ID,EstadoOperacion,TasaDeDescuento,ComisionAlSocio, EstadoComision, TipoDeOperacion, Monto, Fecha,IdCerificadoDeGarantia ,IdSocio ) VALUES(?,?,?,?,?,?,?,?,?,?)";
 
-        int index = ObtenerUltimoIndex("Operacion");
+        int index = ObtenerUltimoIndex("Operacion") + 1;
         opreacion.setId(index);
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, index + 1);
+            pstmt.setInt(1, index);
             pstmt.setString(2, opreacion.getEstadoOperacion().name());
             pstmt.setFloat(3, opreacion.getTasaDeDescuento());
             pstmt.setFloat(4, opreacion.getComisionAlSocio());
@@ -742,7 +742,7 @@ public class SqLiteDB {
             pstmt.setString(6, opreacion.getTipoDeOperacion().name());
             pstmt.setFloat(7, opreacion.getMonto());
             pstmt.setFloat(8, opreacion.getFecha().getTime());
-            pstmt.setInt(9, opreacion.getCerificadoDeGarantia().getId() == null? -1 : opreacion.getCerificadoDeGarantia().getId());
+            pstmt.setInt(9, opreacion.getCerificadoDeGarantia() == null? -1 : opreacion.getCerificadoDeGarantia().getId());
             pstmt.setInt(10, opreacion.getIdSocio());
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -772,12 +772,12 @@ public class SqLiteDB {
     public static boolean InsertOperacionTipo2(Tipo2 opreacion){
         String sql = "INSERT INTO Operacion(ID,EstadoOperacion,TasaDeDescuento,ComisionAlSocio, EstadoComision, TipoDeOperacion, Monto, Fecha,IdCerificadoDeGarantia ,IdSocio ) VALUES(?,?,?,?,?,?,?,?,?,?)";
 
-        int index = ObtenerUltimoIndex("Operacion");
+        int index = ObtenerUltimoIndex("Operacion") + 1;
         opreacion.setId(index);
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, index + 1);
+            pstmt.setInt(1, index);
             pstmt.setString(2, opreacion.getEstadoOperacion().name());
             pstmt.setFloat(3, opreacion.getTasaDeDescuento());
             pstmt.setFloat(4, opreacion.getComisionAlSocio());
@@ -785,7 +785,7 @@ public class SqLiteDB {
             pstmt.setString(6, opreacion.getTipoDeOperacion().name());
             pstmt.setFloat(7, opreacion.getMonto());
             pstmt.setFloat(8, opreacion.getFecha().getTime());
-            pstmt.setInt(9, opreacion.getCerificadoDeGarantia().getId() == null? -1 : opreacion.getCerificadoDeGarantia().getId());
+            pstmt.setInt(9, opreacion.getCerificadoDeGarantia() == null? -1 : opreacion.getCerificadoDeGarantia().getId());
             pstmt.setInt(10, opreacion.getIdSocio());
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -814,12 +814,12 @@ public class SqLiteDB {
     public static boolean InsertOperacionTipo3(Tipo3 opreacion){
         String sql = "INSERT INTO Operacion(ID,EstadoOperacion,TasaDeDescuento,ComisionAlSocio, EstadoComision, TipoDeOperacion, Monto, Fecha,IdCerificadoDeGarantia ,IdSocio ) VALUES(?,?,?,?,?,?,?,?,?,?)";
 
-        int index = ObtenerUltimoIndex("Operacion");
+        int index = ObtenerUltimoIndex("Operacion") + 1;
         opreacion.setId(index);
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, index + 1);
+            pstmt.setInt(1, index);
             pstmt.setString(2, opreacion.getEstadoOperacion().name());
             pstmt.setFloat(3, opreacion.getTasaDeDescuento());
             pstmt.setFloat(4, opreacion.getComisionAlSocio());
@@ -827,7 +827,7 @@ public class SqLiteDB {
             pstmt.setString(6, opreacion.getTipoDeOperacion().name());
             pstmt.setFloat(7, opreacion.getMonto());
             pstmt.setFloat(8, opreacion.getFecha().getTime());
-            pstmt.setInt(9, opreacion.getCerificadoDeGarantia().getId() == null? -1 : opreacion.getCerificadoDeGarantia().getId());
+            pstmt.setInt(9, opreacion.getCerificadoDeGarantia() == null? -1 : opreacion.getCerificadoDeGarantia().getId());
             pstmt.setInt(10, opreacion.getIdSocio());
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -1121,7 +1121,7 @@ public class SqLiteDB {
                 a.setTasaDeDescuento(rs.getFloat("TasaDeDescuento"));
                 a.setComisionAlSocio(rs.getFloat("ComisionAlSocio"));
                 a.setEstadoComision(EstadoComision.valueOf(rs.getString("EstadoComision")));
-                a.setTipoDeOperacion(TipoDeOperacion.Tipo1);
+                a.setTipoDeOperacion(TipoDeOperacion.Tipo2);
                 a.setMonto(rs.getFloat("Monto"));
                 a.setFecha(new Date(rs.getLong("Fecha")));
                 a.setIdSocio(rs.getInt("IdSocio"));
@@ -1167,7 +1167,7 @@ public class SqLiteDB {
     }
 
     public static List<Tipo3> ObtenerOperacionesTipo3(){
-        String sql = "SELECT * FROM Operacion INNER JOIN Tipo3 ON Operacion.ID = Tipo2.IdOperacion" ;
+        String sql = "SELECT * FROM Operacion INNER JOIN Tipo3 ON Operacion.ID = Tipo3.IdOperacion" ;
         List<Tipo3> resultado = new ArrayList<>();
 
         try (Connection conn = connect();

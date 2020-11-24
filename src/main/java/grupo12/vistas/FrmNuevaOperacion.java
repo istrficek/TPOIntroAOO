@@ -2,9 +2,7 @@ package grupo12.vistas;
 
 import grupo12.controllers.OperacionController;
 import grupo12.controllers.SocioController;
-import grupo12.entity.EstadoOperacion;
-import grupo12.entity.Socio;
-import grupo12.entity.TipoDeOperacion;
+import grupo12.entity.*;
 import grupo12.request.OperacionRequest;
 
 import javax.swing.*;
@@ -15,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -31,12 +30,12 @@ public class FrmNuevaOperacion extends JDialog {
     private JPanel panelTipo3;
     private JTextField txtBanco;
     private JTextField txtNumeroCheque;
-    private JFormattedTextField txtFechaVencimientoT1;
+    private JTextField txtFechaVencimientoT1;
     private JTextField txtCUIT;
     private JTextField txtEmpresaCuentaCorriente;
-    private JFormattedTextField txtFechaVencimientoT2;
+    private JTextField txtFechaVencimientoT2;
     private JTextField txtBancoT3;
-    private JFormattedTextField txtFechaActualizacion;
+    private JTextField txtFechaActualizacion;
     private JTextField txtTasa;
     private FrmNuevaOperacion self;
     private JComboBox cmbSistema;
@@ -55,15 +54,6 @@ public class FrmNuevaOperacion extends JDialog {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         this.self = this;
-
-        try {
-            MaskFormatter maskFormatter = new MaskFormatter("##/##/##");
-            txtFechaVencimientoT1 = new JFormattedTextField(maskFormatter);
-            txtFechaVencimientoT2 = new JFormattedTextField(maskFormatter);
-            txtFechaActualizacion = new JFormattedTextField(maskFormatter);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
 
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.addElement("---Seleccionar---");
@@ -125,52 +115,84 @@ public class FrmNuevaOperacion extends JDialog {
 
         });
         guardarButton.addActionListener(e -> {
+            boolean result;
             if(validarCampos()){
                 switch (cmbTipoOperacion.getSelectedItem().toString()){
                     case "Tipo1":
-                        operacionController.crearOperacion(new OperacionRequest(){{
+                       result = operacionController.crearOperacion(new OperacionRequest(){{
                             setEstadoOperacion(EstadoOperacion.Ingresado);
                             setTipoDeOperacion(TipoDeOperacion.Tipo1);
                             setTasaDeDescuento(new Float(txtTasaDeDescuento.getText()));
                             setComisionAlSocio(new Float(txtComisionAlSocio.getText()));
+                            setEstadoComision(EstadoComision.Calculada);
                             setMonto(new Float(txtMonto.getText()));
                             setFecha(new Date());
                             setTipoOpe(1);
                             setBanco(txtBanco.getText());
                             setNroCheques(new Long(txtNumeroCheque.getText()));
-                            setFechaVencimiento(new Date(txtFechaVencimientoT1.getText()));
+                            try {
+                                setFechaVencimiento(new SimpleDateFormat("dd/MM/yyyy").parse(txtFechaVencimientoT1.getText()));
+                            } catch (ParseException parseException) {
+                                parseException.printStackTrace();
+                            }
                             setCuitFirmante(txtCUIT.getText());
                         }}, socioSeleccionado.getId());
                         break;
                     case "Tipo2":
-                        operacionController.crearOperacion(new OperacionRequest(){{
+                        result = operacionController.crearOperacion(new OperacionRequest(){{
                             setEstadoOperacion(EstadoOperacion.Ingresado);
                             setTipoDeOperacion(TipoDeOperacion.Tipo2);
                             setTasaDeDescuento(new Float(txtTasaDeDescuento.getText()));
                             setComisionAlSocio(new Float(txtComisionAlSocio.getText()));
+                            setEstadoComision(EstadoComision.Calculada);
                             setMonto(new Float(txtMonto.getText()));
                             setFecha(new Date());
                             setTipoOpe(2);
                             setEmpresaCuentaCorriente(txtEmpresaCuentaCorriente.getText());
-                            setFechaVencimiento(new Date(txtFechaVencimientoT2.getText()));
+                            try {
+                                setFechaVencimiento(new SimpleDateFormat("dd/MM/yyyy").parse(txtFechaVencimientoT2.getText()));
+                            } catch (ParseException parseException) {
+                                parseException.printStackTrace();
+                            }
                         }}, socioSeleccionado.getId());
                         break;
                     case "Tipo3":
-                        operacionController.crearOperacion(new OperacionRequest(){{
+                        result = operacionController.crearOperacion(new OperacionRequest(){{
                             setEstadoOperacion(EstadoOperacion.Ingresado);
                             setTipoDeOperacion(TipoDeOperacion.Tipo3);
                             setTasaDeDescuento(new Float(txtTasaDeDescuento.getText()));
                             setComisionAlSocio(new Float(txtComisionAlSocio.getText()));
+                            setEstadoComision(EstadoComision.Calculada);
                             setMonto(new Float(txtMonto.getText()));
                             setFecha(new Date());
                             setTipoOpe(3);
                             //TODO Terminar los set de TIPO 3
+                            setBanco(txtBancoT3.getText());
+                            try {
+                                setFechaActualizacion(new SimpleDateFormat("dd/MM/yyyy").parse(txtFechaActualizacion.getText()));
+                            } catch (ParseException parseException) {
+                                parseException.printStackTrace();
+                            }
+                            setTasa(new Integer(txtTasa.getText()));
+                            setCantidadDeCuotas(12);
+                            setSistema(Sistema.valueOf((String)cmbSistema.getSelectedItem()));
 
                         }}, socioSeleccionado.getId());
                         break;
                     default:
+                        result = false;
                         break;
                 }
+                if(result){
+                    JOptionPane.showMessageDialog(this,"Nueva Operacion guardada!.");
+                    this.setVisible(false);
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, "Error guardando operacion.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"Completar TODOS los campos!.", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
 
@@ -188,7 +210,7 @@ public class FrmNuevaOperacion extends JDialog {
                         && !txtMonto.getText().equals("")
                         && !txtBanco.getText().equals("")
                         && !txtNumeroCheque.getText().equals("")
-                        && txtFechaVencimientoT1.isEditValid()
+                        && !txtFechaVencimientoT1.getText().equals("")
                         && !txtCUIT.getText().equals("")
                         && cmbSocios.getSelectedIndex() != 0;
             case "Tipo2":
@@ -196,14 +218,14 @@ public class FrmNuevaOperacion extends JDialog {
                         && !txtComisionAlSocio.getText().equals("")
                         && !txtMonto.getText().equals("")
                         && !txtEmpresaCuentaCorriente.getText().equals("")
-                        && txtFechaVencimientoT2.isEditValid()
+                        && !txtFechaVencimientoT2.getText().equals("")
                         && cmbSocios.getSelectedIndex() != 0;
             case "Tipo3":
                 return !txtTasaDeDescuento.getText().equals("")
                         && !txtComisionAlSocio.getText().equals("")
                         && !txtMonto.getText().equals("")
                         && !txtBancoT3.getText().equals("")
-                        && txtFechaActualizacion.isEditValid()
+                        && !txtFechaActualizacion.getText().equals("")
                         && !txtTasa.getText().equals("")
                         && cmbSistema.getSelectedIndex() != 0
                         && cmbSocios.getSelectedIndex() != 0;

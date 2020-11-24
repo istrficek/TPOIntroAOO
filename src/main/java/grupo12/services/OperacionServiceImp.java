@@ -271,6 +271,7 @@ public class OperacionServiceImp implements OperacionService {
 		//transforma un Tipo1 en un request
 		request.setId(tipo1.getId());
 		request.setEstadoComision(tipo1.getEstadoComision());
+		request.setEstadoOperacion(tipo1.getEstadoOperacion());
 		request.setTasaDeDescuento(tipo1.getTasaDeDescuento());
 		request.setComisionAlSocio(tipo1.getComisionAlSocio());
 		request.setTipoDeOperacion(tipo1.getTipoDeOperacion());
@@ -283,6 +284,7 @@ public class OperacionServiceImp implements OperacionService {
 		request.setNroCheques(tipo1.getNroCheques());
 		request.setFechaVencimiento(tipo1.getFechaVencimiento());
 		request.setCuitFirmante(tipo1.getCuitFirmante());
+		request.setTipoDeOperacion(TipoDeOperacion.Tipo1);
 
 	}
 
@@ -293,6 +295,7 @@ public class OperacionServiceImp implements OperacionService {
 		request.setTasaDeDescuento(tipo2.getTasaDeDescuento());
 		request.setComisionAlSocio(tipo2.getComisionAlSocio());
 		request.setTipoDeOperacion(tipo2.getTipoDeOperacion());
+		request.setEstadoOperacion(tipo2.getEstadoOperacion());
 		request.setMonto(tipo2.getMonto());
 		request.setFecha(tipo2.getFecha());
 		request.setCerificadoDeGarantia(tipo2.getCerificadoDeGarantia());
@@ -300,6 +303,7 @@ public class OperacionServiceImp implements OperacionService {
 
 		request.setEmpresaCuentaCorriente(tipo2.getEmpresaCuentaCorriente());
 		request.setFechaVencimiento(tipo2.getFechaVencimiento());
+		request.setTipoDeOperacion(TipoDeOperacion.Tipo2);
 
 
 
@@ -312,6 +316,7 @@ public class OperacionServiceImp implements OperacionService {
 		request.setTasaDeDescuento(tipo3.getTasaDeDescuento());
 		request.setComisionAlSocio(tipo3.getComisionAlSocio());
 		request.setTipoDeOperacion(tipo3.getTipoDeOperacion());
+		request.setEstadoOperacion(tipo3.getEstadoOperacion());
 		request.setMonto(tipo3.getMonto());
 		request.setFecha(tipo3.getFecha());
 		request.setCerificadoDeGarantia(tipo3.getCerificadoDeGarantia());
@@ -323,9 +328,7 @@ public class OperacionServiceImp implements OperacionService {
 		request.setTasa(tipo3.getTasa());
 		request.setSistema(tipo3.getSistema());
 		request.setCantidadDeCuotas(tipo3.getCantidadDeCuotas());
-
-
-
+		request.setTipoDeOperacion(TipoDeOperacion.Tipo3);
 	}
 
 
