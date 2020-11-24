@@ -267,6 +267,17 @@ public class OperacionServiceImp implements OperacionService {
 		return montoDelSocio + operacion.getMonto() < (fondoDeRiesgo.obtenerMonto() * 0.05);
 	}
 
+	@Override
+	public Float getByfechaT1(Date fecha) {
+		List<Tipo1> t1lista = repot1.getByFecha(fecha);
+		Float resultado= Float.valueOf(0);
+		for (Tipo1 t : t1lista) {
+			resultado = resultado + t.getComisionAlSocio();
+		}
+
+		return resultado;
+	}
+
 	private void EntyToModelT1(Tipo1 tipo1, OperacionRequest request) {
 		//transforma un Tipo1 en un request
 		request.setId(tipo1.getId());
