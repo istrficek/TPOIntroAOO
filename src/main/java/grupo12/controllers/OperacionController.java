@@ -129,13 +129,13 @@ public class OperacionController {
 	}
 
 	// EditarOpeacion
-	public void editOperacion(OperacionRequest opr){
+	public boolean editOperacion(OperacionRequest opr){
 
 		OperacionRequest nuevo = new OperacionRequest();
 		switch (opr.getTipoOpe()) {
 		case 1 :
 			Tipo1 op1 = operacionService.getByIdT1(opr.getId());
-			
+
 			op1.setId(opr.getId());
 			op1.setBancoCheques(opr.getBancoCheques());
 			op1.setComisionAlSocio(opr.getComisionAlSocio());
@@ -148,8 +148,8 @@ public class OperacionController {
 			op1.setTasaDeDescuento(opr.getTasaDeDescuento());
 			op1.setTipoDeOperacion(opr.getTipoDeOperacion());
 			operacionService.savet1(op1);
-			break;
-		
+			return true;
+
 		case 2:
 			Tipo2 op2 = operacionService.getByIdT2(opr.getId());
 			op2.setId(opr.getId());
@@ -160,14 +160,14 @@ public class OperacionController {
 			op2.setMonto(opr.getMonto());
 			op2.setTasaDeDescuento(opr.getTasaDeDescuento());
 			op2.setTipoDeOperacion(opr.getTipoDeOperacion());
-			
+
 			op2.setEmpresaCuentaCorriente(opr.getEmpresaCuentaCorriente());
 			op2.setFechaVencimiento(opr.getFechaVencimiento());
 			operacionService.savet2(op2);
-			break;
+			return true;
 		case 3:
 			Tipo3 op3 = operacionService.getByIdT3(opr.getId());
-			
+
 			op3.setId(opr.getId());
 			op3.setComisionAlSocio(opr.getComisionAlSocio());
 			op3.setEstadoComision(opr.getEstadoComision());
@@ -175,18 +175,18 @@ public class OperacionController {
 			op3.setMonto(opr.getMonto());
 			op3.setTasaDeDescuento(opr.getTasaDeDescuento());
 			op3.setTipoDeOperacion(opr.getTipoDeOperacion());
-			
+
 			op3.setBanco(opr.getBanco());
 			op3.setFechaActualizacion(opr.getFechaActualizacion());
 			op3.setCuotas(opr.getCuotas());
 			op3.setTasa(opr.getTasa());
 			op3.setSistema(opr.getSistema());
 			operacionService.savet3(op3);
-			break;
-		
+			return true;
+
 		default:
 			System.out.println("Error");
-			break;
+			return false;
 		
 	}
 	}
