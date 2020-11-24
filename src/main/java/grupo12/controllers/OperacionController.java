@@ -277,6 +277,34 @@ public class OperacionController {
 	public Float comisionesChequesCalculadas(Date fecha){
 		return operacionService.getByfechaT1(fecha);
 	}
+
+	public List<OperacionRequest> getOperacionesAvaladas(int idSocio, Date fechaInicio, Date fechaFin){
+		List<Operacion> listaOperaciones;
+		List<OperacionRequest> listaOperacionesRequest = new ArrayList<>();
+		listaOperaciones = operacionService.getOperacionesAvaladas(idSocio, fechaInicio, fechaFin);
+		for (Operacion o:listaOperaciones) {
+			OperacionRequest oR = new OperacionRequest() {{
+				setId(o.getId());
+				setEstadoOperacion(o.getEstadoOperacion());
+				setTasaDeDescuento(o.getTasaDeDescuento());
+				setComisionAlSocio(o.getComisionAlSocio());
+				setEstadoComision(o.getEstadoComision());
+				setTipoDeOperacion(o.getTipoDeOperacion());
+				setMonto(o.getMonto());
+				setFecha(o.getFecha());
+				setIdSocio(o.getIdSocio());
+				setLineaDeCredito(o.getLineaDeCredito());
+				setCerificadoDeGarantia(o.getCerificadoDeGarantia());
+
+			}};
+			listaOperacionesRequest.add(oR);
+
+
+
+		}
+		return listaOperacionesRequest;
+
+	}
 	
 
 	

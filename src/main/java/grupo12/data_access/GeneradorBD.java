@@ -193,6 +193,21 @@ public class GeneradorBD {
             setUsuario("Jose");
         }});
 
+        // Operaciones
+        operacionController.crearOperacion(new OperacionRequest(){{
+            setEstadoOperacion(EstadoOperacion.Monetizada);
+            setTasaDeDescuento((float) 3);
+            setComisionAlSocio((float) 4);
+            setEstadoComision(EstadoComision.Calculada);
+            setTipoDeOperacion(TipoDeOperacion.Tipo1);
+            setMonto((float) 3);
+            setFecha(new Date());
+            setIdSocio(2);
+            setTipoOpe(1);
+            setNroCheques((long) 2);
+            
+        }},2);
+
     }
 
     private static String GenerarCUIT(){
