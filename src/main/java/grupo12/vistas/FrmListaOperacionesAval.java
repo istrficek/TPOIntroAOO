@@ -17,7 +17,7 @@ public class FrmListaOperacionesAval extends JDialog {
 
         setContentPane(pnlPrincipal);
 
-        this.setSize(600, 130);
+        this.setSize(800, 230);
         this.setModal(true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
