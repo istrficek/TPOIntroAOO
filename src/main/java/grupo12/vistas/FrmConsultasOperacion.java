@@ -24,7 +24,7 @@ public class FrmConsultasOperacion extends JDialog {
         super(owner, titulo);
         setContentPane(Principal);
 
-        this.setSize(700, 500);
+        this.setSize(665, 600);
         this.setModal(true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
